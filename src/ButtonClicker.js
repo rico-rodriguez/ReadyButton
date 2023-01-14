@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
+  Alert,
   Button,
   createTheme,
   Grid,
@@ -121,6 +122,9 @@ export default function ButtonClicker() {
         main: '#64748B',
         contrastText: '#fff',
       },
+      root: {
+        background: 'red'
+      }
     },
   });
   return (
@@ -156,9 +160,15 @@ export default function ButtonClicker() {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             autoHideDuration={3000}
             open={snackbarOpen}
-            message='Someone has clicked the button!'
+            // message='Someone has clicked the button!'
             onClose={() => setSnackbarOpen(false)}
-          />
+            // bodyStyle={{ backgroundColor: '#0f7a00' }}
+          >
+            <Alert severity='success' sx={{ width: '100%' }}>
+                Someone has clicked the button!
+            </Alert>
+
+            </Snackbar>
         </Grid>
       </ThemeProvider>
     </div>
