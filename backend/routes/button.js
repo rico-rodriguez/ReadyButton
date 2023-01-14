@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const UserData = mongoose.model('UserSchema');
 const Button = mongoose.model('ButtonSchema', 'buttons');
 const uuid = require('uuid');
-const {io} = require("socket.io-client");
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 

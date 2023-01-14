@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import io from 'socket.io-client';
 import {Button, createTheme, Grid, IconButton, Snackbar, ThemeProvider} from "@mui/material";
 
 export default function ButtonClicker() {
@@ -9,7 +8,6 @@ export default function ButtonClicker() {
     const [loading, setLoading] = useState(true);
     const [buttonData, setButtonData] = useState({});
     const [clickedUsers, setClickedUsers] = useState([]);
-    const [socket, setSocket] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     useEffect(() => {
@@ -30,25 +28,6 @@ export default function ButtonClicker() {
         fetchUserId();
     }, []);
 
-    useEffect(() => {
-        if (userId && !loading) {
-            const socket = io();
-            setSocket(socket);
-            socket.on('connect', () => {
-                console.log('Connected to socket.io server');
-                socket.on('reset', (data) => {
-                    setButtonData(data);
-                    setClickedUsers([]);
-                });
-                socket.on('increment', (data) => {
-                    socket.emit('increment', data);
-                });
-            });
-        }
-    }, [userId, loading])
-
-
-
     async function handleClick() {
         // Check if user has already clicked the button
         if (!clickedUsers.includes(urlId) && userId) {
@@ -65,9 +44,6 @@ export default function ButtonClicker() {
                 const data = await response.json();
                 // Update the state with the new count
                 setButtonData({ count: data.count });
-                // Send socket event to server to emit event to all clients
-                // Emit increment event
-                socket.emit("increment", urlId );
             } catch (err) {
                 console.error('Error updating click count:', err);
             }
@@ -83,9 +59,7 @@ export default function ButtonClicker() {
             const data = await response.json();
             setButtonData(data);
             setClickedUsers([]);
-            if (socket) {
-                socket.emit('reset', data);
-            }
+
         } catch (err) {
             console.error('Error resetting click count:', err);
         }
@@ -111,21 +85,6 @@ export default function ButtonClicker() {
                 }
             }
             fetchData();
-
-            // Connect to socket.io server
-            const socket = io();
-            socket.on('connect', () => {
-                console.log('Connected to socket.io server');
-                socket.emit('join', { urlId });
-                // Listen for button updates
-                socket.on('update', (data) => {
-                    setButtonData(data);
-                });
-            });
-            // Clean up function to disconnect from socket when component unmounts
-            return () => {
-                socket.disconnect();
-            };
         }
     }, [urlId, userId, loading, buttonData, clickedUsers,]);
     const theme = createTheme({
