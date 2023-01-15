@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 const io = require('socket.io-client');
-const socket = io('http://readybutton.herokuapp.com', {
+const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: false,
 });
 
@@ -28,7 +28,7 @@ export default function ButtonClicker() {
       console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
       const response = await fetch(
-        'http://readybutton.herokuapp.com/api/user/id',
+        'https://readybutton.herokuapp.com/api/user/id',
         {
           credentials: 'include',
         }
@@ -50,7 +50,7 @@ export default function ButtonClicker() {
       setClickedUsers([...clickedUsers, urlId]);
       try {
         const response = await fetch(
-          `http://readybutton.herokuapp.com/${urlId}`,
+          `https://readybutton.herokuapp.com/${urlId}`,
           {
             method: 'PATCH',
             headers: {
@@ -74,7 +74,7 @@ export default function ButtonClicker() {
   async function handleReset() {
     try {
       const response = await fetch(
-        `http://readybutton.herokuapp.com/${urlId}`,
+        `https://readybutton.herokuapp.com/${urlId}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -94,7 +94,7 @@ export default function ButtonClicker() {
       async function fetchData() {
         try {
           const response = await fetch(
-            `http://readybutton.herokuapp.com/${urlId}`
+            `https://readybutton.herokuapp.com/${urlId}`
           );
           if (!response.ok) {
             throw new Error('Failed to fetch button data');
