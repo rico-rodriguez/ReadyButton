@@ -174,7 +174,6 @@ export default function ButtonClicker() {
         >
           {loading ? <CircularProgress color="success" style={{
             position: 'absolute',
-            thickness: '1.4',
             width: '3em',
             height: '3em',
             fontSize: '90px',

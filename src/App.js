@@ -18,6 +18,14 @@ const theme = createTheme({
             background: 'red'
         }
     },
+    components: {
+        // Name of the component
+        MuiCircularProgress: {
+            defaultProps: {
+                thickness: 1.6,
+            },
+        },
+    },
 });
 function App() {
     return (
