@@ -153,14 +153,14 @@ buttonRoutes.route('/api/button/reset/:urlId')
             res.status(400).json({ message: err.message });
         }
     });
-// module.exports = buttonRoutes;
-module.exports = (statusCode, body) => {
-    return {
-        headers: {
-            "Access-Control-Allow-Origin": "*"
-        },
-        statusCode: 200,
-        body: JSON.stringify(body)
-    };
+module.exports = buttonRoutes;
+// module.exports = (statusCode, body) => {
+//     return {
+//         headers: {
+//             "Access-Control-Allow-Origin": "*"
+//         },
+//         statusCode: 200,
+//         body: JSON.stringify(body)
+//     };
 
-};
+// };
