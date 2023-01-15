@@ -71,110 +71,122 @@ export default function Home() {
   ));
   const classes = useStyles();
   return (
-    <Container maxWidth='sm' className={classes.root}>
-      <Typography variant='h2' className={classes.header}>
-        Welcome
-      </Typography>
-      <Box className={classes.subheader}>
-        <Typography variant='subtitle1'>
-          To get started, add anything after the '/' of this url and you will be
-          sent to your own instance of the ready button. Share the link with
-          classmates or friends to see when everyone is ready!
+    <>
+      <Container maxWidth='sm' className={classes.root}>
+        <Typography variant='h2' className={classes.header}>
+          Welcome
         </Typography>
-      </Box>
-      <ul className={classes.featureList}>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Integrate Webhooks for incrementing button/resetting
+        <Box className={classes.subheader}>
+          <Typography variant='subtitle1'>
+            To get started, add anything after the '/' of this url and you will
+            be sent to your own instance of the ready button. Share the link
+            with classmates or friends to see when everyone is ready!
           </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Add a settings button that allows you to set a click limit, and
-            notifies when it is reached
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Add Emoji burst from cursor on click
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Restrict URL's that can be made, clean periodically
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Add Snackbar for button reset
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Add the ability to set usernames and share username of people who
-            have clicked
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={false}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Integrate with Teams via webhooks/client bot
-          </Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={true}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>Enable Reset button</Typography>
-        </li>
-        <li className={classes.featureItem}>
-          <CustomCheckbox
-            className={classes.customCheckbox}
-            checked={true}
-            onChange={() => {}}
-          />
-          <Typography variant='subtitle2'>
-            Integrate webhooks for snackbar notification
-          </Typography>
-        </li>
-      </ul>
+        </Box>
+        <ul className={classes.featureList}>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Integrate Webhooks for incrementing button/resetting
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Add a settings button that allows you to set a click limit, and
+              notifies when it is reached
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Add Emoji burst from cursor on click
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Restrict URL's that can be made, clean periodically
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Add Snackbar for button reset
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Add the ability to set usernames and share username of people who
+              have clicked
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={false}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Integrate with Teams via webhooks/client bot
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={true}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>Enable Reset button</Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={true}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Migrate to web and modify localhost to web addresses.
+            </Typography>
+          </li>
+          <li className={classes.featureItem}>
+            <CustomCheckbox
+              className={classes.customCheckbox}
+              checked={true}
+              onChange={() => {}}
+            />
+            <Typography variant='subtitle2'>
+              Integrate webhooks for snackbar notification
+            </Typography>
+          </li>
+        </ul>
+      </Container>
       <GitHubLink />
-    </Container>
+    </>
   );
 }
