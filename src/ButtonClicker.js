@@ -98,7 +98,12 @@ export default function ButtonClicker() {
       async function fetchData() {
         try {
           const response = await fetch(
-            `https://readybutton.herokuapp.com/${urlId}`
+            `https://readybutton.herokuapp.com/${urlId}`,
+            {
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+              },
+            }
           );
           if (!response.ok) {
             throw new Error('Failed to fetch button data');
