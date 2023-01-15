@@ -79,6 +79,7 @@ export default function ButtonClicker() {
 
   async function handleReset() {
     try {
+      setLoading(true); // show loading spinner
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
         {
@@ -90,6 +91,7 @@ export default function ButtonClicker() {
       const data = await response.json();
       setButtonData(data);
       setClickedUsers([]);
+      setLoading(false); // hide loading spinner
     } catch (err) {
       console.error('Error resetting click count:', err);
     }
@@ -97,6 +99,7 @@ export default function ButtonClicker() {
   // Only make requests when userId is not null and loading is false
   useEffect(() => {
     if (userId && !loading) {
+      setLoading(true);
       async function fetchData() {
         try {
           const response = await fetch(
@@ -114,6 +117,7 @@ export default function ButtonClicker() {
             //Button not found, create new button on server side
           } else {
             const data = await response.json();
+            setLoading(false); // hide loading spinner
             setButtonData(data);
           }
         } catch (error) {
