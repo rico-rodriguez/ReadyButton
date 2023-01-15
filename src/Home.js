@@ -16,7 +16,6 @@ const useHomeStyle = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: 'fit-content',
     padding: theme.spacing(2),
     background: 'rgba(0, 0, 0, 0.5)',
     boxShadow:

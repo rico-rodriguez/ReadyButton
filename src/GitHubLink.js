@@ -9,16 +9,9 @@ const useStyles = makeStyles({
     bottom: '20px',
     left: '20px',
     cursor: 'pointer',
-    '&:hover': {
-      animation: '$githubLinkHover 0.5s ease-in-out infinite alternate',
-    },
-  },
-  '@keyframes githubLinkHover': {
-    from: {
-      transform: 'translateY(0)',
-    },
-    to: {
-      transform: 'translateY(-10px)',
+    '&: hover': {
+      color: '#f0f0f0',
+      transition: 'color 0.5s ease-in-out',
     },
   },
 });
