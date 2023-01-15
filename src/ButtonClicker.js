@@ -70,10 +70,10 @@ export default function ButtonClicker() {
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
-        setLoading(false); // hide loading spinner
       } catch (err) {
         console.error('Error updating click count:', err);
       }
+        setLoading(false); // hide loading spinner
     }
   }
 
