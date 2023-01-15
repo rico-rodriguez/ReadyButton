@@ -24,7 +24,7 @@ function App() {
 <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home/>} />
+                <Route path="/mssa" element={<Home/>} />
                 <Route path="/:urlId" element={<ButtonClicker />} />
             </Routes>
         </BrowserRouter>

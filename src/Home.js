@@ -2,7 +2,7 @@ import socketClient from 'socket.io-client';
 import {Box, Checkbox, Container, Typography} from "@mui/material";
 import {makeStyles, withStyles} from "@mui/styles";
 const io = require('socket.io-client');
-const socket = io('http://localhost:5000/', {
+const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
 });
 socket.on('connect', () => {

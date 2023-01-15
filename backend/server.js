@@ -1,11 +1,11 @@
 var app = require('express')();
 var http = require('http').createServer(app);
-const httpServer = http.listen(process.env.PORT || 5000, () => {
-  console.log('listening on *:5000');
+const httpServer = http.listen(process.env.PORT, () => {
+  console.log("listening on *:${process.env.PORT}");
 });
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: 'https://readybutton.herokuapp.com',
     methods: ['GET', 'POST'],
   },
 });
@@ -26,15 +26,13 @@ const express = require('express');
 const cors = require('cors');
 // get MongoDB driver connection
 const dbo = require('./db/conn');
-const PORT = process.env.PORT || 5000;
-// const app = express();
 
 require('./models/ButtonSchema');
 require('./models/UserSchema');
 
 app.use(cookieParser());
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: 'https://readybutton.herokuapp.com', credentials: true }));
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
