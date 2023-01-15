@@ -159,6 +159,7 @@ export default function ButtonClicker() {
           onClick={handleClick}
         >
           {loading ? <CircularProgress color="success" style={{
+            position: 'absolute',
             width: '3em',
             height: '3em',
             fontSize: '90px',
