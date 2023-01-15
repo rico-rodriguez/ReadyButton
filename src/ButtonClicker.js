@@ -96,58 +96,45 @@ export default function ButtonClicker() {
       console.error('Error resetting click count:', err);
     }
   }
-      useEffect(async () => {
-        if (userId && !loading) {
-          async function fetchData() {
-            setLoading(true); // show loading spinner
-            try {
-              const response = await fetch(
-                  `https://readybutton.herokuapp.com/api/button/${urlId}`,
-                  {
-                    headers: {
-                      'Access-Control-Allow-Origin': '*',
-                    },
-                  }
-              );
-              if (!response.ok) {
-                throw new Error('Failed to fetch button data');
+  useEffect(() => {
+    if (userId && !loading) {
+      async function fetchData() {
+        setLoading(true);
+        try {
+          const response = await fetch(
+              `https://readybutton.herokuapp.com/api/button/${urlId}`,
+              {
+                headers: {
+                  'Access-Control-Allow-Origin': '*',
+                },
               }
-              if (response.status === 404) {
-                //Button not found, create new button on server side
-              } else {
-                const data = await response.json();
-                setButtonData(data);
-              }
-            } catch (error) {
-              console.error('Error fetching button data:', error);
-            }
-            setLoading(false);
+          );
+          if (!response.ok) {
+            throw new Error('Failed to fetch button data');
           }
-
-          await fetchData();
-          socket.on('snackbar', (data) => {
-            setSnackbarOpen(true);
-          });
-          socket.on('increment', (data) => {
-            console.log('Increment event received');
-            setButtonData({count: data.count});
-          });
+          if (response.status === 404) {
+            //Button not found, create new button on server side
+          } else {
+            const data = await response.json();
+            setButtonData(data);
+          }
+        } catch (error) {
+          console.error('Error fetching button data:', error);
+        } finally {
+          setLoading(false);
         }
-      },  [urlId, userId, loading]);
-
-
-  // // Only make requests when userId is not null and loading is false
-  // useEffect(() => {
-  //   if (userId && !loading) {
-  //     socket.on('snackbar', (data) => {
-  //       setSnackbarOpen(true);
-  //     });
-  //     socket.on('increment', (data) => {
-  //       console.log('Increment event received');
-  //       setButtonData({ count: data.count });
-  //     });
-  //   }
-  // }, [urlId, userId, loading, buttonData, clickedUsers]);
+      }
+      fetchData();
+  // Only make requests when userId is not null and loading is false
+      socket.on('snackbar', (data) => {
+        setSnackbarOpen(true);
+      });
+      socket.on('increment', (data) => {
+        console.log('Increment event received');
+        setButtonData({ count: data.count });
+      });
+    }
+  }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   return (
     <div>
