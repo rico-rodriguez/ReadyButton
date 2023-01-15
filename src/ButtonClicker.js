@@ -173,7 +173,7 @@ export default function ButtonClicker() {
         >
           {loading ? <CircularProgress color="success" style={{
             position: 'absolute',
-            width: '1em',
+            width: '3em',
             height: '3em',
             fontSize: '90px',
           }}  /> : buttonData.count}
