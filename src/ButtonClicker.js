@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 const io = require('socket.io-client');
-const socket = io('https://readybutton.herokuapp.com/', {
+const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: false,
 });
 
