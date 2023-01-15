@@ -8,25 +8,25 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 
-// buttonRoutes.route('/').post(async function () {
-//     console.log('POST /');
-//     const newButton = new Button({
-//         urlId: "153654789",
-//         count: 0
-//     });
-//     const client = new MongoClient(connectionString, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     });
-//     await client.connect(err => {
-//         const collection = client.db("button").collection("buttons");
-//         collection.insertOne(newButton, function (err, res) {
-//             if (err) throw err;
-//             console.log("1 document inserted");
-//             client.close();
-//         });
-//     });
-// });
+buttonRoutes.route('/').post(async function () {
+    console.log('POST /');
+    const newButton = new Button({
+        urlId: "rico",
+        count: 0
+    });
+    const client = new MongoClient(connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    await client.connect(err => {
+        const collection = client.db("button").collection("buttons");
+        collection.insertOne(newButton, function (err, res) {
+            if (err) throw err;
+            console.log("1 document inserted");
+            client.close();
+        });
+    });
+});
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
