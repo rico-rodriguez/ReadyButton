@@ -67,17 +67,22 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
+    console.log('GET /api/button/:urlId');
     await client.connect(async err => {
         const collection = client.db("button").collection("buttons");
         let button = await collection.findOne({ urlId: req.params.urlId });
         if (!button) {
+            console.log('Button not found, creating a new one');
             button = {
                 urlId: req.params.urlId,
                 count: 0
             };
+            console.log('Button:', button);
             await collection.insertOne(button);
         }
         res.json({ count: button.count });
+        console.log('Button count:', button.count);
+        console.log('Button count sent to the client')
         await client.close();
     });
 });
