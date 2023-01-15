@@ -56,6 +56,7 @@ export default function ButtonClicker() {
             headers: {
               'Content-Type': 'application/json',
               userId: userId,
+              'Access-Control-Allow-Origin': '*',
             },
             credentials: 'include',
           }
