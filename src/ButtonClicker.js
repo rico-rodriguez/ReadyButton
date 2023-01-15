@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 const io = require('socket.io-client');
-const socket = io('https://readybutton.herokuapp.com', {
+const socket = io('http://readybutton.herokuapp.com', {
   withCredentials: false,
 });
 
@@ -27,9 +27,12 @@ export default function ButtonClicker() {
     async function fetchUserId() {
       console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
-      const response = await fetch('https://readybutton.herokuapp.com/api/user/id', {
-        credentials: 'include',
-      });
+      const response = await fetch(
+        'http://readybutton.herokuapp.com/api/user/id',
+        {
+          credentials: 'include',
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         setUserId(data.userId);
@@ -47,7 +50,7 @@ export default function ButtonClicker() {
       setClickedUsers([...clickedUsers, urlId]);
       try {
         const response = await fetch(
-          `https://readybutton.herokuapp.com/${urlId}`,
+          `http://readybutton.herokuapp.com/${urlId}`,
           {
             method: 'PATCH',
             headers: {
@@ -71,7 +74,7 @@ export default function ButtonClicker() {
   async function handleReset() {
     try {
       const response = await fetch(
-        `https://readybutton.herokuapp.com/${urlId}`,
+        `http://readybutton.herokuapp.com/${urlId}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -91,7 +94,7 @@ export default function ButtonClicker() {
       async function fetchData() {
         try {
           const response = await fetch(
-            `https://readybutton.herokuapp.com/${urlId}`
+            `http://readybutton.herokuapp.com/${urlId}`
           );
           if (!response.ok) {
             throw new Error('Failed to fetch button data');
@@ -119,44 +122,43 @@ export default function ButtonClicker() {
 
   return (
     <div>
-        <Grid
-          container
-          spacing={0}
-          direction='column'
-          alignItems='center'
-          justifyContent='center'
-          style={{ minHeight: '100vh' }}
+      <Grid
+        container
+        spacing={0}
+        direction='column'
+        alignItems='center'
+        justifyContent='center'
+        style={{ minHeight: '100vh' }}
+      >
+        <Button
+          style={{
+            width: '3em',
+            height: '3em',
+            fontSize: '90px',
+            borderRadius: '9999px',
+            marginBottom: '20px',
+            filter: 'drop-shadow(5px 5px 10px #000)',
+          }}
+          color='primary'
+          variant='contained'
+          onClick={handleClick}
         >
-          <Button
-            style={{
-              width: '3em',
-              height: '3em',
-              fontSize: '90px',
-              borderRadius: '9999px',
-              marginBottom: '20px',
-              filter: 'drop-shadow(5px 5px 10px #000)',
-            }}
-            color='primary'
-            variant='contained'
-            onClick={handleClick}
-          >
-            {buttonData.count}
-          </Button>
-          <Button color='neutral' variant='contained' onClick={handleReset}>
-            Reset
-          </Button>
-          <Snackbar
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            autoHideDuration={3000}
-            open={snackbarOpen}
-            onClose={() => setSnackbarOpen(false)}
-          >
-            <Alert severity='success' sx={{ width: '100%' }}>
-                Someone has clicked the button!
-            </Alert>
-
-            </Snackbar>
-        </Grid>
+          {buttonData.count}
+        </Button>
+        <Button color='neutral' variant='contained' onClick={handleReset}>
+          Reset
+        </Button>
+        <Snackbar
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          autoHideDuration={3000}
+          open={snackbarOpen}
+          onClose={() => setSnackbarOpen(false)}
+        >
+          <Alert severity='success' sx={{ width: '100%' }}>
+            Someone has clicked the button!
+          </Alert>
+        </Snackbar>
+      </Grid>
     </div>
   );
 }
