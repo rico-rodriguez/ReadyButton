@@ -175,7 +175,7 @@ export default function ButtonClicker() {
             position: 'absolute',
             width: '3em',
             height: '3em',
-            fontSize: '60px',
+            fontSize: '90px',
           }}  /> : buttonData.count}
         </Button>
         <Button color='neutral' variant='contained' onClick={handleReset}>
