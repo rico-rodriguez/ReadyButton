@@ -53,7 +53,7 @@ export default function ButtonClicker() {
       setClickedUsers([...clickedUsers, urlId]);
       try {
         const response = await fetch(
-          `https://readybutton.herokuapp.com/${urlId}`,
+          `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
           {
             method: 'PATCH',
             headers: {
@@ -78,7 +78,7 @@ export default function ButtonClicker() {
   async function handleReset() {
     try {
       const response = await fetch(
-        `https://readybutton.herokuapp.com/${urlId}`,
+        `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
@@ -98,7 +98,7 @@ export default function ButtonClicker() {
       async function fetchData() {
         try {
           const response = await fetch(
-            `https://readybutton.herokuapp.com/${urlId}`,
+            `https://readybutton.herokuapp.com/api/button/${urlId}`,
             {
               headers: {
                 'Access-Control-Allow-Origin': '*',
