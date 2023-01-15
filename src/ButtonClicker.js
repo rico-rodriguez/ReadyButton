@@ -157,10 +157,9 @@ export default function ButtonClicker() {
           onClick={handleClick}
         >
           {loading ? <CircularProgress color="success" style={{
-            width: '180px',
-            height: '180px',
-            fontSize: '90px',
-            filter: 'drop-shadow(5px 5px 10px #000)',
+            width: '240px',
+            height: '240px',
+            fontSize: '30px',
           }}  /> : buttonData.count}
         </Button>
         <Button color='neutral' variant='contained' onClick={handleReset}>
