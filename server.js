@@ -33,13 +33,15 @@ require('./models/ButtonSchema');
 require('./models/UserSchema');
 
 app.use(cookieParser());
-const corsConfig = {
-  credentials: true,
-  origin: true,
-};
 
-app.use(cors(corsConfig));
 
+app.use(cors({
+  origin: function(origin, callback){
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
+  credentials: true
+}));
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
