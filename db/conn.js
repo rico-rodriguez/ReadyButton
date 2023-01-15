@@ -16,8 +16,12 @@ module.exports = {
       }
 
       dbConnection = db.db('button');
+      if (!dbConnection) {
+        return callback('No database found');
+      }
+      if (dbConnection) {
       console.log('Successfully connected to MongoDB.');
-
+      }
       return callback();
     });
   },
