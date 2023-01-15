@@ -5,7 +5,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles({
   githubLink: {
-    position: 'fixed',
     color: 'white',
     bottom: '20px',
     left: '20px',
@@ -28,10 +27,13 @@ export default function GitHubLink() {
   const classes = useStyles();
 
   return (
-      <Tooltip title="View my GitHub profile" arrow>
-        <a href="https://github.com/rico-rodriguez" className={classes.githubLink}>
-          <GitHubIcon fontSize="large" />
-        </a>
-      </Tooltip>
+    <Tooltip title='View my GitHub profile' arrow>
+      <a
+        href='https://github.com/rico-rodriguez'
+        className={classes.githubLink}
+      >
+        <GitHubIcon fontSize='large' />
+      </a>
+    </Tooltip>
   );
 }
