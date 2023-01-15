@@ -10,58 +10,61 @@ socket.on('connect', () => {
   socket.emit('connection', null);
 });
 
-const useHomeStyle = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: theme.spacing(2),
-    background: 'rgba(0, 0, 0, 0.5)',
-    boxShadow:
-      '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
-    borderRadius: '5px',
-    fontFamily: 'Open Sans, sans-serif',
-    top: '30px',
-    zIndex: 999,
-  },
-
-  header: {
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    color: 'white',
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    fontSize: '4rem',
-  },
-  subheader: {
-    backgroundColor: 'rgba(96,96,96,0.15)',
-    color: '#eeeeee',
-    padding: theme.spacing(2),
-    fontFamily: 'Source Code Pro, monospace',
-    fontSize: '14px',
-    borderRadius: '5px',
-  },
-  featureList: {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-  },
-  featureItem: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(1),
-    color: 'white',
-  },
-  customCheckbox: {
-    width: '20px',
-    height: '20px',
-    marginRight: '7px',
-    color: '#ffffff',
-    '&.Mui-checked': {
-      color: '#1aa400',
+const useHomeStyle = makeStyles(
+  (theme) => ({
+    root: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: theme.spacing(2),
+      background: 'rgba(0, 0, 0, 0.5)',
+      boxShadow:
+        '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
+      borderRadius: '5px',
+      fontFamily: 'Open Sans, sans-serif',
+      top: '30px',
+      zIndex: 999,
     },
-  },
-}));
+
+    header: {
+      fontWeight: 'bold',
+      textTransform: 'uppercase',
+      color: 'white',
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      fontSize: '4rem',
+    },
+    subheader: {
+      backgroundColor: 'rgba(96,96,96,0.15)',
+      color: '#eeeeee',
+      padding: theme.spacing(2),
+      fontFamily: 'Source Code Pro, monospace',
+      fontSize: '14px',
+      borderRadius: '5px',
+    },
+    featureList: {
+      listStyle: 'none',
+      padding: 0,
+      margin: 0,
+    },
+    featureItem: {
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(1),
+      color: 'white',
+    },
+    customCheckbox: {
+      width: '20px',
+      height: '20px',
+      marginRight: '7px',
+      color: '#ffffff',
+      '&.Mui-checked': {
+        color: '#1aa400',
+      },
+    },
+  }),
+  { name: 'home' }
+);
 
 export default function Home() {
   const CustomCheckbox = withStyles(useHomeStyle())((props) => (
