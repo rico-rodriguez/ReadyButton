@@ -1,1 +1,4 @@
-/*             /index.html
+[[headers]]
+for = "/*"
+[headers.values]
+Access-Control-Allow-Origin = "*"
