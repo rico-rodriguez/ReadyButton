@@ -11,7 +11,7 @@ socket.on('connect', () => {
   socket.emit('connection', null);
 });
 
-const useStyles = makeStyles((theme) => ({
+const useHomeStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'center',
@@ -65,10 +65,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Home() {
-  const CustomCheckbox = withStyles(useStyles())((props) => (
+  const CustomCheckbox = withStyles(useHomeStyle())((props) => (
     <Checkbox color='default' {...props} />
   ));
-  const classes = useStyles();
+  const classes = useHomeStyle();
   return (
     <>
       <div
