@@ -5,7 +5,7 @@ const httpServer = http.listen(process.env.PORT, () => {
 });
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: 'https://readybutton.herokuapp.com',
+    origin: 'https://adorable-babka-1990f4.netlify.app',
     methods: ['GET', 'POST'],
   },
 });
@@ -32,7 +32,7 @@ require('./models/UserSchema');
 
 app.use(cookieParser());
 
-app.use(cors({ origin: 'https://readybutton.herokuapp.com', credentials: true }));
+app.use(cors({ origin: 'https://adorable-babka-1990f4.netlify.app', credentials: true }));
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
