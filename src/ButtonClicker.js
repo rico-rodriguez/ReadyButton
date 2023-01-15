@@ -120,7 +120,7 @@ export default function ButtonClicker() {
       }
     }
     fetchData();
-  }, [urlId]);
+  }, [urlId, buttonData]);
   // Only make requests when userId is not null and loading is false
   useEffect(() => {
     if (userId && !loading) {
