@@ -9,7 +9,7 @@ const useStyles = makeStyles({
     bottom: '20px',
     left: '20px',
     cursor: 'pointer',
-    '&: hover': {
+    '&:hover': {
       color: '#f0f0f0',
       transition: 'color 0.5s ease-in-out',
     },
