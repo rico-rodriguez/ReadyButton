@@ -9,6 +9,7 @@ const useStyles = makeStyles(
       color: 'white',
       bottom: '20px',
       left: '20px',
+      zIndex: -1,
       cursor: 'pointer',
       '&: hover': {
         color: '#f0f0f0',
