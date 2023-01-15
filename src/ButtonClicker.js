@@ -98,8 +98,7 @@ export default function ButtonClicker() {
   }
   useEffect(() => {
     if (userId && !loading) {
-      async function fetchData() {
-        setLoading(true); // show loading spinner
+      async function fetchData(cb) {
         try {
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -121,10 +120,11 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-            setLoading(false); // hide loading spinner
+          cb();
         }
       }
-      fetchData();
+      setLoading(true);
+      fetchData(() => setLoading(false));
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
       });
@@ -174,7 +174,7 @@ export default function ButtonClicker() {
         >
           {loading ? <CircularProgress color="success" style={{
             position: 'absolute',
-            thickness: 2.1,
+            thickness: '1.4',
             width: '3em',
             height: '3em',
             fontSize: '90px',
