@@ -1,6 +1,6 @@
 var app = require('express')();
 var http = require('http').createServer(app);
-const httpServer = http.listen(5000, () => {
+const httpServer = http.listen(process.env.PORT || 5000, () => {
   console.log('listening on *:5000');
 });
 const io = require('socket.io')(httpServer, {
