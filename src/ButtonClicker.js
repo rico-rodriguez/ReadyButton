@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Alert,
-  Button, CircularProgress,
+  Button,
+  CircularProgress,
   createTheme,
   Grid,
   IconButton,
@@ -73,7 +74,7 @@ export default function ButtonClicker() {
       } catch (err) {
         console.error('Error updating click count:', err);
       }
-        setLoading(false); // hide loading spinner
+      setLoading(false); // hide loading spinner
     }
   }
 
@@ -102,12 +103,12 @@ export default function ButtonClicker() {
         setLoading(true);
         try {
           const response = await fetch(
-              `https://readybutton.herokuapp.com/api/button/${urlId}`,
-              {
-                headers: {
-                  'Access-Control-Allow-Origin': '*',
-                },
-              }
+            `https://readybutton.herokuapp.com/api/button/${urlId}`,
+            {
+              headers: {
+                'Access-Control-Allow-Origin': '*',
+              },
+            }
           );
           if (!response.ok) {
             throw new Error('Failed to fetch button data');
@@ -124,7 +125,7 @@ export default function ButtonClicker() {
         }
       }
       fetchData();
-  // Only make requests when userId is not null and loading is false
+      // Only make requests when userId is not null and loading is false
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
       });
@@ -132,7 +133,10 @@ export default function ButtonClicker() {
         console.log('Increment event received');
         setButtonData({ count: data.count });
       });
-          setLoading(false);
+      socket.on('setLoading', (data) => {
+        setLoading(true);
+      });
+      setLoading(false);
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
@@ -159,12 +163,19 @@ export default function ButtonClicker() {
           variant='contained'
           onClick={handleClick}
         >
-          {loading ? <CircularProgress color="success" style={{
-            position: 'absolute',
-            width: '3em',
-            height: '3em',
-            fontSize: '90px',
-          }}  /> : buttonData.count}
+          {loading ? (
+            <CircularProgress
+              color='success'
+              style={{
+                position: 'absolute',
+                width: '3em',
+                height: '3em',
+                fontSize: '90px',
+              }}
+            />
+          ) : (
+            buttonData.count
+          )}
         </Button>
         <Button color='neutral' variant='contained' onClick={handleReset}>
           Reset
