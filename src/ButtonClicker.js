@@ -98,7 +98,8 @@ export default function ButtonClicker() {
   }
   useEffect(() => {
     if (userId && !loading) {
-      async function fetchData(cb) {
+      async function fetchData() {
+        setLoading(true);
         try {
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -120,11 +121,10 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-          cb();
+          setLoading(false);
         }
       }
-      setLoading(true);
-      fetchData(() => setLoading(false));
+      fetchData();
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
       });
