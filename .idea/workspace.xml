@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="changed socket io to have no end slash. updated home page router" />
+    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="wdas" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2KLdrWG18OKJiiubX0hvWpUJQis" />
@@ -41,6 +42,14 @@
       <updated>1673757995079</updated>
       <workItem from="1673757996204" duration="21000" />
     </task>
+    <task id="LOCAL-00001" summary="wdas">
+      <created>1673762423644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673762423644</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -56,5 +65,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="wdas" />
+    <option name="LAST_COMMIT_MESSAGE" value="wdas" />
   </component>
 </project>
