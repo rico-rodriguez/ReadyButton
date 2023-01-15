@@ -120,7 +120,8 @@ export default function ButtonClicker() {
       }
     }
     fetchData();
-  }, [urlId, buttonData]);
+  }, [urlId, clickedUsers]);
+
   // Only make requests when userId is not null and loading is false
   useEffect(() => {
     if (userId && !loading) {
@@ -158,8 +159,9 @@ export default function ButtonClicker() {
           onClick={handleClick}
         >
           {loading ? <CircularProgress color="success" style={{
-            padding: '200px',
-            fontSize: '30px',
+            width: '3em',
+            height: '3em',
+            fontSize: '90px',
           }}  /> : buttonData.count}
         </Button>
         <Button color='neutral' variant='contained' onClick={handleReset}>
