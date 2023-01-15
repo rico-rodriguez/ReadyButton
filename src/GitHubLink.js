@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Tooltip from '@material-ui/core/Tooltip';
+import { bottom } from '@popperjs/core';
 
 const useStyles = makeStyles(
   {
@@ -24,13 +25,15 @@ export default function GitHubLink() {
   const classes = useStyles();
 
   return (
-    <Tooltip title='View my GitHub profile' arrow>
-      <a
-        href='https://github.com/rico-rodriguez'
-        className={classes.githubLink}
-      >
-        <GitHubIcon fontSize='large' />
-      </a>
-    </Tooltip>
+    <div style={{ position: 'fixed', bottom: '20px', left: '20px' }}>
+      <Tooltip title='View my GitHub profile' arrow>
+        <a
+          href='https://github.com/rico-rodriguez'
+          className={classes.githubLink}
+        >
+          <GitHubIcon fontSize='large' />
+        </a>
+      </Tooltip>
+    </div>
   );
 }
