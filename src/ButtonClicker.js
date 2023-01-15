@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Alert,
-  Button,
+  Button, CircularProgress,
   createTheme,
   Grid,
   IconButton,
@@ -51,6 +51,7 @@ export default function ButtonClicker() {
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
+      setLoading(true); // show loading spinner
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -69,6 +70,7 @@ export default function ButtonClicker() {
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
+        setLoading(false); // hide loading spinner
       } catch (err) {
         console.error('Error updating click count:', err);
       }
@@ -152,7 +154,7 @@ export default function ButtonClicker() {
           variant='contained'
           onClick={handleClick}
         >
-          {buttonData.count}
+          {loading ? <CircularProgress /> : buttonData.count}
         </Button>
         <Button color='neutral' variant='contained' onClick={handleReset}>
           Reset
