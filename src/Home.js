@@ -13,12 +13,11 @@ socket.on('connect', () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center',
     position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    width: '100%',
+    height: '100%',
     padding: theme.spacing(2),
     background: 'rgba(0, 0, 0, 0.5)',
     boxShadow:
@@ -26,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '5px',
     fontFamily: 'Open Sans, sans-serif',
   },
+
   header: {
     fontWeight: 'bold',
     textTransform: 'uppercase',
