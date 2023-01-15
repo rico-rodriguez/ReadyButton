@@ -118,22 +118,32 @@ buttonRoutes.route('/api/button/increment/:urlId')
 buttonRoutes.route('/api/button/reset/:urlId')
     .patch(async (req, res) => {
         try {
-            // code to reset button count
-            io.emit('reset', { urlId: req.params.urlId });
-            // code to send response
+
         } catch (err) {
             console.error('Error resetting click count:', err);
         }
+
         try {
-            const button = await Button.findOne({ urlId: req.params.urlId });
-            if (!button) {
-                res.status(404).json({ message: "Button not found" });
-            } else {
-// reset button count
-                button.count = 0;
-                await button.save();
-                res.json({ message: 'Button count reset successfully' });
-            }
+            const client = new MongoClient(connectionString, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+            await client.connect(err => {
+                const collection = client.db("button").collection("buttons");
+                collection.findOne({ urlId: req.params.urlId }, function (err, button) {
+                    if (err) throw err;
+                    if (!button) {
+                        res.status(404).json({ message: "Button not found" });
+                    } else {
+                        collection.updateOne({ urlId: req.params.urlId }, { $set: { count: 0 } }, function (err, result) {
+                            if (err) throw err;
+                            res.status(200).json({ message: "Button count updated" });
+                            client.close();
+                        });
+
+                    }
+                });
+            });
         } catch (err) {
             res.status(400).json({ message: err.message });
         }

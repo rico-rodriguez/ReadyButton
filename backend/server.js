@@ -14,6 +14,7 @@ io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('increment', (data) => {
     io.emit('snackbar', { message: 'Hello World!' });
+    io.emit('increment', data);
   });
 });
 

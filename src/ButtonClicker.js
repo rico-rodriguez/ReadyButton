@@ -61,7 +61,7 @@ export default function ButtonClicker() {
         // Update the state with the new count
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
-        socket.emit('increment', urlId);
+        socket.emit('increment', data);
       } catch (err) {
         console.error('Error updating click count:', err);
       }
@@ -110,26 +110,15 @@ export default function ButtonClicker() {
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
       });
+      socket.on('increment', (data) => {
+        console.log('Increment event received');
+        setButtonData({ count: data.count });
+      });
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
-  const theme = createTheme({
-    palette: {
-      primary: {
-        foreground: '#000000',
-        main: '#fff',
-      },
-      neutral: {
-        main: '#64748B',
-        contrastText: '#fff',
-      },
-      root: {
-        background: 'red'
-      }
-    },
-  });
+
   return (
     <div>
-      <ThemeProvider theme={theme}>
         <Grid
           container
           spacing={0}
@@ -160,9 +149,7 @@ export default function ButtonClicker() {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             autoHideDuration={3000}
             open={snackbarOpen}
-            // message='Someone has clicked the button!'
             onClose={() => setSnackbarOpen(false)}
-            // bodyStyle={{ backgroundColor: '#0f7a00' }}
           >
             <Alert severity='success' sx={{ width: '100%' }}>
                 Someone has clicked the button!
@@ -170,7 +157,6 @@ export default function ButtonClicker() {
 
             </Snackbar>
         </Grid>
-      </ThemeProvider>
     </div>
   );
 }
