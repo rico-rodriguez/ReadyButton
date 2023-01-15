@@ -100,6 +100,7 @@ export default function ButtonClicker() {
     if (userId && !loading) {
       async function fetchData() {
         try {
+          setLoading(true); // show loading spinner
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,
               {
@@ -119,6 +120,8 @@ export default function ButtonClicker() {
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
+        } finally {
+            setLoading(false); // hide loading spinner
         }
       }
       setLoading(true);
