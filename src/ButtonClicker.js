@@ -121,10 +121,10 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-          setLoading(false);
         }
       }
       fetchData();
+          setLoading(false);
   // Only make requests when userId is not null and loading is false
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
