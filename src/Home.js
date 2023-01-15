@@ -24,8 +24,6 @@ const useHomeStyle = makeStyles((theme) => ({
     top: '30px',
     zIndex: 999,
   },
-}, {name:'home'});
-
 
   header: {
     fontWeight: 'bold',
