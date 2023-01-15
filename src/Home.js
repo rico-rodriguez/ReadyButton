@@ -23,6 +23,8 @@ const useHomeStyle = makeStyles((theme) => ({
     fontFamily: 'Open Sans, sans-serif',
     zIndex: 999,
   },
+}, {name:'home'});
+
 
   header: {
     fontWeight: 'bold',
