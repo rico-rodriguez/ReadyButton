@@ -5,7 +5,7 @@ const httpServer = http.listen(process.env.PORT || 5000, () => {
 });
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: 'https://adorable-babka-1990f4.netlify.app',
+    origin: '*',
     methods: ['GET', 'POST'],
   },
 });
@@ -36,7 +36,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'https://adorable-babka-1990f4.netlify.app',
+    origin: '*',
     credentials: true,
   })
 );
