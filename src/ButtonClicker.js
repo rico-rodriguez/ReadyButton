@@ -26,6 +26,7 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     async function fetchUserId() {
+      socket.emit('setLoading', { loading: true });
       console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
       const response = await fetch(
@@ -52,7 +53,7 @@ export default function ButtonClicker() {
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
-      setLoading(true); // show loading spinner
+      socket.emit('setLoading', { loading: true });
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -80,7 +81,7 @@ export default function ButtonClicker() {
 
   async function handleReset() {
     try {
-      setLoading(true); // show loading spinner
+      socket.emit('setLoading', { loading: true });
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
         {
@@ -100,7 +101,7 @@ export default function ButtonClicker() {
   useEffect(() => {
     if (userId && !loading) {
       async function fetchData() {
-        setLoading(true);
+        socket.emit('setLoading', { loading: true });
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
