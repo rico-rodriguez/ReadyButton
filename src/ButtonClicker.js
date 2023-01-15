@@ -124,7 +124,6 @@ export default function ButtonClicker() {
         }
       }
       fetchData();
-          setLoading(false);
   // Only make requests when userId is not null and loading is false
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
@@ -133,6 +132,7 @@ export default function ButtonClicker() {
         console.log('Increment event received');
         setButtonData({ count: data.count });
       });
+          setLoading(false);
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
