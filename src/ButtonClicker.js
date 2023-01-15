@@ -121,7 +121,9 @@ export default function ButtonClicker() {
           console.error('Error fetching button data:', error);
         }
       }
+      setLoading(true);
       fetchData();
+      setLoading(false);
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
       });
