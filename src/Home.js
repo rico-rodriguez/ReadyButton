@@ -1,6 +1,7 @@
 import socketClient from 'socket.io-client';
 import { Box, Checkbox, Container, Typography } from '@mui/material';
 import { makeStyles, withStyles } from '@mui/styles';
+import GitHubLink from './GitHubLink';
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
@@ -173,6 +174,7 @@ export default function Home() {
           </Typography>
         </li>
       </ul>
+      <GitHubLink />
     </Container>
   );
 }
