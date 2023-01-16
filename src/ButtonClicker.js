@@ -135,11 +135,14 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-setInterval(
-        () => {
-          setLoading(false);
-        },4000);
-    },[]);
+    const timer = setInterval(() => {
+        setLoading(false);
+    }, 4000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
