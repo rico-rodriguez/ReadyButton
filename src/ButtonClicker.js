@@ -187,8 +187,7 @@ export default function ButtonClicker() {
             anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
             autoHideDuration={3000}
             open={snackbarOpenReset}
-            onClose={() => setSnackbarOpenReset(false)}
-        >
+            onClose={() => setSnackbarOpenReset(false)}>
           <Alert severity='error' sx={{ width: '100%' }}>
             Button count reset!
           </Alert>
