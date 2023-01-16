@@ -26,12 +26,8 @@ const theme = createTheme({
             },
             styleOverrides: {
                 circle: {
-                    color: '#aeff9c',
+                    color: '#58c549',
                 },
-            },
-            animation: {
-                rotate: '1.5s linear ',
-                dash: '1.5s ease-in-out infinite',
             },
         },
     },
