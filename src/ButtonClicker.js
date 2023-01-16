@@ -116,6 +116,7 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
+          setLoading(false);
         }
       }
       fetchData();
