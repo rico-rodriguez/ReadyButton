@@ -25,7 +25,6 @@ export default function ButtonClicker() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     async function fetchUserId() {
       console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
@@ -46,11 +45,9 @@ export default function ButtonClicker() {
       }
     }
     fetchUserId();
-    setLoading(false);
   }, []);
 
   async function handleClick() {
-    setLoading(true);
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -76,11 +73,9 @@ export default function ButtonClicker() {
         console.error('Error updating click count:', err);
       }
     }
-    setLoading(false);
   }
 
   async function handleReset() {
-    setLoading(true);
     try {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
@@ -96,12 +91,10 @@ export default function ButtonClicker() {
     } catch (err) {
       console.error('Error resetting click count:', err);
     }
-    setLoading(false);
   }
   useEffect(() => {
     if (userId && !loading) {
       async function fetchData() {
-    setLoading(true);
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -122,6 +115,7 @@ export default function ButtonClicker() {
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
+        } finally {
         }
       }
       fetchData();
@@ -138,7 +132,6 @@ export default function ButtonClicker() {
         setLoading(data);
       });
     }
-    setLoading(false);
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
