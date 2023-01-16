@@ -51,6 +51,7 @@ export default function ButtonClicker() {
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
+      setLoading(true);
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -66,6 +67,7 @@ export default function ButtonClicker() {
         );
         const data = await response.json();
         // Update the state with the new count
+        setLoading(false);
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
@@ -136,9 +138,9 @@ export default function ButtonClicker() {
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, []);
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
