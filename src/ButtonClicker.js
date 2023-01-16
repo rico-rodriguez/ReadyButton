@@ -99,6 +99,7 @@ export default function ButtonClicker() {
     setLoading(false);
   }
   useEffect(() => {
+    setLoading(true);
     if (userId && !loading) {
       async function fetchData() {
         try {
@@ -121,7 +122,6 @@ export default function ButtonClicker() {
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
-        } finally {
         }
       }
       fetchData();
@@ -138,6 +138,7 @@ export default function ButtonClicker() {
         setLoading(data);
       });
     }
+    setLoading(false);
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
