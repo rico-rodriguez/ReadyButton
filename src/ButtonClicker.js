@@ -138,7 +138,7 @@ export default function ButtonClicker() {
     setLoading(true);
     setInterval(() => {
       setLoading(false);
-    }, 5000);
+    }, 8000);
   }, []);
 
   return (
