@@ -48,8 +48,6 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
-    setLoading(true); //set loading to true before making the request
-
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -70,7 +68,6 @@ export default function ButtonClicker() {
         // Update the state with the new count
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
-        setLoading(false); //set loading to false after the request is done
         socket.emit('increment', data);
       } catch (err) {
         console.error('Error updating click count:', err);
@@ -114,18 +111,14 @@ export default function ButtonClicker() {
             //Button not found, create new button on server side
           } else {
             const data = await response.json();
-            setLoading(false);
             setButtonData(data);
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-          setLoading(false);
-
         }
       }
       fetchData();
-      setLoading(false);
 
       // Only make requests when userId is not null and loading is false
       socket.on('snackbar', (data) => {
@@ -141,10 +134,9 @@ export default function ButtonClicker() {
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  // useEffect(() => {
-  //   setLoading(false);
-  // }, []);
-
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   return (
     <div>
