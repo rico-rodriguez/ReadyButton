@@ -115,6 +115,7 @@ export default function ButtonClicker() {
             const data = await response.json();
             setButtonData(data);
             setIsDataLoading(false);
+            setLoading(false);
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
@@ -139,10 +140,10 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     if (isDataLoading) {
-        setLoading(true);
+      setLoading(true);
     }
-    if (!isDataLoading) {
-        setLoading(false);
+    else if (!isDataLoading) {
+      setLoading(false);
     }
   }, [isDataLoading])
 
