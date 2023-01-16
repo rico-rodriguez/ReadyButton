@@ -112,13 +112,10 @@ export default function ButtonClicker() {
           } else {
             const data = await response.json();
             setButtonData(data);
-            setLoading(false);
-
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-          setLoading(false);
         }
       }
       fetchData();
@@ -131,15 +128,15 @@ export default function ButtonClicker() {
         console.log('Increment event received');
         setButtonData({ count: data.count });
       });
-      // socket.on('setLoading', (data) => {
-      //   setLoading(data);
-      // });
+      socket.on('setLoading', (data) => {
+        setLoading(data);
+      });
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  // useEffect(() => {
-  //   setLoading(false);
-  // }, []);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   return (
     <div>
