@@ -116,7 +116,6 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
-          setLoading(false);
         }
       }
       fetchData();
@@ -129,7 +128,7 @@ export default function ButtonClicker() {
         setButtonData({ count: data.count });
       });
       socket.on('setLoading', (data) => {
-        setLoading(data);
+        setLoading(false);
       });
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
