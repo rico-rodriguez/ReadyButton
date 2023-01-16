@@ -40,7 +40,6 @@ export default function ButtonClicker() {
       if (response.ok) {
         const data = await response.json();
         setUserId(data.userId);
-        setLoading(false);
       } else {
         console.log('Error fetching userId');
       }
@@ -73,7 +72,6 @@ export default function ButtonClicker() {
       } catch (err) {
         console.error('Error updating click count:', err);
       }
-      setLoading(false); // hide loading spinner
     }
   }
 
@@ -88,7 +86,6 @@ export default function ButtonClicker() {
         }
       );
       const data = await response.json();
-      setLoading(false); // hide loading spinner
       setButtonData(data);
       setClickedUsers([]);
     } catch (err) {
@@ -98,7 +95,6 @@ export default function ButtonClicker() {
   useEffect(() => {
     if (userId && !loading) {
       async function fetchData() {
-        setLoading(true);
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -134,7 +130,6 @@ export default function ButtonClicker() {
       socket.on('setLoading', (data) => {
         setLoading(data);
       });
-      setLoading(false);
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
