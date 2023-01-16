@@ -23,6 +23,7 @@ const theme = createTheme({
         MuiCircularProgress: {
             defaultProps: {
                 thickness: 1.6,
+
             },
         },
     },
