@@ -92,9 +92,11 @@ export default function ButtonClicker() {
       console.error('Error resetting click count:', err);
     }
   }
+  const [isDataLoading, setIsDataLoading] = useState(true);
   useEffect(() => {
     if (userId && !loading) {
       async function fetchData() {
+        setIsDataLoading(true);
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -112,6 +114,7 @@ export default function ButtonClicker() {
           } else {
             const data = await response.json();
             setButtonData(data);
+            setIsDataLoading(false);
           }
         } catch (error) {
           console.error('Error fetching button data:', error);
@@ -135,16 +138,16 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-    if (buttonData) { // check if buttonData is truthy
-      const timer = setInterval(() => {
+    let timeoutId;
+    if (isDataLoading) {
+      timeoutId = setTimeout(() => {
         setLoading(false);
       }, 4000);
-
-      return () => {
-        clearInterval(timer);
-      };
     }
-  }, [buttonData]); // add buttonData as a dependency
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }, [isDataLoading])
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
