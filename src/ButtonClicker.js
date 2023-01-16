@@ -165,7 +165,7 @@ export default function ButtonClicker() {
         >
           {loading ? (
             <CircularProgress
-              timeout={1500}
+              // timeout={1500}
               color='success'
               style={{
                 position: 'absolute',
