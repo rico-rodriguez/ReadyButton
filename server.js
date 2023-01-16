@@ -16,7 +16,6 @@ io.on('connection', (socket) => {
     io.emit('snackbar', { message: 'Hello World!' });
     io.emit('setLoading', true);
     io.emit('increment', data);
-    io.emit('setLoading', false); // Send false flag to clear loading state
   });
 });
 
