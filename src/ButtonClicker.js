@@ -139,7 +139,7 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     if (isDataLoading) {
-        setLoading(false);
+        setLoading(true);
     }
   }, [isDataLoading])
 
