@@ -138,7 +138,7 @@ export default function ButtonClicker() {
 setInterval(
         () => {
           setLoading(false);
-        },1500);
+        },4000);
     },[]);
 
   const [progress, setProgress] = useState(0);
