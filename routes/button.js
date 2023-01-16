@@ -44,6 +44,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
             });
         }
         res.send({ userId });
+        client.close();
     });
 });
 
