@@ -134,9 +134,16 @@ export default function ButtonClicker() {
         console.log('Increment event received');
         setButtonData({ count: data.count });
       });
+      socket.on('setLoading', (data) => {
+        setLoading(data);
+      });
     }
     setLoading(false);
   }, [urlId, userId, loading, buttonData, clickedUsers]);
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
 
   return (
     <div>
