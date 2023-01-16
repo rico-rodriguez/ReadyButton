@@ -23,8 +23,24 @@ const theme = createTheme({
         MuiCircularProgress: {
             defaultProps: {
                 thickness: 1.6,
-
             },
+            styleOverrides: {
+                root: {
+                    color: '#68da52',
+                },
+                circle: {
+                    color: '#64748B',
+                },
+                svg: {
+                    color: '#cecece',
+                },
+                colorSecondary: {
+                    color: '#b7a856',
+                },
+                colorPrimary: {
+                    color: '#ce3397',
+                }
+            }
         },
     },
 });

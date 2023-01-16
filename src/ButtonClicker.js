@@ -138,6 +138,19 @@ export default function ButtonClicker() {
     setLoading(false);
   }, []);
 
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 1500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <div>
       <Grid
