@@ -7,7 +7,6 @@ const Button = mongoose.model('ButtonSchema', 'buttons');
 const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
-const socket = require('socket.io');
 
 buttonRoutes.route('/').post(async function () {
     console.log('POST /');
@@ -91,7 +90,6 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
 buttonRoutes.route('/api/button/increment/:urlId')
     .patch(async (req, res) => {
         try {
-            socket.emit('setLoading', true);
         } catch (err) {
             console.error('Error setting loading spinner:', err);
         }
@@ -111,7 +109,6 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         collection.updateOne({ urlId: req.params.urlId }, { $inc: { count: 1 } }, function (err, result) {
                             if (err) throw err;
                             res.status(200).json({ message: "Button count updated" });
-                            socket.emit('setLoading', false);
                             client.close();
                         });
 
