@@ -141,6 +141,9 @@ export default function ButtonClicker() {
     if (isDataLoading) {
         setLoading(true);
     }
+    if (!isDataLoading) {
+        setLoading(false);
+    }
   }, [isDataLoading])
 
   const [progress, setProgress] = useState(0);
