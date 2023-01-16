@@ -138,8 +138,8 @@ export default function ButtonClicker() {
     setLoading(false);
   }, []);
 
-  const [progress, setProgress] = React.useState(0);
-  React.useEffect(() => {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
     const timer = setInterval(() => {
       setProgress((prevProgress) =>
         prevProgress >= 100 ? 0 : prevProgress + 10
