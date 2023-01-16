@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="spinner modifications">
-      <change beforePath="$PROJECT_DIR$/routes/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Home.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +57,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673762423644</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="spinner modifications">
+      <created>1673827301838</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1673827301838</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -77,6 +83,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wdas" />
-    <option name="LAST_COMMIT_MESSAGE" value="wdas" />
+    <MESSAGE value="spinner modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="spinner modifications" />
   </component>
 </project>
