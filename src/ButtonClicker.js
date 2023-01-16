@@ -137,7 +137,7 @@ export default function ButtonClicker() {
   useEffect(() => {
 setInterval(
         () => {
-          setLoading(true);
+          setLoading(false);
         },1500);
     },[]);
 
