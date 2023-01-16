@@ -100,8 +100,8 @@ export default function ButtonClicker() {
   }
   useEffect(() => {
     if (userId && !loading) {
-    setLoading(true);
       async function fetchData() {
+    setLoading(true);
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
