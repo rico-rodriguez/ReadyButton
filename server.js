@@ -13,10 +13,12 @@ const io = require('socket.io')(httpServer, {
 io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('increment', (data) => {
-    io.emit('snackbar', { message: 'Hello World!' });
+    io.emit('snackbar', { message: 'Hello World!' });a
     io.emit('setLoading', true);
     io.emit('increment', data);
+    io.emit('setLoading', false); // Send false flag to clear loading state
   });
+});
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
