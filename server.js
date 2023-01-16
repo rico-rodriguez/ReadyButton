@@ -13,10 +13,8 @@ const io = require('socket.io')(httpServer, {
 io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('increment', (data) => {
-    io.emit('snackbar', { message: 'Hello World!' });a
-    io.emit('setLoading', true);
+    io.emit('snackbar', { message: 'Hello World!' });
     io.emit('increment', data);
-    io.emit('setLoading', false); // Send false flag to clear loading state
   });
 });
 
