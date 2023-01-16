@@ -25,22 +25,14 @@ const theme = createTheme({
                 thickness: 1.6,
             },
             styleOverrides: {
-                root: {
-                    color: '#68da52',
-                },
                 circle: {
-                    color: '#64748B',
+                    color: '#aeff9c',
                 },
-                svg: {
-                    color: '#cecece',
-                },
-                colorSecondary: {
-                    color: '#b7a856',
-                },
-                colorPrimary: {
-                    color: '#ce3397',
-                }
-            }
+            },
+            animation: {
+                rotate: '1.5s linear ',
+                dash: '1.5s ease-in-out infinite',
+            },
         },
     },
 });
