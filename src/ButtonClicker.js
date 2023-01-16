@@ -25,6 +25,7 @@ export default function ButtonClicker() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     async function fetchUserId() {
       console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
@@ -45,6 +46,7 @@ export default function ButtonClicker() {
       }
     }
     fetchUserId();
+    setLoading(false);
   }, []);
 
   async function handleClick() {
