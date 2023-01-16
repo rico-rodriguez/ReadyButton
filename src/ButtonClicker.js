@@ -125,10 +125,8 @@ export default function ButtonClicker() {
         setSnackbarOpen(true);
       });
       socket.on('increment', (data) => {
-        setLoading(true);
         console.log('Increment event received');
         setButtonData({ count: data.count });
-        setLoading(false);
       });
       socket.on('setLoading', (data) => {
         setLoading(data);
