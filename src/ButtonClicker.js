@@ -135,8 +135,11 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-    setLoading(false);
-  }, []);
+setInterval(
+        () => {
+          setLoading(true);
+        },1500);
+    },[]);
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
