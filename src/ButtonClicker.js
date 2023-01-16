@@ -135,10 +135,7 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-    setLoading(true);
-    setInterval(() => {
-      setLoading(false);
-    }, 8000);
+    setLoading(false);
   }, []);
 
   return (
