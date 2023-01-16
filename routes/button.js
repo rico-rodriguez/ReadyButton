@@ -34,7 +34,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
-    await client.connect(err => {
+    await client.connect(async err => {
         let userId = req.cookies.userId;
         if (!userId) {
             userId = uuid.v4();
@@ -44,7 +44,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
             });
         }
         res.send({ userId });
-        client.close();
+        await client.close();
     });
 });
 
