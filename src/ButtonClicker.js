@@ -120,9 +120,13 @@ export default function ButtonClicker() {
         } catch (error) {
           console.error('Error fetching button data:', error);
         } finally {
+          setLoading(false);
+
         }
       }
       fetchData();
+      setLoading(false);
+
       // Only make requests when userId is not null and loading is false
       socket.on('snackbar', (data) => {
         setSnackbarOpen(true);
@@ -137,9 +141,9 @@ export default function ButtonClicker() {
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, []);
 
 
   return (
