@@ -134,22 +134,6 @@ export default function ButtonClicker() {
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prevProgress) =>
-        prevProgress >= 100 ? 0 : prevProgress + 10
-      );
-    }, 1500);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
 
   return (
     <div>
@@ -176,8 +160,6 @@ export default function ButtonClicker() {
         >
           {loading ? (
             <CircularProgress
-              variant='determinate'
-              value={progress}
               timeout={1500}
               color='success'
               style={{
