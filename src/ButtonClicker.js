@@ -138,14 +138,8 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-    let timeoutId;
     if (isDataLoading) {
-      timeoutId = setTimeout(() => {
         setLoading(false);
-      }, 4000);
-    }
-    return () => {
-      clearTimeout(timeoutId);
     }
   }, [isDataLoading])
 
