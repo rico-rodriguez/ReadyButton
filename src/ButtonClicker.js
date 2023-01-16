@@ -128,6 +128,7 @@ export default function ButtonClicker() {
         setLoading(true);
         console.log('Increment event received');
         setButtonData({ count: data.count });
+        setLoading(false);
       });
       socket.on('setLoading', (data) => {
         setLoading(data);
