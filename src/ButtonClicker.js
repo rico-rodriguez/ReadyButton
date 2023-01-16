@@ -138,6 +138,19 @@ export default function ButtonClicker() {
     setLoading(false);
   }, []);
 
+  const [progress, setProgress] = React.useState(0);
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) =>
+        prevProgress >= 100 ? 0 : prevProgress + 10
+      );
+    }, 1500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   return (
     <div>
       <Grid
@@ -163,6 +176,8 @@ export default function ButtonClicker() {
         >
           {loading ? (
             <CircularProgress
+              variant='determinate'
+              value={progress}
               timeout={1500}
               color='success'
               style={{
