@@ -80,6 +80,7 @@ export default function ButtonClicker() {
   }
 
   async function handleReset() {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
@@ -95,6 +96,7 @@ export default function ButtonClicker() {
     } catch (err) {
       console.error('Error resetting click count:', err);
     }
+    setLoading(false);
   }
   useEffect(() => {
     if (userId && !loading) {
