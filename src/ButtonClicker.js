@@ -48,6 +48,7 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
+    setLoading(true);
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -73,9 +74,11 @@ export default function ButtonClicker() {
         console.error('Error updating click count:', err);
       }
     }
+    setLoading(false);
   }
 
   async function handleReset() {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
@@ -91,6 +94,7 @@ export default function ButtonClicker() {
     } catch (err) {
       console.error('Error resetting click count:', err);
     }
+    setLoading(false);
   }
   useEffect(() => {
     if (userId) {
@@ -132,6 +136,7 @@ export default function ButtonClicker() {
         setLoading(data);
       });
     }
+
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
