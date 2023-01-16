@@ -50,6 +50,7 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
+    setLoading(true);
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -75,6 +76,7 @@ export default function ButtonClicker() {
         console.error('Error updating click count:', err);
       }
     }
+    setLoading(false);
   }
 
   async function handleReset() {
