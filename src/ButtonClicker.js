@@ -48,6 +48,8 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
+    setLoading(true); //set loading to true before making the request
+
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -68,6 +70,7 @@ export default function ButtonClicker() {
         // Update the state with the new count
         setButtonData({ count: data.count });
         // Send socket event to server to emit event to all clients
+        setLoading(false); //set loading to false after the request is done
         socket.emit('increment', data);
       } catch (err) {
         console.error('Error updating click count:', err);
@@ -128,7 +131,7 @@ export default function ButtonClicker() {
         setButtonData({ count: data.count });
       });
       socket.on('setLoading', (data) => {
-        setLoading(false);
+        setLoading(data);
       });
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
