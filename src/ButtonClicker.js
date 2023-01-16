@@ -185,7 +185,7 @@ export default function ButtonClicker() {
             buttonData.count
           )}
         </Button>
-            {emojiVisible && <span className="emoji" role="img" aria-label="party popper">{randomEmoji()}</span>}
+            {/*{emojiVisible && <span className="emoji" role="img" aria-label="party popper">{randomEmoji()}</span>}*/}
       </div>
         <Button color='neutral' variant='contained' onClick={handleReset}>
           Reset
