@@ -20,6 +20,14 @@ io.on('connection', (socket) => {
     io.emit('snackbar', { message: 'Hello World!' });
     io.emit('increment', data);
   });
+  socket.on('reset', (data) => {
+    io.emit('setLoading', true);
+    setTimeout(() => {
+      io.emit('setLoading', false);
+    }, 1500);
+    io.emit('snackbar', { message: 'Hello World!' });
+    io.emit('reset', data);
+  });
 });
 
 // Loads the configuration from config.env to process.env
