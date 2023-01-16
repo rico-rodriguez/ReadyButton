@@ -136,9 +136,9 @@ export default function ButtonClicker() {
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+  // useEffect(() => {
+  //   setLoading(false);
+  // }, []);
 
   return (
     <div>
