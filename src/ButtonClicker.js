@@ -93,8 +93,9 @@ export default function ButtonClicker() {
     }
   }
   useEffect(() => {
-    if (userId && !loading) {
+    if (userId) {
       async function fetchData() {
+        setLoading(true);
         try {
           const response = await fetch(
             `https://readybutton.herokuapp.com/api/button/${urlId}`,
@@ -131,6 +132,7 @@ export default function ButtonClicker() {
       socket.on('setLoading', (data) => {
         setLoading(data);
       });
+      setLoading(false);
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
