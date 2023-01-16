@@ -135,14 +135,16 @@ export default function ButtonClicker() {
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
   useEffect(() => {
-    const timer = setInterval(() => {
+    if (buttonData) { // check if buttonData is truthy
+      const timer = setInterval(() => {
         setLoading(false);
-    }, 7000);
+      }, 4000);
 
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+      return () => {
+        clearInterval(timer);
+      };
+    }
+  }, [buttonData]); // add buttonData as a dependency
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
