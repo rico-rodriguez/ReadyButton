@@ -19,10 +19,11 @@ const socket = io('https://readybutton.herokuapp.com', {
 export default function ButtonClicker() {
   const { urlId } = useParams();
   const [userId, setUserId] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [buttonData, setButtonData] = useState({});
   const [clickedUsers, setClickedUsers] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarOpenReset, setSnackbarOpenReset] = useState(false);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchUserId() {
@@ -48,7 +49,6 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
-    setLoading(true);
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -74,11 +74,9 @@ export default function ButtonClicker() {
         console.error('Error updating click count:', err);
       }
     }
-    setLoading(false);
   }
 
   async function handleReset() {
-    setLoading(true);
     try {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
@@ -89,59 +87,51 @@ export default function ButtonClicker() {
         }
       );
       const data = await response.json();
+    setDataLoaded(false);
       setButtonData(data);
       setClickedUsers([]);
+      setDataLoaded(true);
+      socket.emit('reset', data);
     } catch (err) {
       console.error('Error resetting click count:', err);
     }
-    setLoading(false);
   }
+
   useEffect(() => {
-    if (userId) {
-      async function fetchData() {
-        try {
-          const response = await fetch(
-            `https://readybutton.herokuapp.com/api/button/${urlId}`,
-            {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-              },
-            }
-          );
-          if (!response.ok) {
-            throw new Error('Failed to fetch button data');
-          }
-          if (response.status === 404) {
-            //Button not found, create new button on server side
-          } else {
-            const data = await response.json();
-            setButtonData(data);
-          }
-        } catch (error) {
-          console.error('Error fetching button data:', error);
-        } finally {
+    async function fetchData() {
+      setDataLoaded(false);
+      try {
+        const response = await fetch(`https://readybutton.herokuapp.com/api/button/${urlId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch button data');
         }
+        const data = await response.json();
+        console.log('data', data);
+        setButtonData(data);
+        setDataLoaded(true);
+      } catch (error) {
+        console.error(error);
+      } finally {
       }
-      fetchData();
-
-      // Only make requests when userId is not null and loading is false
-      socket.on('snackbar', (data) => {
-        setSnackbarOpen(true);
-      });
-      socket.on('increment', (data) => {
-        console.log('Increment event received');
-        setButtonData({ count: data.count });
-      });
-      socket.on('setLoading', (data) => {
-        setLoading(data);
-      });
     }
+    fetchData();
 
-  }, [urlId, userId, loading, buttonData, clickedUsers]);
+    socket.on('increment', (data) => {
+      snackbarOpen ? setSnackbarOpen(false) : setSnackbarOpen(true);
+      dataLoaded && setButtonData({ count: data.count });
+    fetchData();
+    });
+    socket.on('reset', (data) => {
+      snackbarOpenReset ? setSnackbarOpenReset(false) : setSnackbarOpenReset(true);
+      dataLoaded && setButtonData({ count: data.count });
+      fetchData();
+    });
+  }, [urlId]);
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+
+  // useEffect(() => {
+  //   setDataLoaded(true);
+  // }, []);
 
   return (
     <div>
@@ -166,9 +156,8 @@ export default function ButtonClicker() {
           variant='contained'
           onClick={handleClick}
         >
-          {loading ? (
+          {!dataLoaded ? (
             <CircularProgress
-              timeout={1500}
               color='success'
               style={{
                 position: 'absolute',
@@ -191,7 +180,17 @@ export default function ButtonClicker() {
           onClose={() => setSnackbarOpen(false)}
         >
           <Alert severity='success' sx={{ width: '100%' }}>
-            Someone has clicked the button!
+            Someone clicked the button!
+          </Alert>
+        </Snackbar>
+        <Snackbar
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            autoHideDuration={3000}
+            open={snackbarOpenReset}
+            onClose={() => setSnackbarOpenReset(false)}
+        >
+          <Alert severity='error' sx={{ width: '100%' }}>
+            Button count reset!
           </Alert>
         </Snackbar>
       </Grid>
