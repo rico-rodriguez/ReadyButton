@@ -126,11 +126,6 @@ export default function ButtonClicker() {
     });
   }, [urlId]);
 
-
-  // useEffect(() => {
-  //   setDataLoaded(true);
-  // }, []);
-
   return (
     <div>
       <Grid
