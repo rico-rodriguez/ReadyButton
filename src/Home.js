@@ -104,12 +104,12 @@ export default function Home() {
             </li>
             <li className="featureItem">
               <CustomCheckbox
-                className="customCheckbox"
-                checked={false}
-                onChange={() => {}}
+                  className="customCheckbox"
+                  checked={false}
+                  onChange={() => {}}
               />
               <Typography variant='subtitle2'>
-                Add Emoji burst from cursor on click
+                Add a settings to turn off emoji and other future features
               </Typography>
             </li>
             <li className="featureItem">
@@ -141,6 +141,16 @@ export default function Home() {
               />
               <Typography variant='subtitle2'>
                 Integrate with Teams via webhooks/client bot
+              </Typography>
+            </li>
+            <li className="featureItem">
+              <CustomCheckbox
+                className="customCheckbox"
+                checked={true}
+                onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Add Emoji burst from cursor on click
               </Typography>
             </li>
             <li className="featureItem">
