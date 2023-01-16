@@ -99,8 +99,8 @@ export default function ButtonClicker() {
     setLoading(false);
   }
   useEffect(() => {
-    setLoading(true);
     if (userId && !loading) {
+    setLoading(true);
       async function fetchData() {
         try {
           const response = await fetch(
