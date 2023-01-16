@@ -131,9 +131,9 @@ export default function ButtonClicker() {
         console.log('Increment event received');
         setButtonData({ count: data.count });
       });
-      socket.on('setLoading', (data) => {
-        setLoading(data);
-      });
+      // socket.on('setLoading', (data) => {
+      //   setLoading(data);
+      // });
     }
   }, [urlId, userId, loading, buttonData, clickedUsers]);
 
