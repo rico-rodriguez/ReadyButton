@@ -27,7 +27,6 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     async function fetchUserId() {
-      console.log('Async function fetchUserId() called');
       // Make a request to your server to get the user's ID
       const response = await fetch(
         'https://readybutton.herokuapp.com/api/user/id',
@@ -106,7 +105,6 @@ export default function ButtonClicker() {
           throw new Error('Failed to fetch button data');
         }
         const data = await response.json();
-        console.log('data', data);
         setButtonData(data);
         setDataLoaded(true);
       } catch (error) {
