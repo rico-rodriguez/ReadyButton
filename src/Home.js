@@ -15,15 +15,22 @@ const useHomeStyle = makeStyles(
     root: {
       display: 'flex',
       justifyContent: 'center',
-      alignItems: 'center',
+      alignSelf: 'center',
+      justifyItems: 'space-between',
+      alignItems: 'space-between',
       padding: theme.spacing(2),
       background: 'rgba(0, 0, 0, 0.5)',
       boxShadow:
         '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
       borderRadius: '5px',
       fontFamily: 'Open Sans, sans-serif',
-      marginTop: '20px',
+      margin: 'auto',
+      paddingBlock: '40px',
       zIndex: 999,
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
     },
 
     header: {
@@ -53,14 +60,30 @@ const useHomeStyle = makeStyles(
       padding: theme.spacing(1),
       color: 'white',
     },
+    featureListContainer: {
+      overflowY: 'scroll',
+      '&::-webkit-scrollbar': {
+        width: '10px',
+        backgroundColor: '#747e94',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        backgroundColor: '#1c2536',
+      },
+    },
     customCheckbox: {
       width: '20px',
       height: '20px',
-      marginRight: '7px',
-      color: '#ffffff',
-      '&.Mui-checked': {
-        color: '#1aa400',
-      },
+      marginRight: '10px',
+      '& .MuiSvgIcon-root': {
+        color: '#5c698c',
+        marginRight: '10px',
+        '&.Mui-unchecked': {
+          color: '#ffffff'
+        },
+        '&.Mui-checked': {
+          color: '#1aa400',
+        },
+      }
     },
   }),
   { name: 'home' }
@@ -80,6 +103,7 @@ export default function Home() {
           justifyContent: 'center',
         }}
       >
+
         <Container maxWidth='sm' className={classes.root}>
           <Typography variant='h2' className={classes.header}>
             Welcome
@@ -91,17 +115,8 @@ export default function Home() {
               link with classmates or friends to see when everyone is ready!
             </Typography>
           </Box>
+          <div className={classes.featureListContainer} style={{height: "20rem", overflowY: "scroll"}}>
           <ul className={classes.featureList}>
-            <li className={classes.featureItem}>
-              <CustomCheckbox
-                className={classes.customCheckbox}
-                checked={false}
-                onChange={() => {}}
-              />
-              <Typography variant='subtitle2'>
-                Integrate Webhooks for incrementing button/resetting
-              </Typography>
-            </li>
             <li className={classes.featureItem}>
               <CustomCheckbox
                 className={classes.customCheckbox}
@@ -140,16 +155,6 @@ export default function Home() {
                 onChange={() => {}}
               />
               <Typography variant='subtitle2'>
-                Add Snackbar for button reset
-              </Typography>
-            </li>
-            <li className={classes.featureItem}>
-              <CustomCheckbox
-                className={classes.customCheckbox}
-                checked={false}
-                onChange={() => {}}
-              />
-              <Typography variant='subtitle2'>
                 Add the ability to set usernames and share username of people
                 who have clicked
               </Typography>
@@ -162,6 +167,36 @@ export default function Home() {
               />
               <Typography variant='subtitle2'>
                 Integrate with Teams via webhooks/client bot
+              </Typography>
+            </li>
+            <li className={classes.featureItem}>
+              <CustomCheckbox
+                className={classes.customCheckbox}
+                checked={true}
+                onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Integrate websockets for incrementing button/resetting
+              </Typography>
+            </li>
+            <li className={classes.featureItem}>
+              <CustomCheckbox
+                  className={classes.customCheckbox}
+                  checked={true}
+                  onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Add Loading spinner that sends signals out via websockets
+              </Typography>
+            </li>
+            <li className={classes.featureItem}>
+              <CustomCheckbox
+                className={classes.customCheckbox}
+                checked={true}
+                onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Add Snackbar for button reset
               </Typography>
             </li>
             <li className={classes.featureItem}>
@@ -189,10 +224,11 @@ export default function Home() {
                 onChange={() => {}}
               />
               <Typography variant='subtitle2'>
-                Integrate webhooks for snackbar notification
+                Integrate websockets for snackbar notification
               </Typography>
             </li>
           </ul>
+            </div>
         </Container>
       </div>
     </>
