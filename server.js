@@ -17,9 +17,6 @@ io.on('connection', (socket) => {
     io.emit('setLoading', true);
     io.emit('increment', data);
   });
-  socket.on('setLoading', (data) => {
-    io.emit('setLoading', data);
-});
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
