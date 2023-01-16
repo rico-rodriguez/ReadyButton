@@ -47,20 +47,20 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     });
 });
 
-buttonRoutes.route('/api/user/id').get(async (req, res) => {
-    let userId = req.cookies.userId;
-    if (!userId) {
-        console.log('No user ID found, creating a new one');
-        userId = uuid.v4();
-        res.cookie('userId', userId, {
-            maxAge: 9000000, // expires in 15 minutes
-            httpOnly: true
-        });
-    }
-    console.log('User ID:', userId);
-    console.log('User ID found, sending it to the client');
-    res.send({ userId });
-});
+// buttonRoutes.route('/api/user/id').get(async (req, res) => {
+//     let userId = req.cookies.userId;
+//     if (!userId) {
+//         console.log('No user ID found, creating a new one');
+//         userId = uuid.v4();
+//         res.cookie('userId', userId, {
+//             maxAge: 9000000, // expires in 15 minutes
+//             httpOnly: true
+//         });
+//     }
+//     console.log('User ID:', userId);
+//     console.log('User ID found, sending it to the client');
+//     res.send({ userId });
+// });
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     const client = new MongoClient(connectionString, {
