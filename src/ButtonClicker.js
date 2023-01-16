@@ -10,7 +10,6 @@ import {
   Snackbar,
   ThemeProvider,
 } from '@mui/material';
-
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: false,
@@ -24,6 +23,7 @@ export default function ButtonClicker() {
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarOpenReset, setSnackbarOpenReset] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [emojiVisible, setEmojiVisible] = useState(false);
 
   useEffect(() => {
     async function fetchUserId() {
@@ -126,6 +126,25 @@ export default function ButtonClicker() {
     });
   }, [urlId]);
 
+  function animateEmoji() {
+    // only call function if user has not already clicked the button
+    if (!clickedUsers.includes(urlId)) {
+      setEmojiVisible(true);
+      setTimeout(() => {
+        setEmojiVisible(false);
+      }, 2000);
+    }
+  }
+  function randomEmoji() {
+    const emojis = ["✌","😂","😝","😁","😱","👉","🙌","🍻","🔥","🌈","☀","🎈","🌹","💄","🎀","⚽","🎾","🏁","😡","👿",
+      "🐻","🐶","🐬","🐟","🍀","👀","🚗","🍎","💝","💙","👌","❤","😍","😉","😓","😳","💪","💩","🍸","🔑","💖","🌟",
+      "🎉","🌺","🎶","👠","🏈","⚾","🏆","👽","💀","🐵","🐮","🐩","🐎","💣","👃","👂","🍓","💘","💜","👊","💋","😘",
+      "😜","😵","🙏","👋","🚽","💃","💎","🚀","🌙","🎁","⛄","🌊","⛵","🏀","🎱","💰","👶","👸","🐰","🐷","🐍","🐫",
+      "🔫","👄","🚲","🍉","💛","💚"];
+    let oneEmoji = emojis[Math.floor(Math.random() * emojis.length)]
+      return oneEmoji;
+  }
+
   return (
     <div>
       <Grid
@@ -136,8 +155,10 @@ export default function ButtonClicker() {
         justifyContent='center'
         style={{ minHeight: '100vh' }}
       >
+        <div onClick={animateEmoji}>
         <Button
-          style={{
+            id="thumbs"
+            style={{
             width: '3em',
             height: '3em',
             fontSize: '90px',
@@ -149,6 +170,7 @@ export default function ButtonClicker() {
           variant='contained'
           onClick={handleClick}
         >
+
           {!dataLoaded ? (
             <CircularProgress
               color='success'
@@ -163,6 +185,8 @@ export default function ButtonClicker() {
             buttonData.count
           )}
         </Button>
+            {emojiVisible && <span className="emoji" role="img" aria-label="party popper">{randomEmoji()}</span>}
+      </div>
         <Button color='neutral' variant='contained' onClick={handleReset}>
           Reset
         </Button>

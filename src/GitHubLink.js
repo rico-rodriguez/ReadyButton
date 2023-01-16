@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Tooltip from '@material-ui/core/Tooltip';
-import { bottom } from '@popperjs/core';
 
 const useStyles = makeStyles(
   {

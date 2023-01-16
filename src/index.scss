@@ -55,5 +55,45 @@ body {
 .customCheckbox:hover {
   cursor: pointer;
   transform: scale(1.1);
+}
+.emoji {
+  position: absolute;
+  left: 47%;
+  top: 25%;
+  font-size: 90px;
+  animation: emoji 2s ease-out;
+}
+//animate emoji to go up and fade out
+@keyframes emoji {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: .5;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-350px);
+  }
+}
 
+.thumbs {
+  position: relative;
+}
+.thumbs::before {
+  content: "👍";
+  font-size: 90px;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 2s;
+}
+.thumbs.animate::before {
+  opacity: 1;
 }
