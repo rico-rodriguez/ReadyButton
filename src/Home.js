@@ -18,14 +18,16 @@ const useHomeStyle = makeStyles(
       alignSelf: 'center',
       justifyItems: 'space-between',
       alignItems: 'space-between',
-      padding: theme.spacing(2),
+      padding: '20px',
       background: 'rgba(0, 0, 0, 0.5)',
       boxShadow:
         '0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)',
       borderRadius: '5px',
       fontFamily: 'Open Sans, sans-serif',
       margin: 'auto',
-      paddingBlock: '40px',
+      marginTop: '10px',
+        marginBottom: '10px',
+      height: '100%',
       zIndex: 999,
     },
 
