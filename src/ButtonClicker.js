@@ -137,7 +137,7 @@ export default function ButtonClicker() {
   useEffect(() => {
     const timer = setInterval(() => {
         setLoading(false);
-    }, 1000);
+    }, 5000);
 
     return () => {
       clearInterval(timer);
