@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
     io.emit('setLoading', true);
     setTimeout(() => {
       io.emit('setLoading', false);
-    }, 1000);
+    }, 1500);
     io.emit('snackbar', { message: 'Hello World!' });
     io.emit('increment', data);
   });
