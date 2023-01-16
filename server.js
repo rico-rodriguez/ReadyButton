@@ -13,6 +13,10 @@ const io = require('socket.io')(httpServer, {
 io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('increment', (data) => {
+    io.emit('setLoading', true);
+    setTimeout(() => {
+      io.emit('setLoading', false);
+    }, 1000);
     io.emit('snackbar', { message: 'Hello World!' });
     io.emit('increment', data);
   });
