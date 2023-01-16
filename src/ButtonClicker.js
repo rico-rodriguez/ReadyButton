@@ -114,6 +114,7 @@ export default function ButtonClicker() {
             //Button not found, create new button on server side
           } else {
             const data = await response.json();
+            setLoading(false);
             setButtonData(data);
           }
         } catch (error) {
