@@ -142,10 +142,13 @@ export default function ButtonClicker() {
     if (isDataLoading) {
       setLoading(true);
     }
-    else if (!isDataLoading) {
-      setLoading(false);
+    if (!isDataLoading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1500); // delay of 1.5 seconds
     }
-  }, [isDataLoading])
+  }, [isDataLoading]);
+
 
   const [progress, setProgress] = useState(0);
   useEffect(() => {
