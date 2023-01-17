@@ -130,7 +130,7 @@ export default function Home() {
                   onChange={() => {}}
               />
               <Typography variant='subtitle2'>
-                Add a settings to turn off emoji and other future features
+                Add settings to turn off features
               </Typography>
             </li>
             <li className="featureItem">
