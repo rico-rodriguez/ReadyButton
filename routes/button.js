@@ -36,6 +36,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     });
     await client.connect(async err => {
         let userId = req.cookies.userId;
+        console.log('userId: ' + userId);
         if (!userId) {
             userId = uuid.v4();
             res.cookie('userId', userId, {
