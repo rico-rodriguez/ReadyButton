@@ -47,28 +47,11 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
         await client.close();
     });
 });
-
-// buttonRoutes.route('/api/user/id').get(async (req, res) => {
-//     let userId = req.cookies.userId;
-//     if (!userId) {
-//         console.log('No user ID found, creating a new one');
-//         userId = uuid.v4();
-//         res.cookie('userId', userId, {
-//             maxAge: 9000000, // expires in 15 minutes
-//             httpOnly: true
-//         });
-//     }
-//     console.log('User ID:', userId);
-//     console.log('User ID found, sending it to the client');
-//     res.send({ userId });
-// });
-
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     const client = new MongoClient(connectionString, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
-    console.log('GET /api/button/:urlId');
     await client.connect(async err => {
         const collection = client.db("button").collection("buttons");
         let button = await collection.findOne({ urlId: req.params.urlId });
@@ -107,7 +90,9 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
                     } else {
-                        collection.updateOne({ urlId: req.params.urlId }, { $inc: { count: 1 } }, function (err, result) {
+                        let userId = req.cookies.userId;
+                        collection.updateOne({ urlId: req.params.urlId }, { $inc: { count: 1 },
+                            $push: { usersArray: req.cookies.userId } }, function (err, result) {
                             if (err) throw err;
                             res.status(200).json({ message: "Button count updated" });
                             client.close();
@@ -140,7 +125,9 @@ buttonRoutes.route('/api/button/reset/:urlId')
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
                     } else {
-                        collection.updateOne({ urlId: req.params.urlId }, { $set: { count: 0 } }, function (err, result) {
+                        collection.updateOne({ urlId: req.params.urlId },
+                          { $set: { count: 0, usersArray: [] } },
+                          function (err, result) {
                             if (err) throw err;
                             res.status(200).json({ message: "Button count updated" });
                             client.close();
