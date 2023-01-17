@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect, useRef} from 'react';
 import { useParams } from 'react-router-dom';
+import mojs from '@mojs/core';
 import {
   Alert,
   Button,
@@ -24,6 +25,7 @@ export default function ButtonClicker() {
   const [snackbarOpenReset, setSnackbarOpenReset] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
+  const animationRef = useRef(null);
 
   useEffect(() => {
     async function fetchUserId() {
@@ -48,6 +50,11 @@ export default function ButtonClicker() {
   }, []);
 
   async function handleClick() {
+    {animatedClick()}
+    setEmojiVisible(true);
+    setTimeout(() => {
+      setEmojiVisible(false);
+    }, 5000);
     // Check if user has already clicked the button
     if (!clickedUsers.includes(urlId) && userId) {
       setClickedUsers([...clickedUsers, urlId]);
@@ -126,25 +133,46 @@ export default function ButtonClicker() {
     });
   }, [urlId]);
 
-  function animateEmoji() {
-    // only call function if user has not already clicked the button
-    if (!clickedUsers.includes(urlId)) {
-      setEmojiVisible(true);
-      setTimeout(() => {
-        setEmojiVisible(false);
-      }, 2000);
-    }
-  }
-  function randomEmoji() {
-    const emojis = ["✌","😂","😝","😁","😱","👉","🙌","🍻","🔥","🌈","☀","🎈","🌹","💄","🎀","⚽","🎾","🏁","😡","👿",
-      "🐻","🐶","🐬","🐟","🍀","👀","🚗","🍎","💝","💙","👌","❤","😍","😉","😓","😳","💪","💩","🍸","🔑","💖","🌟",
-      "🎉","🌺","🎶","👠","🏈","⚾","🏆","👽","💀","🐵","🐮","🐩","🐎","💣","👃","👂","🍓","💘","💜","👊","💋","😘",
-      "😜","😵","🙏","👋","🚽","💃","💎","🚀","🌙","🎁","⛄","🌊","⛵","🏀","🎱","💰","👶","👸","🐰","🐷","🐍","🐫",
-      "🔫","👄","🚲","🍉","💛","💚"];
-    let oneEmoji = emojis[Math.floor(Math.random() * emojis.length)]
-      return oneEmoji;
-  }
+  const animatedClick = () => {
+    if (!animationRef.current) {
+      animationRef.current = new mojs.Burst({
+        parent: '#my-div',
+        radius:   { 150: 200 },
+        angle:    45,
+        count:    14,
+        timeline: { delay: 0 },
+        children: {
+          radius:       2.5,
+          fill:         [
+            { '#9EC9F5' : '#9ED8C6' },
+            { '#91D3F7' : '#9AE4CF' },
 
+            { '#DC93CF' : '#E3D36B' },
+            { '#CF8EEF' : '#CBEB98' },
+
+            { '#87E9C6' : '#1FCC93' },
+            { '#A7ECD0' : '#9AE4CF' },
+
+            { '#87E9C6' : '#A635D9' },
+            { '#D58EB3' : '#E0B6F5' },
+
+            { '#F48BA2' : '#CF8EEF' },
+            { '#91D3F7' : '#A635D9' },
+
+            { '#CF8EEF' : '#CBEB98' },
+            { '#87E9C6' : '#A635D9' },
+          ],
+          scale:        { 1: 0, easing: 'quad.in' },
+          pathScale:    [ .8, null ],
+          degreeShift:  [ 2, null ],
+          duration:     [ 500, 1000 ],
+          easing:       'quint.out'
+        }
+      }).play();
+    } else {
+      animationRef.current.play();
+    }
+    }
   return (
     <div>
       <Grid
@@ -155,9 +183,9 @@ export default function ButtonClicker() {
         justifyContent='center'
         style={{ minHeight: '100vh' }}
       >
-        <div onClick={animateEmoji}>
+        <div>
         <Button
-            id="thumbs"
+            id="my-div"
             style={{
             width: '3em',
             height: '3em',
@@ -166,10 +194,13 @@ export default function ButtonClicker() {
             marginBottom: '20px',
             filter: 'drop-shadow(5px 5px 10px #000)',
           }}
+            disabled={clickedUsers.includes(urlId)}
           color='primary'
           variant='contained'
           onClick={handleClick}
+            backgroundColor='primary'
         >
+          {clickedUsers.includes(urlId) && <div className="completedClick"></div>}
 
           {!dataLoaded ? (
             <CircularProgress
@@ -185,7 +216,8 @@ export default function ButtonClicker() {
             buttonData.count
           )}
         </Button>
-            {/*{emojiVisible && <span className="emoji" role="img" aria-label="party popper">{randomEmoji()}</span>}*/}
+            {emojiVisible && <div>
+              </div>}
       </div>
         <Button color='neutral' variant='contained' onClick={handleReset}>
           Reset

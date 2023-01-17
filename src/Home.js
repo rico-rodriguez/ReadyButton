@@ -1,5 +1,6 @@
 import {Box, Checkbox, Container, css, Typography} from '@mui/material';
 import * as PropTypes from "prop-types";
+import FlyingEmoji from './FlyingEmoji';
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
@@ -91,6 +92,26 @@ export default function Home() {
           </Box>
           <div className="featureListContainer">
           <ul className="featureList">
+            <li className="featureItem">
+              <CustomCheckbox
+                  className="customCheckbox"
+                  checked={false}
+                  onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Post your own question to the button header
+              </Typography>
+            </li>
+            <li className="featureItem">
+              <CustomCheckbox
+                  className="customCheckbox"
+                  checked={false}
+                  onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Back user list to db to keep track of who has clicked and release names when reset
+              </Typography>
+            </li>
             <li className="featureItem">
               <CustomCheckbox
                 className="customCheckbox"
@@ -213,6 +234,7 @@ export default function Home() {
             </li>
           </ul>
             </div>
+        <FlyingEmoji />
         </Container>
       </div>
     </>
