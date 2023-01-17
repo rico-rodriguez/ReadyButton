@@ -2462,7 +2462,7 @@
   dependencies:
     debug "4.3.3"
 
-"@mojs/core@^1.4.0":
+"@mojs/core@1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@mojs/core/-/core-1.4.0.tgz#78e78359aa9107059731f40a7b91604ea766f79a"
   integrity sha512-/dPrnmvdosCl0sessK79VkPd3c52SuiBNyTRC4A+icNymhgA0tnNzQTEUYfkY4zsJ64da2CnEFzP7DQqEtSStA==
