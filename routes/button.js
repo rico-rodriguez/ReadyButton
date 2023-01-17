@@ -94,6 +94,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     } else {
                         let userId = req.cookies.userId;
                         if (!button.usersArray.includes(userId)) {
+                            console.log(userId)
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
                                 $push: { usersArray: req.cookies.userId }
