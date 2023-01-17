@@ -1,12 +1,9 @@
 const express = require('express');
 const buttonRoutes = express.Router();
-const dbo = require('../db/conn');
-const mongoose = require("mongoose");
-const UserData = mongoose.model('UserSchema');
-const Button = mongoose.model('ButtonSchema', 'buttons');
 const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
+const cookieParser = require('cookie-parser');
 
 // buttonRoutes.route('/').post(async function () {
 //     console.log('POST /');
