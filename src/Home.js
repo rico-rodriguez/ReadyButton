@@ -234,7 +234,6 @@ export default function Home() {
             </li>
           </ul>
             </div>
-        <FlyingEmoji />
         </Container>
       </div>
     </>
