@@ -57,9 +57,11 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         let button = await collection.findOne({ urlId: req.params.urlId });
         if (!button) {
             console.log('Button not found, creating a new one');
+            let userId = req.cookies.userId;
             button = {
                 urlId: req.params.urlId,
-                count: 0
+                count: 0,
+                usersArray: [userId,]
             };
             console.log('Button:', button);
             await collection.insertOne(button);
@@ -91,13 +93,18 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         let userId = req.cookies.userId;
-                        collection.updateOne({ urlId: req.params.urlId }, { $inc: { count: 1 },
-                            $push: { usersArray: req.cookies.userId } }, function (err, result) {
-                            if (err) throw err;
-                            res.status(200).json({ message: "Button count updated" });
-                            client.close();
-                        });
-
+                        if (!button.usersArray.includes(userId)) {
+                            collection.updateOne({ urlId: req.params.urlId }, {
+                                $inc: { count: 1 },
+                                $push: { usersArray: req.cookies.userId }
+                            }, function(err, result) {
+                                if (err) throw err;
+                                res.status(200).json({ message: "Button count updated" });
+                                client.close();
+                            });
+                    } else {
+                        res.status(401).json({ message: "Already clicked!" });
+                    }
                     }
                 });
             });
@@ -125,19 +132,24 @@ buttonRoutes.route('/api/button/reset/:urlId')
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
                     } else {
-                        collection.updateOne({ urlId: req.params.urlId },
-                          { $set: { count: 0, usersArray: [] } },
-                          function (err, result) {
-                            if (err) throw err;
-                            res.status(200).json({ message: "Button count updated" });
-                            client.close();
-                        });
-
+                        let userId = req.cookies.userId;
+                        if (button.usersArray[0] === userId) {
+                            collection.updateOne({ urlId: req.params.urlId },
+                              { $set: { count: 0, usersArray: [userId, ]  } },
+                              function (err, result) {
+                                  if (err) throw err;
+                                  res.status(200).json({ message: "Button count updated" });
+                                  client.close();
+                              });
+                        } else {
+                            res.status(401).json({ message: "Unauthorized" });
+                        }
                     }
                 });
             });
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
+
     });
 module.exports = buttonRoutes;

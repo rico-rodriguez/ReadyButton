@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="Button disabled when clicked. Sparkles added to click.">
+    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="Added userId to buttonModel and route api calls to track cookies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/ButtonSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/ButtonSchema.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/button.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +102,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673896232800</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added userId to buttonModel and route api calls to track cookies">
+      <created>1673989770401</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673989770401</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +132,7 @@
     <MESSAGE value="Comment out duplicate user id route" />
     <MESSAGE value="Comment out post to create button" />
     <MESSAGE value="Client close on user id" />
-    <option name="LAST_COMMIT_MESSAGE" value="Client close on user id" />
+    <MESSAGE value="Added userId to buttonModel and route api calls to track cookies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added userId to buttonModel and route api calls to track cookies" />
   </component>
 </project>
