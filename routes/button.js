@@ -41,8 +41,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
                 httpOnly: true
             });
         }
-        const usersArray = await client.db("button").collection("buttons").find('usersArray');
-        res.send({ userId, usersArray });
+        res.send({ userId });
         await client.close();
     });
 });
