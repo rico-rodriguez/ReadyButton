@@ -50,12 +50,12 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
+            let userId = req.cookies.userId;
     await client.connect(async err => {
         const collection = client.db("button").collection("buttons");
         let button = await collection.findOne({ urlId: req.params.urlId });
         if (!button) {
             console.log('Button not found, creating a new one');
-            let userId = req.cookies.userId;
             if (!userId || userId === 'undefined' || userId === 'null') {
                 userId = uuid.v4();
                 res.cookie('userId', userId, {
@@ -74,17 +74,13 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         res.json({ count: button.count });
         console.log('Button count:', button.count);
         console.log('Button count sent to the client')
+        res.send({ userId });
         await client.close();
     });
 });
 
 buttonRoutes.route('/api/button/increment/:urlId')
     .patch(async (req, res) => {
-        try {
-        } catch (err) {
-            console.error('Error setting loading spinner:', err);
-        }
-
         try {
             const client = new MongoClient(connectionString, {
                 useNewUrlParser: true,
@@ -98,7 +94,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         let userId = req.cookies.userId;
-                        if (userId.length < 12) {
+                        if (userId === 'undefined' || userId === 'null' || !userId) {
                             userId = uuid.v4();
                             res.cookie('userId', userId, {
                                 maxAge: 9000000, // expires in 15 minutes
@@ -113,6 +109,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                             }, function(err, result) {
                                 if (err) throw err;
                                 res.status(200).json({ message: "Button count updated" });
+                                res.send({ userId });
                                 client.close();
                             });
                     } else {
