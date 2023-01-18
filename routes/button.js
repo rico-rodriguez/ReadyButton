@@ -71,6 +71,9 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
             console.log('Button:', button);
             await collection.insertOne(button);
         }
+        // get usersArray from button and send the value to the client
+        let usersArray = button.usersArray;
+        console.log('usersArray ' + usersArray)
         // res.send(button.usersArray)
         res.json({ count: button.count });
         console.log('Button count:', button.count);
