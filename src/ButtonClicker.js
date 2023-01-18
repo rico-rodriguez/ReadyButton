@@ -33,7 +33,6 @@ export default function ButtonClicker() {
       const response = await fetch(
         'https://readybutton.herokuapp.com/api/user/id',
         {
-          mode: 'cors',
           credentials: 'include',
           headers: {
             'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
