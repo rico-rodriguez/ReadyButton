@@ -56,6 +56,13 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         if (!button) {
             console.log('Button not found, creating a new one');
             let userId = req.cookies.userId;
+            if (!userId || userId === 'undefined' || userId === 'null') {
+                userId = uuid.v4();
+                res.cookie('userId', userId, {
+                    maxAge: 9000000, // expires in 15 minutes
+                    httpOnly: true
+                });
+            }
             button = {
                 urlId: req.params.urlId,
                 count: 0,
