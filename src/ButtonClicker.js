@@ -58,8 +58,8 @@ export default function ButtonClicker() {
       setEmojiVisible(false);
     }, 3000);
     // Check if user has already clicked the button
-    if (!clickedUsers.includes(urlId) && userId) {
-      setClickedUsers([...clickedUsers, urlId]);
+    if (!clickedUsers.includes(userId)) {
+      // setClickedUsers([...clickedUsers, userId]);
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -76,6 +76,7 @@ export default function ButtonClicker() {
         const data = await response.json();
         // Update the state with the new count
         setButtonData({ count: data.count });
+        setClickedUsers({ usersArray: data.usersArray });
         // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
       } catch (err) {
@@ -110,13 +111,7 @@ export default function ButtonClicker() {
       setDataLoaded(false);
       try {
         const response = await fetch(
-          `https://readybutton.herokuapp.com/api/button/${urlId}`,
-          {
-            headers: {
-              'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
-            },
-            credentials: 'include',
-          }
+          `https://readybutton.herokuapp.com/api/button/${urlId}`
         );
         if (!response.ok) {
           throw new Error('Failed to fetch button data');
@@ -124,7 +119,6 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
-        // setClickedUsers(data.usersArray);
       } catch (error) {
         console.error(error);
       } finally {
@@ -238,14 +232,14 @@ export default function ButtonClicker() {
               marginBottom: '20px',
               filter: 'drop-shadow(5px 5px 10px #000)',
             }}
-            disabled={clickedUsers.includes(urlId)}
+            disabled={clickedUsers.includes(userId) || !buttonData.count}
             color='primary'
             variant='contained'
             onClick={handleClick}
+            backgroundColor='primary'
           >
-            {clickedUsers.includes(urlId) && (
-              <div className='completedClick'></div>
-            )}
+            {clickedUsers.includes(userId) ||
+              (!buttonData.count && <div className='completedClick'></div>)}
 
             {!dataLoaded ? (
               <CircularProgress
