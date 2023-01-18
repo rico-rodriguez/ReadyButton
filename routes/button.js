@@ -34,12 +34,14 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     await client.connect(async err => {
         let userId = req.cookies.userId;
         console.log('userId: ' + userId);
-        if (!userId) {
-            userId = uuid.v4();
-            res.cookie('userId', userId, {
-                maxAge: 9000000, // expires in 15 minutes
-                httpOnly: true
-            });
+        if (userId === undefined || userId === null) {
+            if (!userId) {
+                userId = uuid.v4();
+                res.cookie('userId', userId, {
+                    maxAge: 9000000, // expires in 15 minutes
+                    httpOnly: true
+                });
+            }
         }
         res.send({ userId });
         await client.close();
@@ -56,6 +58,16 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         if (!button) {
             console.log('Button not found, creating a new one');
             let userId = req.cookies.userId;
+            if (userId === undefined || userId === null) {
+                if (!userId) {
+                    userId = uuid.v4();
+                    res.cookie('userId', userId, {
+                        maxAge: 9000000, // expires in 15 minutes
+                        httpOnly: true
+                    });
+                }
+            }
+            res.send({ userId });
             button = {
                 urlId: req.params.urlId,
                 count: 0,
@@ -91,6 +103,16 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         let userId = req.cookies.userId;
+                        if (userId === undefined || userId === null) {
+                            if (!userId) {
+                                userId = uuid.v4();
+                                res.cookie('userId', userId, {
+                                    maxAge: 9000000, // expires in 15 minutes
+                                    httpOnly: true
+                                });
+                            }
+                        }
+                        res.send({ userId });
                         if (!button.usersArray.includes(userId)) {
                             console.log(userId)
                             collection.updateOne({ urlId: req.params.urlId }, {
@@ -132,6 +154,16 @@ buttonRoutes.route('/api/button/reset/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         let userId = req.cookies.userId;
+                        if (userId === undefined || userId === null) {
+                            if (!userId) {
+                                userId = uuid.v4();
+                                res.cookie('userId', userId, {
+                                    maxAge: 9000000, // expires in 15 minutes
+                                    httpOnly: true
+                                });
+                            }
+                        }
+                        res.send({ userId });
                         if (button.usersArray[0] === userId) {
                             collection.updateOne({ urlId: req.params.urlId },
                               { $set: { count: 0, usersArray: [userId, ]  } },
