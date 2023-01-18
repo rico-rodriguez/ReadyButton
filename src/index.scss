@@ -1,0 +1,78 @@
+$animationDuration: 0.5s;
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #1c2536;
+}
+.featureListContainer {
+  margin-top: 10px;
+  display:flex;
+}
+.featureList {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: red;
+  min-height: 25rem;
+  max-height: 25rem;
+  overflow-y: scroll;
+}
+.featureList::-webkit-scrollbar {
+  width: 0.5rem;
+}
+.featureList::-webkit-scrollbar-track {
+  background: #1a2536;
+}
+.featureList::-webkit-scrollbar-thumb {
+  background: #243552;
+}
+.featureList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.featureItem {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  color: white;
+}
+.completedClick {
+  position: absolute;
+  z-index: -1;
+  width: 3em;
+  height: 3em;
+  font-size: 90px;
+  background-color: #ffffff;
+  border-radius: 999px;
+}
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.25rem;
+  border: 1px solid #243552;
+}
+.customCheckbox:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+button {
+  margin: 1rem;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #243552;
+  color: white;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}
