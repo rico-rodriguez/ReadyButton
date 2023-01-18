@@ -34,14 +34,14 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     await client.connect(async err => {
         let userId = await req.cookies.userId;
         console.log('userId: ' + userId);
-        if (!userId) {
+        if (userId === undefined || userId === null) {
             userId = uuid.v4();
             res.cookie('userId', userId, {
                 maxAge: 9000000, // expires in 15 minutes
                 httpOnly: true
             });
-        }
         res.send({ userId });
+        }
         await client.close();
     });
 });
@@ -55,7 +55,15 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         let button = await collection.findOne({ urlId: req.params.urlId });
         if (!button) {
             console.log('Button not found, creating a new one');
-            let userId = req.cookies.userId;
+            let userId = await req.cookies.userId;
+            if (userId === undefined || userId === null) {
+                userId = uuid.v4();
+                res.cookie('userId', userId, {
+                    maxAge: 9000000, // expires in 15 minutes
+                    httpOnly: true
+                });
+                res.send({ userId });
+            }
             button = {
                 urlId: req.params.urlId,
                 count: 0,
