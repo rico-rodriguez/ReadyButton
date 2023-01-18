@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="wdas" />
+=======
+    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="t/s cookie error" />
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
 =======
     <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="t/s cookie error" />
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
@@ -17,10 +21,13 @@
   <component name="Git.Settings">
     <option name="PREVIEW_PUSH_PROTECTED_ONLY" value="true" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="2KLdrWG18OKJiiubX0hvWpUJQis" />
 =======
+=======
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -32,11 +39,15 @@
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+<<<<<<< HEAD
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
+=======
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
 <<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
@@ -52,6 +63,8 @@
   }
 }]]></component>
 =======
+=======
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
@@ -65,6 +78,9 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+<<<<<<< HEAD
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
+=======
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -84,8 +100,11 @@
       <updated>1673762423644</updated>
     </task>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="localTasksCounter" value="2" />
 =======
+=======
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
     <task id="LOCAL-00002" summary="spinner modifications">
       <created>1673827301838</created>
       <option name="number" value="00002" />
@@ -171,6 +190,9 @@
       <updated>1674008707501</updated>
     </task>
     <option name="localTasksCounter" value="14" />
+<<<<<<< HEAD
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
+=======
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
     <servers />
   </component>
@@ -191,8 +213,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wdas" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="wdas" />
 =======
+=======
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
     <MESSAGE value="spinner modifications" />
     <MESSAGE value="Comment out duplicate user id route" />
     <MESSAGE value="Comment out post to create button" />
@@ -201,6 +226,9 @@
     <MESSAGE value="log userId for t/s" />
     <MESSAGE value="t/s cookie error" />
     <option name="LAST_COMMIT_MESSAGE" value="t/s cookie error" />
+<<<<<<< HEAD
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
+=======
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
   </component>
 </project>

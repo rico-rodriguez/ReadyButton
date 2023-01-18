@@ -100,7 +100,10 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     } else {
                         let userId = await req.cookies.userId;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
                       if (userId === undefined || userId === null) {
                         userId = uuid.v4();
                         res.cookie('userId', userId, {
@@ -109,6 +112,9 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         });
                         res.send({ userId });
                       }
+<<<<<<< HEAD
+>>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
+=======
 >>>>>>> parent of 7e64de0 (Revert "Merge remote-tracking branch 'origin/backend' into backend")
                         if (!button.usersArray.includes(userId)) {
                             console.log(userId)
