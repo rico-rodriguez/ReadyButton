@@ -33,18 +33,10 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   });
   await client.connect(async (err) => {
     let userId = req.session.userId;
-    if (
-      !userId ||
-      userId === '' ||
-      userId === null ||
-      userId === 'null' ||
-      userId === undefined
-    ) {
-      userId = uuid.v4();
       req.session.userId = userId;
-    }
-    res.send({ userId });
-    await client.close();
+      res.send({ userId });
+    },
+    await client.close());
   });
 });
 buttonRoutes.route('/api/button/:urlId').get(async (req, res) => {
@@ -58,16 +50,6 @@ buttonRoutes.route('/api/button/:urlId').get(async (req, res) => {
     if (!button) {
       console.log('Button not found, creating a new one');
       let userId = req.session.userId;
-      if (
-        !userId ||
-        userId === '' ||
-        userId === null ||
-        userId === 'null' ||
-        userId === undefined
-      ) {
-        userId = uuid.v4();
-        req.session.userId = userId;
-      }
       button = {
         urlId: req.params.urlId,
         count: 0,
@@ -102,16 +84,6 @@ buttonRoutes.route('/api/button/increment/:urlId').patch(async (req, res) => {
           res.status(404).json({ message: 'Button not found' });
         } else {
           let userId = req.session.userId;
-          if (
-            !userId ||
-            userId === '' ||
-            userId === null ||
-            userId === 'null' ||
-            userId === undefined
-          ) {
-            userId = uuid.v4();
-            req.session.userId = userId;
-          }
           if (!button.usersArray.includes(userId)) {
             console.log(userId);
             collection.updateOne(
@@ -155,16 +127,6 @@ buttonRoutes.route('/api/button/reset/:urlId').patch(async (req, res) => {
           res.status(404).json({ message: 'Button not found' });
         } else {
           let userId = req.session.userId;
-          if (
-            !userId ||
-            userId === '' ||
-            userId === null ||
-            userId === 'null' ||
-            userId === undefined
-          ) {
-            userId = uuid.v4();
-            req.session.userId = userId;
-          }
           if (button.usersArray[0] === userId) {
             collection.updateOne(
               { urlId: req.params.urlId },

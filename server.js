@@ -31,7 +31,15 @@ io.on('connection', (socket) => {
 });
 
 const session = require('express-session');
-app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
+app.use(
+  session({ secret: 'keyboard cat', resave: false, saveUninitialized: true })
+);
+app.use((req, res, next) => {
+  if (!req.session.userId) {
+    req.session.userId = uuid.v4();
+  }
+  next();
+});
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 const express = require('express');
@@ -47,17 +55,19 @@ require('./models/UserSchema');
 // const cookieParser = require('cookie-parser');
 // app.use(cookieParser());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.header('origin') );
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.header('origin'));
   next();
 });
-app.use(cors({
-  origin: function(origin, callback){
-    return callback(null, true);
-  },
-  optionsSuccessStatus: 200,
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      return callback(null, true);
+    },
+    optionsSuccessStatus: 200,
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
