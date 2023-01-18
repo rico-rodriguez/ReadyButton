@@ -41,7 +41,8 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
                 httpOnly: true
             });
         }
-        res.send({ userId });
+        const usersArray = await client.db("button").collection("buttons").find('usersArray');
+        res.send({ userId, usersArray });
         await client.close();
     });
 });
@@ -71,11 +72,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
             console.log('Button:', button);
             await collection.insertOne(button);
         }
-        // get usersArray from button and send the value to the client
-        let usersArray = button.usersArray;
-        console.log('usersArray ' + usersArray)
-        // res.send(button.usersArray)
-        res.json({ count: button.count, usersArray: usersArray });
+        res.json({ count: button.count });
         console.log('Button count:', button.count);
         console.log('Button count sent to the client')
         await client.close();
@@ -109,19 +106,18 @@ buttonRoutes.route('/api/button/increment/:urlId')
                                 httpOnly: true
                             });
                         }
-                        if (button.usersArray.includes(userId)) {
-                            console.log(userId + "Has not clicked before, incrementing")
+                        if (!button.usersArray.includes(userId)) {
+                            console.log(userId)
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
                                 $push: { usersArray: req.cookies.userId }
                             }, function(err, result) {
                                 if (err) throw err;
                                 res.status(200).json({ message: "Button count updated" });
-                                console.log('Button count updated, usersArray : ' + usersArray)
-                                res.json({usersArray: button.usersArray})
                                 client.close();
                             });
                     } else {
+                        res.status(401).json({ message: "Already clicked!" });
                     }
                     }
                 });
