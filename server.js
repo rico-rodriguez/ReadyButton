@@ -46,10 +46,10 @@ require('./models/UserSchema');
 
 app.use(cookieParser());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.header('origin') );
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', req.header('origin') );
+//   next();
+// });
 app.use(cors({
   origin: function(origin, callback){
     return callback(null, true);
