@@ -34,7 +34,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     await client.connect(async err => {
         let userId = req.cookies.userId;
         console.log('userId: ' + userId);
-        if (!userId) {
+        if (!userId || userId === 'undefined' || userId === 'null') {
             userId = uuid.v4();
             res.cookie('userId', userId, {
                 maxAge: 9000000, // expires in 15 minutes
