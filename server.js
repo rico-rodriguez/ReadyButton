@@ -34,12 +34,7 @@ const session = require('express-session');
 app.use(
   session({ secret: 'keyboard cat', resave: false, saveUninitialized: true })
 );
-app.use((req, res, next) => {
-  if (!req.session.userId) {
-    req.session.userId = uuid.v4();
-  }
-  next();
-});
+
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 const express = require('express');
