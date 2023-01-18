@@ -10,6 +10,9 @@ workspace.xml
 .husky
 .vscode
 .idea
+/.idea
+/.vscode
+/.husky
 
 # testing
 /coverage
