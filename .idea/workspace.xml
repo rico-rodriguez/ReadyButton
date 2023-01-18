@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="log userId for t/s">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/button.js" afterDir="false" />
-    </list>
+    <list default="true" id="b97adf40-7ee4-4f84-b63c-95abd3e1ceb9" name="Changes" comment="t/s cookie error" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673991802431</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="t/s cookie error">
+      <created>1674007453681</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1674007453681</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +152,7 @@
     <MESSAGE value="Client close on user id" />
     <MESSAGE value="Added userId to buttonModel and route api calls to track cookies" />
     <MESSAGE value="log userId for t/s" />
-    <option name="LAST_COMMIT_MESSAGE" value="log userId for t/s" />
+    <MESSAGE value="t/s cookie error" />
+    <option name="LAST_COMMIT_MESSAGE" value="t/s cookie error" />
   </component>
 </project>

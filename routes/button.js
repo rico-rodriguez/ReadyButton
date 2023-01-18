@@ -32,7 +32,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
         useUnifiedTopology: true,
     });
     await client.connect(async err => {
-        let userId = req.cookies.userId;
+        let userId = await req.cookies.userId;
         console.log('userId: ' + userId);
         if (!userId) {
             userId = uuid.v4();
@@ -85,25 +85,25 @@ buttonRoutes.route('/api/button/increment/:urlId')
             });
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
-                collection.findOne({ urlId: req.params.urlId }, function (err, button) {
+                collection.findOne({ urlId: req.params.urlId }, async function (err, button) {
                     if (err) throw err;
                     if (!button) {
-                        res.status(404).json({ message: "Button not found" });
+                        res.status(404).json({message: "Button not found"});
                     } else {
-                        let userId = req.cookies.userId;
+                        let userId = await req.cookies.userId;
                         if (!button.usersArray.includes(userId)) {
                             console.log(userId)
-                            collection.updateOne({ urlId: req.params.urlId }, {
-                                $inc: { count: 1 },
-                                $push: { usersArray: req.cookies.userId }
-                            }, function(err, result) {
+                            await collection.updateOne({urlId: req.params.urlId}, {
+                                $inc: {count: 1},
+                                $push: {usersArray: req.cookies.userId}
+                            }, async function (err, result) {
                                 if (err) throw err;
-                                res.status(200).json({ message: "Button count updated" });
-                                client.close();
+                                res.status(200).json({message: "Button count updated"});
+                                await client.close();
                             });
-                    } else {
-                        res.status(401).json({ message: "Already clicked!" });
-                    }
+                        } else {
+                            res.status(401).json({message: "Already clicked!"});
+                        }
                     }
                 });
             });
