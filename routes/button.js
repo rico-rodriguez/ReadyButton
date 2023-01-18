@@ -75,7 +75,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         let usersArray = button.usersArray;
         console.log('usersArray ' + usersArray)
         // res.send(button.usersArray)
-        res.json({ count: button.count });
+        res.json({ count: button.count, usersArray: usersArray });
         console.log('Button count:', button.count);
         console.log('Button count sent to the client')
         await client.close();
