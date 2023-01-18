@@ -58,8 +58,8 @@ export default function ButtonClicker() {
       setEmojiVisible(false);
     }, 3000);
     // Check if user has already clicked the button
-    if (!clickedUsers.includes(urlId) && userId) {
-      setClickedUsers([...clickedUsers, urlId]);
+    if (!clickedUsers.includes(userId)) {
+      // setClickedUsers([...clickedUsers, userId]);
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -76,6 +76,7 @@ export default function ButtonClicker() {
         const data = await response.json();
         // Update the state with the new count
         setButtonData({ count: data.count });
+        setClickedUsers({ usersArray: data.usersArray });
         // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
       } catch (err) {
