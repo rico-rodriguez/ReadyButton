@@ -124,7 +124,7 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
-        setClickedUsers(usersArray);
+        // setClickedUsers(data.usersArray);
       } catch (error) {
         console.error(error);
       } finally {
