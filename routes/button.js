@@ -91,6 +91,13 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         let userId = req.cookies.userId;
+                        if (userId === 'undefined' || userId === 'null') {
+                            userId = uuid.v4();
+                            res.cookie('userId', userId, {
+                                maxAge: 9000000, // expires in 15 minutes
+                                httpOnly: true
+                            });
+                        }
                         if (!button.usersArray.includes(userId)) {
                             console.log(userId)
                             collection.updateOne({ urlId: req.params.urlId }, {
