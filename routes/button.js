@@ -110,7 +110,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                             });
                         }
                         if (!button.usersArray.includes(userId)) {
-                            console.log(userId)
+                            console.log(userId + "Has not clicked before, incrementing")
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
                                 $push: { usersArray: req.cookies.userId }
@@ -122,6 +122,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     } else {
                         res.status(401).json({ message: "Already clicked!" });
                     }
+                    res.json({usersArray: button.usersArray})
                     }
                 });
             });
