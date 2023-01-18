@@ -122,7 +122,7 @@ buttonRoutes.route('/api/button/increment/:urlId').patch(async (req, res) => {
                 if (err) throw err;
                 res.status(200).json({ message: 'Button count updated' });
                 console.log('Button count updated, usersArray : ' + usersArray);
-                res.json({ usersArray: button.usersArray });
+                // res.json({ usersArray: button.usersArray });
                 client.close();
               }
             );
