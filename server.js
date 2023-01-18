@@ -30,9 +30,10 @@ io.on('connection', (socket) => {
   });
 });
 
+const session = require('express-session');
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
-const cookieParser = require('cookie-parser');
 const express = require('express');
 // const express = require('express');
 const cors = require('cors');
@@ -43,8 +44,8 @@ const PORT = process.env.PORT || 5000;
 
 require('./models/ButtonSchema');
 require('./models/UserSchema');
-
-app.use(cookieParser());
+// const cookieParser = require('cookie-parser');
+// app.use(cookieParser());
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', req.header('origin') );
