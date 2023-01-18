@@ -110,16 +110,7 @@ export default function ButtonClicker() {
       setDataLoaded(false);
       try {
         const response = await fetch(
-          `https://readybutton.herokuapp.com/api/button/${urlId}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              userId: userId,
-              'Access-Control-Allow-Origin': '*',
-            },
-            credentials: 'include',
-          }
+          `https://readybutton.herokuapp.com/api/button/${urlId}`
         );
         if (!response.ok) {
           throw new Error('Failed to fetch button data');
@@ -127,7 +118,6 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
-        setClickedUsers(usersArray);
       } catch (error) {
         console.error(error);
       } finally {
