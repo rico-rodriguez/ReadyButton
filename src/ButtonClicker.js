@@ -34,7 +34,7 @@ export default function ButtonClicker() {
         'https://readybutton.herokuapp.com/api/user/id',
         {
           headers: {
-            'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
+            'Access-Control-Allow-Origin': 'https://readybutton.netlify.app', // This is required for CORS support to work
           },
           credentials: 'include',
         }
@@ -68,7 +68,7 @@ export default function ButtonClicker() {
             headers: {
               'Content-Type': 'application/json',
               userId: userId,
-              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Origin': 'https://readybutton.netlify.app',
             },
             credentials: 'include',
           }
@@ -118,7 +118,7 @@ export default function ButtonClicker() {
             headers: {
               'Content-Type': 'application/json',
               userId: userId,
-              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Origin': 'https://readybutton.netlify.app',
             },
             credentials: 'include',
           }

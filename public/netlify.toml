@@ -7,6 +7,6 @@
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
-  for = "*"
+  for = "https://readybutton.netlify.app/"
     [headers.values]
-    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Origin = "https://readybutton.netlify.app/"
