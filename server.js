@@ -64,7 +64,7 @@ const authFunction = (credentials) => {
     credentials.username = "IloveMongo"
     return credentials.username;
   }
-  const credentials = Realm.Credentials.function({ authFunction });
+  const credentials = async () => { Realm.Credentials.function( {authFunction});
   try {
     const user = await app.logIn(credentials);
     console.log("Successfully logged in!", user.id);
@@ -72,7 +72,7 @@ const authFunction = (credentials) => {
     return user;
   } catch (err) {
     console.error("Failed to log in", err.message);
-  }
+  }};
 
 
 
