@@ -112,6 +112,8 @@ export default function ButtonClicker() {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/${urlId}`,
           {
+            mode: 'cors',
+
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
