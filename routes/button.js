@@ -75,11 +75,12 @@ buttonRoutes.route('/api/button/:urlId').get(async (req, res) => {
         count: 0,
         usersArray: [userId],
       };
-      console.log('Button:', button);
+      console.log('Created Button:', button);
       await collection.insertOne(button);
     }
-    res.json({ count: button.count });
+    res.json({ count: button.count, usersArray: userId });
     console.log('Button count:', button.count);
+    console.log('Button userId set to:', userId);
     console.log('Button count sent to the client');
     await client.close();
   });
