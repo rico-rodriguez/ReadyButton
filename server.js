@@ -32,7 +32,11 @@ io.on('connection', (socket) => {
 
 const session = require('express-session');
 app.use(
-  session({ secret: 'keyboard cat', resave: false, saveUninitialized: true })
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+  })
 );
 
 // Loads the configuration from config.env to process.env
