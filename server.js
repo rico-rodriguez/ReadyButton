@@ -3,8 +3,6 @@ var http = require('http').createServer(app);
 const httpServer = http.listen(process.env.PORT || 5000, () => {
   console.log('listening on *:5000');
 });
-const cors = require('cors');
-app.use(cors);
 const io = require('socket.io')(httpServer, {
   cors: {
     origin: '*',
@@ -33,19 +31,13 @@ io.on('connection', (socket) => {
 });
 
 const session = require('express-session');
-app.use(
-  session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 } }));
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 const express = require('express');
 // const express = require('express');
-
+const cors = require('cors');
 // get MongoDB driver connection
 const dbo = require('./db/conn');
 const PORT = process.env.PORT || 5000;
