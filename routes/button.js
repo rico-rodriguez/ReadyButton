@@ -60,8 +60,8 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   });
   const app = new Realm.App({ id: "readybtn-fvinc" });
   const credentials = Realm.Credentials.function({
-    username: "ilovemongodb12s",
-    name: "testnameboy"
+    username: "ilovemongsqdodb12s",
+    name: "testqqwsnameboy"
   });
   try {
     user = await app.logIn(credentials);
