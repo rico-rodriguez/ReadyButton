@@ -105,7 +105,7 @@ buttonRoutes.route('/api/button/increment/:urlId').patch(async (req, res) => {
           res.status(404).json({ message: 'Button not found' });
         } else {
           if (!button.usersArray.includes(userId)) {
-            console.log(userId);
+            console.log(userId + 'Inside of increment button route');
             collection.updateOne(
               { urlId: req.params.urlId },
               {
