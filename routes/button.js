@@ -44,16 +44,36 @@ const realm = Realm.open({
 //     });
 // });
 
-buttonRoutes.route('/test').post(async function (realm) {
-  let task1;
-  realm.write(() => {
-    task1 = realm.create("Button", {
-      urlId: "rico4321",
-      count: 0,
-      usersArray: [realm.syncSession.user.id],
+const createTask = async (realm) => {
+  let task;
+  try {
+    realm.write(() => {
+      task = realm.create("Button", {
+        urlId: "rico4321",
+        count: 0,
+        usersArray: [realm.syncSession.user.id],
+      });
     });
-  });
+  } catch (error) {
+    console.error(`Failed to create task: ${error}`);
+  }
+  return task;
+}
+
+buttonRoutes.route('/test').post(async function (req,res) {
+  let task;
+  try {
+    const realm = await Realm.open({
+      schema: [ButtonSchema],
+    });
+    task = await createTask(realm);
+  } catch (error) {
+    console.error(`Failed to open realm: ${error}`);
+  }
+  res.json(task);
 });
+
+
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
