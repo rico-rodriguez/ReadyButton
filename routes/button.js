@@ -71,7 +71,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   }
     userId = app.currentUser.id;
   await client.connect(async err => {
-    console.log('userId connected to user route: ' + userId);
+    console.log('userId connected to user route : ' + userId);
     res.send({ userId });
     await client.close();
   });
