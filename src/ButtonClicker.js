@@ -64,6 +64,8 @@ export default function ButtonClicker() {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
           {
+            mode: 'no-cors',
+
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
