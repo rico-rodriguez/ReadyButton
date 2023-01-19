@@ -44,6 +44,11 @@ require('dotenv').config({ path: './config.env' });
 const express = require('express');
 // const express = require('express');
 const cors = require('cors');
+cors.origin = 'https://readybutton.netlify.app/';
+cors.methods = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+cors.credentials = true;
+cors.preflightContinue = true;
+app.use(cors);
 // get MongoDB driver connection
 const dbo = require('./db/conn');
 const PORT = process.env.PORT || 5000;
