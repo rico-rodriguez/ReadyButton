@@ -1,18 +1,12 @@
-const uuid = require('uuid');
-
-class Button extends Realm.Object {
-    _id = uuid();
-    count = 0;
-    urlId = '';
-    usersArray = [];
+class Car extends Realm.Object {
     static schema = {
-        name: 'Button',
-        primaryKey: '_id',
+        name: "Car",
         properties: {
-            _id: 'string',
-            count: 'int',
-            urlId: 'string',
-            usersArray: 'string[]'
-        }
-    }
+            _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+            count: "int",
+            urlId: "string",
+            usersArray: "string[]?",
+        },
+        primaryKey: '_id',
+    };
 }
