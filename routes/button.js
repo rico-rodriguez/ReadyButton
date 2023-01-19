@@ -65,17 +65,19 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   try {
     user = await app.logIn(credentials);
     userId = user.id;
+    username = user.profile.name;
   } catch(err) {
     console.error("Failed to log in", err);
   }
-  (await app.logIn(credentials).then(console.log("Logged in " + userId + user.username)))
+  (await app.logIn(credentials).then(console.log("Logged in " + userId + " " + username)))
   await client.connect(async err => {
     console.log('userId connected to user route : ' + userId);
-    res.send({ userId });
+    res.send({ userId, username });
     await client.close();
 
   });
 });
+
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
   const client = new MongoClient(connectionString, {
