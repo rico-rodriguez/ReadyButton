@@ -1,9 +1,13 @@
-class Button extends Realm.Object { }
-Button.schema = {
-    name: 'Button',
-    properties: {
-        count: 'int',
-        urlId: 'string',
-        usersArray: {type: 'list', objectType: 'string'},
+class Button extends Realm.Object {
+    static get name() {
+        return 'Button';
     }
-};
+
+    static get properties() {
+        return {
+            count: 'int',
+            urlId: 'string',
+            usersArray: {type: 'list', objectType: 'string'},
+        };
+    }
+}
