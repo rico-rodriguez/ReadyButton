@@ -60,18 +60,18 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   });
   const app = new Realm.App({ id: "readybtn-fvinc" });
   const credentials = Realm.Credentials.function({
-    username: "ilovemongodb",
+    username: "ilovemongodb12",
   });
   try {
     user = await app.logIn(credentials);
     userId = user.id;
-    username = user.profile.name;
   } catch(err) {
     console.error("Failed to log in", err);
   }
-  (await app.logIn(credentials).then(console.log("Logged in " + userId + " " + username)))
-  await client.connect(async err => {
-    console.log('userId connected to user route : ' + userId);
+  let username = user.username;
+    await client.connect(async err => {
+      console.log('userId connected to user route : ' + userId);
+      console.log('userId connected to user route : ' + user.id);
     res.send({ userId, username });
     await client.close();
 
