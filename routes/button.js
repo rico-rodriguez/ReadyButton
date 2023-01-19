@@ -5,6 +5,7 @@ const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
 let userId;
+let user;
 const Realm = require('realm');
 
 // const buttonSchema = require('./schema/buttonSchema');
@@ -62,12 +63,12 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     username: "ilovemongodb",
   });
   try {
-    const user = await app.logIn(credentials);
+    user = await app.logIn(credentials);
     userId = user.id;
   } catch(err) {
     console.error("Failed to log in", err);
   }
-  (await app.logIn(credentials).then(console.log("Logged in " + credentials.payload.username + userId)))
+  (await app.logIn(credentials).then(console.log("Logged in " + userId + user.username)))
   await client.connect(async err => {
     console.log('userId connected to user route : ' + userId);
     res.send({ userId });
