@@ -29,6 +29,8 @@ io.on('connection', (socket) => {
     io.emit('reset', data);
   });
 });
+import Realm from 'realm';
+const app = new Realm.App({ id: 'readybtn-fvinc' });
 // Create an anonymous credential
 const credentials = Realm.Credentials.anonymous();
 try {
