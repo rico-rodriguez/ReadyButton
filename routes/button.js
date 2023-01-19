@@ -61,20 +61,21 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   const app = new Realm.App({
     id: "readybtn-fvinc",
   });
+  userId = app.currentUser.id;
 // Create a custom function credential
-  const authFunction = (credentials) => {
-    credentials.username = "IloveMongo"
-    return credentials.username;
-  }
-  const credentials = Realm.Credentials.function({ authFunction });
-  try {
-    const user = await app.logIn(credentials);
-    console.log("Successfully logged in!", user.id);
-    userId = user.id;
-    return user;
-  } catch (err) {
-    console.error("Failed to log in", err.message);
-  }
+//   const authFunction = (credentials) => {
+//     credentials.username = "IloveMongo"
+//     return credentials.username;
+//   }
+//   const credentials = Realm.Credentials.function({ authFunction });
+//   try {
+//     const user = await app.logIn(credentials);
+//     console.log("Successfully logged in!", user.id);
+//     userId = user.id;
+//     return user;
+//   } catch (err) {
+//     console.error("Failed to log in", err.message);
+//   }
   await client.connect(async err => {
     console.log('userId connected to user route : ' + userId);
     res.send({ userId });

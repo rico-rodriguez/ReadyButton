@@ -60,6 +60,19 @@ const credentials = Realm.Credentials.anonymous();
 //   }
 //   next();
 // });
+const authFunction = (credentials) => {
+    credentials.username = "IloveMongo"
+    return credentials.username;
+  }
+  const credentials = Realm.Credentials.function({ authFunction });
+  try {
+    const user = await app.logIn(credentials);
+    console.log("Successfully logged in!", user.id);
+    let userId = user.id;
+    return user;
+  } catch (err) {
+    console.error("Failed to log in", err.message);
+  }
 
 
 
