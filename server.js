@@ -48,7 +48,6 @@ login()
       // open the realm
       const realmob = await Realm.open({
         schema: [Button],
-        schemaVersion: 1
       });
       console.log(realmob.User.name.toString()); // you can access the id here
     })
