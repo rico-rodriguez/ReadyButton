@@ -16,7 +16,7 @@ class ButtonSchema extends Realm.Object {
       _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
       count: "int",
       urlId: "string",
-      usersArray: "list<string>?",
+      usersArray: {type: 'list', objectType: 'string'}
     },
     primaryKey: '_id',
   };
