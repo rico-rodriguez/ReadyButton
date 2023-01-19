@@ -64,9 +64,9 @@ buttonRoutes.route('/api/button/:urlId').get(async (req, res) => {
   await client.connect(async (err) => {
     const collection = client.db('button').collection('buttons');
     let button = await collection.findOne({ urlId: req.params.urlId });
+    let userId = req.session.userId;
     if (!button) {
       console.log('Button not found, creating a new one');
-      let userId = req.session.userId;
       if (!userId || userId === '' || userId === null) {
         alert('UserID is null bozo');
       }
