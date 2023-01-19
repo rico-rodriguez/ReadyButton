@@ -46,7 +46,7 @@ login()
     .then(async user => {
       console.log("Successfully logged in!", user.id);
       // open the realm
-      const realm = await app.open({
+      const realm = await Realm.open({
         schema: [Button.schema],
         schemaVersion: 1
       });
