@@ -42,7 +42,20 @@ const login = async () => {
   }
 }
 
-login().then(console.log(realm.currentUser.id));
+login()
+    .then(async user => {
+      console.log("Successfully logged in!", user.id);
+      // open the realm
+      const realm = await app.open({
+        schema: [Button.schema],
+        schemaVersion: 1
+      });
+      console.log(realm.currentUser.id); // you can access the id here
+    })
+    .catch(err => {
+      console.error("Failed to log in", err.message);
+    });
+
 
 
 // Loads the configuration from config.env to process.env
