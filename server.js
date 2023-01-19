@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
     io.emit('reset', data);
   });
 });
-const app = new Realm.App({ id: 'readybtn-fvinc' });
+// const app = new Realm.App({ id: 'readybtn-fvinc' });
 // const credentials = Realm.Credentials.anonymous();
 // try {
 //   const user = await app.logIn(credentials);
