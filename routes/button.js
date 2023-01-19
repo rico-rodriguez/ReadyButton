@@ -4,10 +4,25 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
-const buttonSchema = require('./schema/buttonSchema');
+
+
+
+// const buttonSchema = require('./schema/buttonSchema');
+class ButtonSchema extends Realm.Object {
+  static schema = {
+    name: "Button",
+    properties: {
+      _id: { type: 'objectId', default: () => new Realm.BSON.ObjectId() },
+      count: "int",
+      urlId: "string",
+      usersArray: "string[]?",
+    },
+    primaryKey: '_id',
+  };
+}
 const Realm = require('realm');
 const realm = Realm.open({
-  schema: [buttonSchema],
+  schema: [ButtonSchema],
 });
 // buttonRoutes.route('/').post(async function () {
 //     console.log('POST /');
