@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 });
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
-const credentials = Realm.Credentials.anonymous();
+// const credentials = Realm.Credentials.anonymous();
 // const login = async () => {
 //   try {
 //     const user = await realm.logIn(credentials);
