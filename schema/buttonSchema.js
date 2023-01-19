@@ -1,4 +1,4 @@
-import uuid from "uuid";
+const uuid = require('uuid');
 
 class Button extends Realm.Object {
     _id = uuid();
