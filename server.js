@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
     io.emit('reset', data);
   });
 });
-import Realm from 'realm';
+const Realm = require('realm');
 const app = new Realm.App({ id: 'readybtn-fvinc' });
 // const credentials = Realm.Credentials.anonymous();
 // try {
