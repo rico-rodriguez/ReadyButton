@@ -4,12 +4,12 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
-const buttonSchema = require('./schema/buttonSchema');
-const Realm = require('realm');
-const realm = await Realm.open({
-  schema: [buttonSchema],
-  schemaVersion: 1
-});
+// const buttonSchema = require('./schema/buttonSchema');
+// const Realm = require('realm');
+// const realm = await Realm.open({
+//   schema: [buttonSchema],
+//   schemaVersion: 1
+// });
 
 // buttonRoutes.route('/').post(async function () {
 //     console.log('POST /');
@@ -31,16 +31,16 @@ const realm = await Realm.open({
 //     });
 // });
 
-buttonRoutes.route('/test').post(async function () {
-  let task1;
-  realm.write(() => {
-    task1 = realm.create("Button", {
-      urlId: "rico",
-      count: 0,
-      usersArray: []
-    });
-  });
-});
+// buttonRoutes.route('/test').post(async function () {
+//   let task1;
+//   realm.write(() => {
+//     task1 = realm.create("Button", {
+//       urlId: "rico",
+//       count: 0,
+//       usersArray: []
+//     });
+//   });
+// });
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
