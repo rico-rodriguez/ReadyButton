@@ -6,7 +6,7 @@ const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
 const buttonSchema = require('./schema/buttonSchema');
 const Realm = require('realm');
-const realm = await Realm.open({
+const realm = Realm.open({
   schema: [buttonSchema],
 });
 // buttonRoutes.route('/').post(async function () {
