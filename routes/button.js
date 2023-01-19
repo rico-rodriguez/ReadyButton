@@ -57,7 +57,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const app = new Realm.App({ id: "<Your App ID>" });
+  const app = new Realm.App({ id: "readybtn-fvinc" });
   const credentials = Realm.Credentials.anonymous();
   try {
     const user = await app.logIn(credentials);
