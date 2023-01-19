@@ -62,9 +62,18 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     id: "readybtn-fvinc",
   });
 // Create a custom function credential
-  const credentials = Realm.Credentials.function({
-    username: "ilovemongodb",
-  });
+  const authFunction = (credentials) => {
+    credentials.username = "IloveMongo"
+    if (!credentials.username) {
+      throw new Error("Invalid credentials: missing username");
+    }
+    // You can add your own logic here to check if the username is valid
+    // For example, you could check if the username exists in a database
+
+    // If the username is valid, return it
+    return credentials.username;
+  }
+  const credentials = Realm.Credentials.function({ authFunction });
   try {
     const user = await app.logIn(credentials);
     console.log("Successfully logged in!", user.id);
