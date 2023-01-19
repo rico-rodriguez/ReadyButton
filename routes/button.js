@@ -44,7 +44,7 @@ const realm = Realm.open({
 //     });
 // });
 
-buttonRoutes.route('/test').post(async function () {
+buttonRoutes.route('/test').post(async function (realm) {
   let task1;
   realm.write(() => {
     task1 = realm.create("Button", {
