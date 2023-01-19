@@ -1,8 +1,18 @@
-const {uuidV4} = require("mongodb/lib/core/utils");
+import uuid from "uuid";
+
 class Button extends Realm.Object {
-    _id = new uuidV4();
+    _id = uuid();
     count = 0;
     urlId = '';
     usersArray = [];
+    static schema = {
+        name: 'Button',
+        primaryKey: '_id',
+        properties: {
+            _id: 'string',
+            count: 'int',
+            urlId: 'string',
+            usersArray: 'string[]'
+        }
+    }
 }
-Button.primaryKey = '_id';

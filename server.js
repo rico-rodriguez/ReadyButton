@@ -49,7 +49,7 @@ login()
       const realmob = await Realm.open({
         schema: [Button],
       });
-      console.log(realmob.syncSession.user.id); // you can access the id here
+      console.log(realmob.currentUser.id); // you can access the id here
     })
     .catch(err => {
       console.error("Failed to log in", err.message);
