@@ -33,8 +33,6 @@ export default function ButtonClicker() {
       const response = await fetch(
         'https://readybutton.herokuapp.com/api/user/id',
         {
-          mode: 'no-cors',
-
           headers: {
             'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
           },
@@ -66,8 +64,6 @@ export default function ButtonClicker() {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
           {
-            mode: 'no-cors',
-
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -116,9 +112,7 @@ export default function ButtonClicker() {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/${urlId}`,
           {
-            mode: 'no-cors',
-
-            method: 'PATCH',
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               userId: userId,
