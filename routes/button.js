@@ -6,6 +6,7 @@ const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
 
 
+const Realm = require('realm');
 
 // const buttonSchema = require('./schema/buttonSchema');
 class ButtonSchema extends Realm.Object {
@@ -20,7 +21,6 @@ class ButtonSchema extends Realm.Object {
     primaryKey: '_id',
   };
 }
-const Realm = require('realm');
 const realm = Realm.open({
   schema: [ButtonSchema],
 });
