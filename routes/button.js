@@ -31,7 +31,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  let userId = req.session.user;
+  let userId = req.session.userId;
   if (
     !userId ||
     userId === '' ||
@@ -43,7 +43,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
       if (err) next(err);
       // store user information in session, typically a user id
       req.session.user = uuid.v4();
-      userId = req.session.user;
+      userId = req.session.userId;
       // save the session before redirection to ensure page
       // load does not happen before session is saved
       req.session.save(function (err) {
