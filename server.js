@@ -47,10 +47,10 @@ login()
       console.log("Successfully logged in!", user.id);
       // open the realm
       const realmob = await Realm.open({
-        schema: [Button.schema],
+        schema: [Button],
         schemaVersion: 1
       });
-      console.log(realmob.currentUser.id); // you can access the id here
+      console.log(realmob.User.name.toString()); // you can access the id here
     })
     .catch(err => {
       console.error("Failed to log in", err.message);
