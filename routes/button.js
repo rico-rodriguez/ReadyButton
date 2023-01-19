@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
-const buttonSchema = require('/schema/buttonSchema');
+const buttonSchema = require('./schema/buttonSchema');
 const Realm = require('realm');
 const realm = Realm.open({
   schema: [buttonSchema],
