@@ -31,50 +31,6 @@ io.on('connection', (socket) => {
 });
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
-// const credentials = Realm.Credentials.anonymous();
-// const login = async () => {
-//   try {
-//     const user = await realm.logIn(credentials);
-//     console.log("Successfully logged in!", user.id);
-//     return user;
-//   } catch (err) {
-//     console.error("Failed to log in", err.message);
-//   }
-// }
-// login()
-//     .then(async user => {
-//       console.log("Successfully logged in!", user.id);
-//     })
-//     .catch(err => {
-//       console.error("Failed to log in", err.message);
-//     });
-
-// app.use(async (req, res, next) => {
-//   const credentials = Realm.Credentials.anonymous();
-//   try {
-//     const user = await realm.logIn(credentials);
-//     req.user = user;
-//     console.log('Successfully logged in!', user.id);
-//   } catch (err) {
-//     console.error("Failed to log in", err.message);
-//   }
-//   next();
-// });
-const authFunction = (credentials) => {
-    credentials.username = "IloveMongo"
-    return credentials.username;
-  }
-  const credentials = async () => { Realm.Credentials.function( {authFunction});
-  try {
-    const user = await app.logIn(credentials);
-    console.log("Successfully logged in!", user.id);
-    let userId = user.id;
-    return user;
-  } catch (err) {
-    console.error("Failed to log in", err.message);
-  }};
-
-
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
@@ -89,6 +45,7 @@ const PORT = process.env.PORT || 5000;
 
 require('./models/ButtonSchema');
 require('./models/UserSchema');
+const buttonRoutes = require("./routes/button");
 
 app.use(cookieParser());
 

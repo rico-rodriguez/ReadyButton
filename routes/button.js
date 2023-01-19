@@ -57,25 +57,14 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-// Initialize your App.
-  const app = new Realm.App({
-    id: "readybtn-fvinc",
-  });
-  userId = app.currentUser.id;
-// Create a custom function credential
-//   const authFunction = (credentials) => {
-//     credentials.username = "IloveMongo"
-//     return credentials.username;
-//   }
-//   const credentials = Realm.Credentials.function({ authFunction });
-//   try {
-//     const user = await app.logIn(credentials);
-//     console.log("Successfully logged in!", user.id);
-//     userId = user.id;
-//     return user;
-//   } catch (err) {
-//     console.error("Failed to log in", err.message);
-//   }
+  const app = new Realm.App({ id: "<Your App ID>" });
+  const credentials = Realm.Credentials.anonymous();
+  try {
+    const user = await app.logIn(credentials);
+    userId = user.id;
+  } catch(err) {
+    console.error("Failed to log in", err);
+  }
   await client.connect(async err => {
     console.log('userId connected to user route : ' + userId);
     res.send({ userId });
@@ -83,6 +72,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
 
   });
 });
+
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
   const client = new MongoClient(connectionString, {
     useNewUrlParser: true,
