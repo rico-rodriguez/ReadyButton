@@ -58,7 +58,9 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     useUnifiedTopology: true,
   });
   const app = new Realm.App({ id: "readybtn-fvinc" });
-  const credentials = Realm.Credentials.anonymous();
+  const credentials = Realm.Credentials.function({
+    username: "ilovemongodb",
+  });
   try {
     const user = await app.logIn(credentials);
     userId = user.id;
