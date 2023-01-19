@@ -68,7 +68,6 @@ buttonRoutes.route('/api/button/:urlId').get(async (req, res) => {
     if (!button) {
       console.log('Button not found, creating a new one');
       if (!userId || userId === '' || userId === null) {
-        alert('UserID is null bozo');
       }
       button = {
         urlId: req.params.urlId,
