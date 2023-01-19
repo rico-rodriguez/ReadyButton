@@ -42,7 +42,7 @@ const login = async () => {
   }
 }
 
-login().then(r => console.log(r));
+login().then(console.log(realm.currentUser.id));
 
 
 // Loads the configuration from config.env to process.env
