@@ -64,13 +64,6 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     let userId = app.currentUser.id;
   await client.connect(async err => {
     console.log('userId: ' + userId);
-    if (!userId || userId === 'undefined' || userId === 'null') {
-      userId = uuid.v4();
-      res.cookie('userId', userId, {
-        maxAge: 9000000, // expires in 15 minutes
-        httpOnly: true
-      });
-    }
     res.send({ userId });
     await client.close();
   });
@@ -90,13 +83,6 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         id: "readybtn-fvinc",
       });
       let userId = app.currentUser.id;
-      if (!userId || userId === 'undefined' || userId === 'null') {
-        userId = uuid.v4();
-        res.cookie('userId', userId, {
-          maxAge: 9000000, // expires in 15 minutes
-          httpOnly: true
-        });
-      }
       button = {
         urlId: req.params.urlId,
         count: 0,
@@ -140,7 +126,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 console.log(userId)
                 collection.updateOne({ urlId: req.params.urlId }, {
                   $inc: { count: 1 },
-                  $push: { usersArray: req.cookies.userId }
+                  $push: { usersArray: userId }
                 }, function(err, result) {
                   if (err) throw err;
                   res.status(200).json({ message: "Button count updated" });

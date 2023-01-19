@@ -41,15 +41,9 @@ const login = async () => {
     console.error("Failed to log in", err.message);
   }
 }
-// const Button = require('./schema/buttonSchema');
 login()
     .then(async user => {
       console.log("Successfully logged in!", user.id);
-      // open the realm
-      // const realmob = await Realm.open({
-      //   schema: [Button],
-      // });
-      // console.log(realmob.currentUser.id); // you can access the id here
     })
     .catch(err => {
       console.error("Failed to log in", err.message);
