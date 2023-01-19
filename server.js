@@ -46,11 +46,11 @@ login()
     .then(async user => {
       console.log("Successfully logged in!", user.id);
       // open the realm
-      const realmob = await realm.open({
+      const realmob = await Realm.open({
         schema: [Button.schema],
         schemaVersion: 1
       });
-      console.log(realm.currentUser.id); // you can access the id here
+      console.log(realmob.currentUser.id); // you can access the id here
     })
     .catch(err => {
       console.error("Failed to log in", err.message);
