@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
-
+let userId;
 const Realm = require('realm');
 
 // const buttonSchema = require('./schema/buttonSchema');
@@ -61,9 +61,17 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   const app = new Realm.App({
     id: "readybtn-fvinc",
   });
-    let userId = app.currentUser.id;
+  const credentials = Realm.Credentials.anonymous();
+  try {
+    const user = await app.logIn(credentials);
+    console.log("Successfully logged in!", user.id);
+    return user;
+  } catch (err) {
+    console.error("Failed to log in", err.message);
+  }
+    userId = app.currentUser.id;
   await client.connect(async err => {
-    console.log('userId: ' + userId);
+    console.log('userId connected to user route: ' + userId);
     res.send({ userId });
     await client.close();
   });
@@ -79,10 +87,10 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     if (!button) {
       console.log('Button not found, creating a new one');
 // Initialize your App.
-      const app = new Realm.App({
-        id: "readybtn-fvinc",
-      });
-      let userId = app.currentUser.id;
+//       const app = new Realm.App({
+//         id: "readybtn-fvinc",
+//       });
+      // let userId = app.currentUser.id;
       button = {
         urlId: req.params.urlId,
         count: 0,
@@ -118,10 +126,10 @@ buttonRoutes.route('/api/button/increment/:urlId')
               res.status(404).json({ message: "Button not found" });
             } else {
 // Initialize your App.
-              const app = new Realm.App({
-                id: "readybtn-fvinc",
-              });
-              let userId = app.currentUser.id;
+//               const app = new Realm.App({
+//                 id: "readybtn-fvinc",
+//               });
+              // let userId = app.currentUser.id;
               if (!button.usersArray.includes(userId)) {
                 console.log(userId)
                 collection.updateOne({ urlId: req.params.urlId }, {
@@ -163,10 +171,10 @@ buttonRoutes.route('/api/button/reset/:urlId')
               res.status(404).json({ message: "Button not found" });
             } else {
               // Initialize your App.
-              const app = new Realm.App({
-                id: "readybtn-fvinc",
-              });
-              let userId = app.currentUser.id;
+              // const app = new Realm.App({
+              //   id: "readybtn-fvinc",
+              // });
+              // let userId = app.currentUser.id;
               if (button.usersArray[0] === userId) {
                 collection.updateOne({ urlId: req.params.urlId },
                     { $set: { count: 0, usersArray: [userId, ]  } },

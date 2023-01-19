@@ -49,17 +49,17 @@ const credentials = Realm.Credentials.anonymous();
 //       console.error("Failed to log in", err.message);
 //     });
 
-app.use(async (req, res, next) => {
-  const credentials = Realm.Credentials.anonymous();
-  try {
-    const user = await realm.logIn(credentials);
-    req.user = user;
-    console.log('Successfully logged in!', user.id);
-  } catch (err) {
-    console.error("Failed to log in", err.message);
-  }
-  next();
-});
+// app.use(async (req, res, next) => {
+//   const credentials = Realm.Credentials.anonymous();
+//   try {
+//     const user = await realm.logIn(credentials);
+//     req.user = user;
+//     console.log('Successfully logged in!', user.id);
+//   } catch (err) {
+//     console.error("Failed to log in", err.message);
+//   }
+//   next();
+// });
 
 
 
