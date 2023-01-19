@@ -52,12 +52,15 @@ const credentials = Realm.Credentials.anonymous();
 app.use(async (req, res, next) => {
   const credentials = Realm.Credentials.anonymous();
   try {
-    req.user = await realm.logIn(credentials);
+    const user = await realm.logIn(credentials);
+    req.user = user;
+    console.log('Successfully logged in!', user.id);
   } catch (err) {
     console.error("Failed to log in", err.message);
   }
   next();
 });
+
 
 
 // Loads the configuration from config.env to process.env
