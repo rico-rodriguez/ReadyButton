@@ -5,7 +5,6 @@ const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 const cookieParser = require('cookie-parser');
 
-
 const Realm = require('realm');
 
 // const buttonSchema = require('./schema/buttonSchema');
@@ -21,9 +20,6 @@ class ButtonSchema extends Realm.Object {
     primaryKey: '_id',
   };
 }
-const realm = Realm.open({
-  schema: [ButtonSchema],
-});
 // buttonRoutes.route('/').post(async function () {
 //     console.log('POST /');
 //     const newButton = new Button({
@@ -44,36 +40,16 @@ const realm = Realm.open({
 //     });
 // });
 
-const createTask = async (realm) => {
-  let task;
-  try {
-    realm.write(() => {
-      task = realm.create("Button", {
-        urlId: "rico4321",
-        count: 0,
-        usersArray: [realm.syncSession.user.id],
-      });
-    });
-  } catch (error) {
-    console.error(`Failed to create task: ${error}`);
-  }
-  return task;
-}
-
-buttonRoutes.route('/test').post(async function (req,res) {
-  let task;
-  try {
-    const realm = await Realm.open({
-      schema: [ButtonSchema],
-    });
-    task = await createTask(realm);
-  } catch (error) {
-    console.error(`Failed to open realm: ${error}`);
-  }
-  res.json(task);
-});
-
-
+// buttonRoutes.route('/test').post(async function () {
+//   let task1;
+//   realm.write(() => {
+//     task1 = realm.create("Button", {
+//       urlId: "rico4321",
+//       count: 0,
+//       usersArray: [realm.syncSession.user.id],
+//     });
+//   });
+// });
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
@@ -81,8 +57,12 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+// Initialize your App.
+  const app = new Realm.App({
+    id: "readybtn-fvinc",
+  });
+    let userId = app.currentUser.id;
   await client.connect(async err => {
-    let userId = req.cookies.userId;
     console.log('userId: ' + userId);
     if (!userId || userId === 'undefined' || userId === 'null') {
       userId = uuid.v4();
@@ -105,7 +85,11 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     let button = await collection.findOne({ urlId: req.params.urlId });
     if (!button) {
       console.log('Button not found, creating a new one');
-      let userId = req.cookies.userId;
+// Initialize your App.
+      const app = new Realm.App({
+        id: "readybtn-fvinc",
+      });
+      let userId = app.currentUser.id;
       if (!userId || userId === 'undefined' || userId === 'null') {
         userId = uuid.v4();
         res.cookie('userId', userId, {
