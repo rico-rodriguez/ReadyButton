@@ -30,16 +30,17 @@ io.on('connection', (socket) => {
   });
 });
 import Realm from 'realm';
-const app = new Realm.App({ id: 'readybtn-fvinc' });
+const realm = new Realm.App({ id: 'readybtn-fvinc' });
 // Create an anonymous credential
 const credentials = Realm.Credentials.anonymous();
 try {
-  const user = await app.logIn(credentials);
+  const user = await realm.logIn(credentials);
   console.log("Successfully logged in!", user.id);
   return user;
 } catch (err) {
   console.error("Failed to log in", err.message);
 }
+
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
 const cookieParser = require('cookie-parser');
