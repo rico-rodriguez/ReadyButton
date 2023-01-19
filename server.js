@@ -41,7 +41,7 @@ const login = async () => {
     console.error("Failed to log in", err.message);
   }
 }
-
+const Button = require('./schema/buttonSchema');
 login()
     .then(async user => {
       console.log("Successfully logged in!", user.id);
