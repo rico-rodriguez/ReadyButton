@@ -32,13 +32,17 @@ io.on('connection', (socket) => {
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
 const credentials = Realm.Credentials.anonymous();
-// try {
-  const user = await app.logIn(credentials);
-  // console.log("Successfully logged in!", user.id);
-//   return user;
-// } catch (err) {
-//   console.error("Failed to log in", err.message);
-// }
+const login = async () => {
+  try {
+    const user = await app.logIn(credentials);
+    console.log("Successfully logged in!", user.id);
+    return user;
+  } catch (err) {
+    console.error("Failed to log in", err.message);
+  }
+}
+
+login().then(r => console.log(r));
 
 
 // Loads the configuration from config.env to process.env
