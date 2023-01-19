@@ -67,7 +67,7 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
   } catch(err) {
     console.error("Failed to log in", err);
   }
-  (await app.logIn(credentials).then(console.log("Logged in " + credentials + userId)))
+  (await app.logIn(credentials).then(console.log("Logged in " + credentials.payload.username + userId)))
   await client.connect(async err => {
     console.log('userId connected to user route : ' + userId);
     res.send({ userId });
