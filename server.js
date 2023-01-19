@@ -34,7 +34,7 @@ const realm = new Realm.App({ id: 'readybtn-fvinc' });
 const credentials = Realm.Credentials.anonymous();
 const login = async () => {
   try {
-    const user = await app.logIn(credentials);
+    const user = await realm.logIn(credentials);
     console.log("Successfully logged in!", user.id);
     return user;
   } catch (err) {
