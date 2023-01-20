@@ -79,7 +79,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
     const username = req.cookies.user;
     console.log('userId connected to user route : ' + username);
-    res.send({ username });
+    res.json({isLoggedIn: true, username: username});
 });
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
