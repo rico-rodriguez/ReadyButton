@@ -59,11 +59,13 @@ buttonRoutes.route('/login').post(async function (req, res) {
     if (cookie === undefined) {
         res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
         console.log('cookie created successfully');
+        console.log(credentials.username);
         res.json({isLoggedIn: true, username: credentials.username});
     }
     else {
         console.log('cookie exists', cookie);
         res.json({isLoggedIn: true, username: credentials.username});
+        console.log(credentials.username);
     }
 });
 //initial page load
