@@ -10,42 +10,39 @@ const handleChange = (event) => {
     setName(event.target.value)
 
 }
-const handleSubmit = async (event) => {
-
-    event.preventDefault()
-    console.log(name)
-//     submit username to server /login
-    try {
-        const response = await fetch('https://readybutton.herokuapp.com/login', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({username: name}),
-            withCredentials: true, // should be there
-            credentials: 'include' // should be there
-        }).then(response => {
-            if (response.status === 200) {
-                return response.json()
-            } else {
-                throw new Error('Something went wrong on api server!');
-            }
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        console.log(name)
+        try {
+            await fetch('https://readybutton.herokuapp.com/login', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({username: name}),
+                withCredentials: true,
+                credentials: 'include'
+            }).then(response => {
+                if (response.status === 200) {
+                    return response.json()
+                } else {
+                    throw new Error('Something went wrong on api server!');
+                }
             }).then(data => {
-            if(data.username){
-                setIsLoggedIn(true)
-                setUserName(data.name)
-            } else {
-                setIsLoggedIn(false)
-            }
-        })
-        const data = await response.json()
-        console.log(data)
+                if(data.username){
+                    setIsLoggedIn(true)
+                    setUserName(data.name)
+                } else {
+                    setIsLoggedIn(false)
+                }
+            }).catch(error => console.log(error));
+        }
+        catch (err) {
+            console.error('Error logging in:', err)
+        }
     }
-    catch (err) {
-        console.error('Error logging in:', err)
-    }
-}
+
 
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
