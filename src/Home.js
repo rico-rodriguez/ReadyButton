@@ -236,8 +236,6 @@ export default function Home() {
             </div>
         </Container>
       </div>
-        <UserControl />
-
     </>
   );
 }
