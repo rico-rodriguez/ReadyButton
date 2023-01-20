@@ -12,6 +12,7 @@ const io = require('socket.io')(httpServer, {
   cors: {
     origin: 'https://readybutton.netlify.app',
     methods: ['GET', 'POST'],
+    allowCredentials: true,
   },
 });
 
@@ -55,18 +56,17 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://readybutton.netlify.app"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
-
     next();
-    
 });
 
-// app.use(cors({
-//   origin: function(origin, callback){
-//     return callback(null, true);
-//   },
-//   optionsSuccessStatus: 200,
-//   credentials: true
-// }));
+app.use(cors({
+  origin: function(origin, callback){
+    return callback(null, true);
+  },
+  optionsSuccessStatus: 200,
+  credentials: true,
+  allowCredentials: true
+}));
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
