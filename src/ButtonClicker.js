@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
-  withCredentials: false,
+  withCredentials: true,
 });
 
 export default function ButtonClicker() {
