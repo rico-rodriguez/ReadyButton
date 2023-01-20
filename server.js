@@ -10,7 +10,7 @@ const httpServer = http.listen(process.env.PORT || 5000, () => {
 });
 const io = require('socket.io')(httpServer, {
   cors: {
-    origin: 'https://readybutton.netlify.app/',
+    origin: 'https://readybutton.netlify.app',
     methods: ['GET', 'POST'],
   },
 });
