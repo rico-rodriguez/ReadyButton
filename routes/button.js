@@ -40,20 +40,11 @@ class ButtonSchema extends Realm.Object {
 //         });
 //     });
 // });
-buttonRoutes.route('/').post(async function (req, res) {
-    const app = new Realm.App({ id: 'readybtn-fvinc' });
-    const credentials = Realm.Credentials.function({ username: req.body.username });
-    const user = await app.logIn(credentials);
-    console.log(`Logged in with the user id: ${user.id}`);
-    let cookie = req.cookies.user
-    if (cookie === undefined) {
-        res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
-        console.log('cookie created successfully');
+buttonRoutes.route('/').get(async function (req, res) {
+    if (req.cookies.user) {
+        userId = req.cookies.user;
+        console.log("previous user connected with id: " + userId);
     }
-    else {
-        console.log('cookie exists', cookie);
-    }
-    res.send(credentials.username);
 });
 buttonRoutes.route('/login').post(async function (req, res) {
     const app = new Realm.App({ id: 'readybtn-fvinc' });
