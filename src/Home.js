@@ -1,5 +1,6 @@
 import {Box, Checkbox, Container, css, Typography} from '@mui/material';
 import * as PropTypes from "prop-types";
+import UserControl from "./UserControl";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
@@ -235,6 +236,8 @@ export default function Home() {
             </div>
         </Container>
       </div>
+        <UserControl />
+
     </>
   );
 }
