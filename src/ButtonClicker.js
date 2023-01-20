@@ -27,6 +27,7 @@ export default function ButtonClicker() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
   const animationRef = useRef(null);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   useEffect(() => {
     async function fetchUserId() {
@@ -134,6 +135,7 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
+        setIsLoggedIn(true);
       } catch (error) {
         console.error(error);
       } finally {
@@ -296,7 +298,7 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <UserControl />
+      <UserControl isLoggedIn={this.state.isLoggedIn}/>
 
     </div>
   );

@@ -49,7 +49,7 @@ const handleChange = (event) => {
 
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {isLoggedIn ? <p>Welcome, {userName}</p> :
+            {isLoggedIn || this.props.isLoggedIn ? <p>Welcome, {userName}</p> :
                 <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>
