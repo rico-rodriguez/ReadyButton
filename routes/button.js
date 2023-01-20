@@ -126,11 +126,6 @@ buttonRoutes.route('/api/button/increment/:urlId')
             if (!button) {
               res.status(404).json({ message: "Button not found" });
             } else {
-// Initialize your App.
-//               const app = new Realm.App({
-//                 id: "readybtn-fvinc",
-//               });
-              // let userId = app.currentUser.id;
               if (!button.usersArray.includes(userId)) {
                 console.log(userId)
                 collection.updateOne({ urlId: req.params.urlId }, {
