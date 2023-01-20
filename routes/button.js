@@ -63,6 +63,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
     if (cookie === undefined) {
         res.cookie('user', username, { maxAge: 900000, httpOnly: false });
         console.log('cookie created successfully');
+        console.log(cookie)
         console.log(username);
         res.json({isLoggedIn: true, username: username});
     }
