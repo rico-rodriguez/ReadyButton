@@ -17,9 +17,12 @@ const handleSubmit = async (event) => {
         const response = await fetch('https://readybutton.herokuapp.com/login', {
             method: 'POST',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({username: name}),
+            withCredentials: true, // should be there
+            credentials: 'include' // should be there
         })
         const data = await response.json()
         console.log(data)
