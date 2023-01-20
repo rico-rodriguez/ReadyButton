@@ -1,4 +1,9 @@
-var app = require('express')();
+// var app = require('express')();
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const app = express().use(cookieParser());
+app.use(cookieParser())
+
 var http = require('http').createServer(app);
 const httpServer = http.listen(process.env.PORT || 5000, () => {
   console.log('listening on *:5000');
@@ -34,8 +39,6 @@ const realm = new Realm.App({ id: 'readybtn-fvinc' });
 
 // Loads the configuration from config.env to process.env
 require('dotenv').config({ path: './config.env' });
-const cookieParser = require('cookie-parser');
-const express = require('express');
 // const express = require('express');
 const cors = require('cors');
 // get MongoDB driver connection
@@ -47,7 +50,6 @@ require('./models/ButtonSchema');
 require('./models/UserSchema');
 const buttonRoutes = require("./routes/button");
 
-app.use(cookieParser());
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', req.header('origin') );
