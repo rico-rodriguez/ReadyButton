@@ -13,6 +13,18 @@ const io = require('socket.io')(httpServer, {
     origin: 'https://readybutton.netlify.app',
     methods: ['GET', 'POST'],
     allowCredentials: true,
+    credentials: true,
+    transports: ['websocket', 'polling'],
+    headers: {
+        'Access-Control-Allow-Origin': 'https://readybutton.netlify.app',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Expose-Headers': 'Content-Length, X-JSON',
+        'Access-Control-Max-Age': '86400',
+        'Access-Control-Request-Headers': 'Content-Type, Authorization',
+        'Access-Control-Request-Method': 'GET, POST',
+    }
+
   },
 });
 
