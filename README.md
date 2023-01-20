@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Ready button - Development
+![2023-01-21 03_43_30-](https://user-images.githubusercontent.com/97664519/213780566-21c188be-b663-4712-bd1e-855c9b69b7d3.png)
+https://readybutton.netlify.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Maybe uneventful at first glance. But, whats going on behind the scenes is incredible.
+#### You can create your own instance of the Ready Button by visiting any url you want. Just add anything after the trailing '/' of the URL and you will create your own button that you can share to anyone.
+#### If someone clicks a link, their client sends a signal to the API hosted on the server. The server then send a signal to all clients using web sockets. The web sockets tell the clients to: 1. Increment the count 2. Send a loading spinner 3. Send a snackbar notification.
+#### Administrative permissions are granted to the first user who created a button. They wield the power to reset the button. 
+#### Users are required to set their usernames in order to participate. This encourages them to share their name when they've confirmed that they are ready.
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Features
+*   ###### Post your own question to the button header
+    
+*   ###### Back user list to db to keep track of who has clicked and release names when reset
+    
+*   ###### Add a settings button that allows you to set a click limit, and notifies when it is reached
+    
+*   ###### Add settings to turn off features
+    
+*   ###### Restrict URL's that can be made, clean periodically
+    
+*   ###### Add the ability to set usernames and share username of people who have clicked
+    
+*   ###### Integrate with Teams via webhooks/client bot
+    
+*   ###### Add Emoji burst from cursor on click
+    
+*   ###### Integrate websockets for incrementing button/resetting
+    
+*   ###### Add Loading spinner that sends signals out via websockets
+    
+*   ###### Add Snackbar for button reset
+    
+*   ###### Enable Reset button
+    
+*   ###### Migrate to web and modify localhost to web addresses.
+    
+*   ###### Integrate websockets for snackbar notification
