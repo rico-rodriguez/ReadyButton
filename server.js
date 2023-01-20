@@ -60,13 +60,13 @@ app.use(function(req, res, next) {
     
 });
 
-app.use(cors({
-  origin: function(origin, callback){
-    return callback(null, true);
-  },
-  optionsSuccessStatus: 200,
-  credentials: true
-}));
+// app.use(cors({
+//   origin: function(origin, callback){
+//     return callback(null, true);
+//   },
+//   optionsSuccessStatus: 200,
+//   credentials: true
+// }));
 app.use(express.json());
 app.use(require('./routes/button'));
 // Global error handling
