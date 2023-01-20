@@ -52,29 +52,32 @@ buttonRoutes.route('/').get(async function (req, res) {
 });
 buttonRoutes.route('/login').post(async function (req, res) {
     const app = new Realm.App({ id: 'readybtn-fvinc' });
-    const credentials = Realm.Credentials.function({ username: req.body.username });
+// Extract the username from the request body
+    const { username } = req.body;
+    const credentials = Realm.Credentials.function({ payload: { username } });
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
     let cookie = req.cookies.user
     if (cookie === undefined) {
-        res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: false });
+        res.cookie('user', username, { maxAge: 900000, httpOnly: false });
         console.log('cookie created successfully');
-        console.log(credentials.username);
-        res.json({isLoggedIn: true, username: credentials.username});
+        console.log(username);
+        res.json({isLoggedIn: true, username: username});
     }
     else {
         console.log('cookie exists', cookie);
-        res.json({isLoggedIn: true, username: credentials.username});
-        console.log(credentials.username);
+        res.json({isLoggedIn: true, username: username});
+        console.log(username);
     }
 });
+
+
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-  const username = req.cookies.user;
-      console.log('userId connected to user route : ' + username);
+    const username = req.cookies.user;
+    console.log('userId connected to user route : ' + username);
     res.send({ username });
-  });
-
+});
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
   const client = new MongoClient(connectionString, {
