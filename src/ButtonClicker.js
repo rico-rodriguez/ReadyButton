@@ -35,6 +35,8 @@ export default function ButtonClicker() {
         {
           headers: {
             'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
+            'Access-Control-Allow-Credentials': 'true', // This is required for cookies, authorization headers with HTTPS
+
           },
           credentials: 'include',
         }
