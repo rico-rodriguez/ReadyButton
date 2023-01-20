@@ -87,6 +87,8 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
+  const username = req.cookies.user;
+
   await client.connect(async err => {
     const collection = client.db("button").collection("buttons");
     let button = await collection.findOne({ urlId: req.params.urlId });
@@ -95,12 +97,12 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
       button = {
         urlId: req.params.urlId,
         count: 0,
-        usersArray: [userId,]
+        usersArray: [username,]
       };
       console.log('Button:', button);
       await collection.insertOne(button);
     }
-    res.json({ count: button.count });
+    res.json({ count: button.count, isLoggedIn: true, username: username });
     console.log('Button count:', button.count);
     console.log('Button count sent to the client')
     await client.close();
