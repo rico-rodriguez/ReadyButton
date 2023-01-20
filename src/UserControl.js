@@ -33,9 +33,9 @@ const handleChange = (event) => {
                 console.log(data)
                 console.log(data.username)
                 console.log("User logged in")
-                if(data.username){
+                if(data.isLoggedIn){
                     setIsLoggedIn(true)
-                    setUserName(data.name)
+                    setUserName(data.username)
                 } else {
                     setIsLoggedIn(false)
                 }
