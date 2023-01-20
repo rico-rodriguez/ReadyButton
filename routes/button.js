@@ -61,7 +61,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
     let cookie = req.cookies.user
     if (cookie === undefined) {
-        res.cookie('user', username, { maxAge: 900000, httpOnly: false });
+        res.cookie('user', username, { maxAge: 900000, httpOnly: true });
         console.log('cookie created successfully');
         console.log(cookie)
         console.log(username);
