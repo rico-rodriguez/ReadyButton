@@ -44,6 +44,10 @@ buttonRoutes.route('/').get(async function (req, res) {
     if (req.cookies.user) {
         userId = req.cookies.user;
         console.log("previous user connected with id: " + userId);
+        res.json({isLoggedIn: true});
+    }
+    else {
+        res.json({isLoggedIn: false});
     }
 });
 buttonRoutes.route('/login').post(async function (req, res) {
@@ -55,9 +59,11 @@ buttonRoutes.route('/login').post(async function (req, res) {
     if (cookie === undefined) {
         res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
         console.log('cookie created successfully');
+        res.json({isLoggedIn: true});
     }
     else {
         console.log('cookie exists', cookie);
+        res.json({isLoggedIn: true});
     }
     res.send(credentials.username);
 });
