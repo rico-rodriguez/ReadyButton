@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import mojs from '@mojs/core';
 import {
@@ -11,6 +11,7 @@ import {
   Snackbar,
   ThemeProvider,
 } from '@mui/material';
+import UserControl from "./UserControl";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: true,
@@ -295,6 +296,8 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
+      <UserControl />
+
     </div>
   );
 }
