@@ -51,35 +51,24 @@ class ButtonSchema extends Realm.Object {
 //     });
 //   });
 // });
-
+buttonRoutes.route('/login').post(async function (req, res) {
+    const app = new Realm.App({ id: 'readybtn-fvinc' });
+    const credentials = Realm.Credentials.function({ username: req.body.username });
+    const user = await app.logIn(credentials);
+    console.log(`Logged in with the user id: ${user.id}`);
+    res.cookie('user', user.id, { maxAge: 900000, httpOnly: true });
+    res.send(user.id);
+});
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-  const client = new MongoClient(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  const app = new Realm.App({ id: "readybtn-fvinc" });
-  const credentials = Realm.Credentials.function({
-    username: "ilovemongsqdodb12s",
-    name: "testqqwsnameboy"
-  });
-  try {
-    user = await app.logIn(credentials);
-    userId = user.id;
-  } catch(err) {
-    console.error("Failed to log in", err);
-  }
-  let username = user.username;
-  let name = app.currentUser.profile.name;
-    await client.connect(async err => {
+  // const app = new Realm.App({ id: "readybtn-fvinc" });
+  const username = req.cookies.user;
+  let userId = user.id;
       console.log('userId connected to user route : ' + username);
       console.log('userId connected to user route : ' + user.id);
       console.log('userId connected to user route : ' + name);
     res.send({ userId, username });
-    await client.close();
-
   });
-});
 
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
