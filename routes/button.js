@@ -41,27 +41,23 @@ class ButtonSchema extends Realm.Object {
 //     });
 // });
 
-// buttonRoutes.route('/test').post(async function () {
-//   let task1;
-//   realm.write(() => {
-//     task1 = realm.create("Button", {
-//       urlId: "rico4321",
-//       count: 0,
-//       usersArray: [realm.syncSession.user.id],
-//     });
-//   });
-// });
 buttonRoutes.route('/login').post(async function (req, res) {
     const app = new Realm.App({ id: 'readybtn-fvinc' });
     const credentials = Realm.Credentials.function({ username: req.body.username });
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
-    res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
-    res.send(user.id);
+    let cookie = req.cookies.user
+    if (cookie === undefined) {
+        res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
+        console.log('cookie created successfully');
+    }
+    else {
+        console.log('cookie exists', cookie);
+    }
+    res.send(credentials.username);
 });
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-  // const app = new Realm.App({ id: "readybtn-fvinc" });
   const username = req.cookies.user;
       console.log('userId connected to user route : ' + username);
     res.send({ username });
