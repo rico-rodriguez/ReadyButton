@@ -56,18 +56,15 @@ buttonRoutes.route('/login').post(async function (req, res) {
     const credentials = Realm.Credentials.function({ username: req.body.username });
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
-    res.cookie('user', user.id, { maxAge: 900000, httpOnly: true });
+    res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
     res.send(user.id);
 });
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
   // const app = new Realm.App({ id: "readybtn-fvinc" });
   const username = req.cookies.user;
-  let userId = user.id;
       console.log('userId connected to user route : ' + username);
-      console.log('userId connected to user route : ' + user.id);
-      console.log('userId connected to user route : ' + name);
-    res.send({ userId, username });
+    res.send({ username });
   });
 
 
@@ -81,11 +78,6 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     let button = await collection.findOne({ urlId: req.params.urlId });
     if (!button) {
       console.log('Button not found, creating a new one');
-// Initialize your App.
-//       const app = new Realm.App({
-//         id: "readybtn-fvinc",
-//       });
-      // let userId = app.currentUser.id;
       button = {
         urlId: req.params.urlId,
         count: 0,
