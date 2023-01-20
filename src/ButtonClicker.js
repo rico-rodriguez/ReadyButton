@@ -71,6 +71,7 @@ export default function ButtonClicker() {
               'Content-Type': 'application/json',
               userId: userId,
               'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
             },
             credentials: 'include',
           }
@@ -92,7 +93,9 @@ export default function ButtonClicker() {
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
         {
           method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json'
+          , 'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',},
           credentials: 'include',
         }
       );
@@ -119,6 +122,7 @@ export default function ButtonClicker() {
               'Content-Type': 'application/json',
               userId: userId,
               'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': 'true',
             },
             credentials: 'include',
           }
