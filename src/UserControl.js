@@ -25,7 +25,13 @@ const handleSubmit = async (event) => {
             body: JSON.stringify({username: name}),
             withCredentials: true, // should be there
             credentials: 'include' // should be there
-        }).then(response => response.json()).then(data => {
+        }).then(response => {
+            if (response.status === 200) {
+                return response.json()
+            } else {
+                throw new Error('Something went wrong on api server!');
+            }
+            }).then(data => {
             if(data.username){
                 setIsLoggedIn(true)
                 setUserName(data.name)
