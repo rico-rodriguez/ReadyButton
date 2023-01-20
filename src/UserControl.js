@@ -30,6 +30,9 @@ const handleChange = (event) => {
                     throw new Error('Something went wrong on api server!');
                 }
             }).then(data => {
+                console.log(data)
+                console.log(data.username)
+                console.log("User logged in")
                 if(data.username){
                     setIsLoggedIn(true)
                     setUserName(data.name)
