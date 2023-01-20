@@ -52,20 +52,20 @@ buttonRoutes.route('/').get(async function (req, res) {
 });
 buttonRoutes.route('/login').post(async function (req, res) {
     const app = new Realm.App({ id: 'readybtn-fvinc' });
-    const credentials = Realm.Credentials.function({ params: {username: req.body.username} });
+    const credentials = Realm.Credentials.function({ username: req.body.username });
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
     let cookie = req.cookies.user
     if (cookie === undefined) {
-        res.cookie('user', user.id, { maxAge: 900000, httpOnly: true });
+        res.cookie('user', credentials.username, { maxAge: 900000, httpOnly: true });
         console.log('cookie created successfully');
-        console.log(user.id);
-        res.json({isLoggedIn: true, username: user.id});
+        console.log(credentials.username);
+        res.json({isLoggedIn: true, username: credentials.username});
     }
     else {
         console.log('cookie exists', cookie);
-        res.json({isLoggedIn: true, username: user.id});
-        console.log(user.id);
+        res.json({isLoggedIn: true, username: credentials.username});
+        console.log(credentials.username);
     }
 });
 //initial page load
