@@ -52,7 +52,7 @@ buttonRoutes.route('/').get(async function (req, res) {
 });
 buttonRoutes.route('/login').post(async function (req, res) {
     const app = new Realm.App({ id: 'readybtn-fvinc' });
-    const credentials = Realm.Credentials.function(req.body.username);
+    const credentials = Realm.Credentials.function({ params: {username: req.body.username} });
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
     let cookie = req.cookies.user
