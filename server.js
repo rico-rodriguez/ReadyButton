@@ -14,7 +14,8 @@ const io = require('socket.io')(httpServer, {
     methods: ['GET', 'POST'],
   },
 });
-
+io.set('origins', 'https://readybutton.netlify.app/');
+io.set('Access-Control-Allow-Credentials', 'true');
 io.on('connection', (socket) => {
   console.log('A user connected');
   socket.on('increment', (data) => {
