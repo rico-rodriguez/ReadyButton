@@ -103,6 +103,7 @@ buttonRoutes.route('/api/users').get(async (req, res) => {
         await client.connect();
         const collection = client.db("button").collection("users");
         const result = await collection.find({"usersArray": {$exists: true}}).toArray();
+        console.log(result)
         res.json(result);
         await client.close();
     } catch (err) {
