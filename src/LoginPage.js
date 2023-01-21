@@ -42,7 +42,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('https://readybutton.com/login', {
+            const response = await fetch('https://readybutton.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
