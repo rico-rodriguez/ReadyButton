@@ -1,8 +1,6 @@
 import {Box, Checkbox, Container, css, Typography} from '@mui/material';
 import * as PropTypes from "prop-types";
 import Login from "./Login";
-import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
