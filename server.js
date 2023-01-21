@@ -61,6 +61,16 @@ function checkAuth(req, res, next) {
 app.get('/:id', checkAuth, (req, res) => {
     res.sendFile(__dirname + '/index.html');
 } );
+const session = require('express-session');
+
+app.use(session({
+    secret: 'secretkey',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 24 hours
+    }
+}));
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
 

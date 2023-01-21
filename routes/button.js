@@ -79,6 +79,13 @@ buttonRoutes.route('/logout').post(async function (req, res) {
     res.clearCookie('connect.sid');
     res.json({isLoggedIn: false});
 } );
+buttonRoutes.route('/api/check-session').get(async (req, res) => {
+    if (req.session.user) {
+        res.json({ loggedIn: true, username: req.session.user.username });
+    } else {
+        res.json({ loggedIn: false });
+    }
+} );
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
