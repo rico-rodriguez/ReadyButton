@@ -36,7 +36,7 @@ export default function ButtonClicker() {
       const cookieValue = cookie.split('=')[1];
       setUsername(cookieValue);
     } else {
-      navigate('/login');
+      navigate('/');
     }
   } , []);
 
