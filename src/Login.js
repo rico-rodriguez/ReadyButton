@@ -1,5 +1,6 @@
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import React, {useEffect, useState} from "react";
+import {Cookies} from "react-cookie";
 
 
 export default function Login() {
@@ -63,10 +64,18 @@ const handleChange = (event) => {
 
     function Logout() {
         setCookie('username', '', -1);
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false)
         sessionStorage.clear();
         document.cookie.split(";").forEach(function(c) {
             document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            const cookies = document.cookie.split(";");
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i];
+                const eqPos = cookie.indexOf("=");
+                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+            }
         window.location.href = '/';
         window.location.replace('/');
         });
