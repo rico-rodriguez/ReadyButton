@@ -34,7 +34,7 @@ function PostMessage() {
     }
 
     return (
-        <div>
+        <div style={{position:"fixed", top: "200px"}}>
             {currentUser ? (
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />
