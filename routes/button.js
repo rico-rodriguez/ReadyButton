@@ -160,7 +160,7 @@ buttonRoutes.route('/api/button/reset/:urlId')
       try {
 
       } catch (err) {
-        console.error('Error resetting click count:', err);
+        console.error('Error resetting click count: ', err);
       }
 
       try {
