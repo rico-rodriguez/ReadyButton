@@ -46,6 +46,11 @@ io.on('connection', (socket) => {
     io.emit('snackbar', { message: 'Hello World!' });
     io.emit('reset', data);
   });
+    // Listening for the new message event
+    socket.on('new message', (message) => {
+        // Broadcasting the message to all connected clients
+        io.emit('new message', message);
+    });
 });
 
 function checkAuth(req, res, next) {

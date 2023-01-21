@@ -94,6 +94,20 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
+buttonRoutes.route('/api/users').get(async (req, res) => {
+    const client = new MongoClient(connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    await client.connect(err => {
+        const collection = client.db("button").collection("buttons");
+        collection.find('usersArray').toArray(function (err, result) {
+            if (err) throw err;
+            res.json(result);
+            client.close();
+        } );
+});
+});
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
   const client = new MongoClient(connectionString, {
