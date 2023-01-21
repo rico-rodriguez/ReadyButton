@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import mojs from '@mojs/core';
 import {
   Alert,
@@ -27,6 +27,15 @@ export default function ButtonClicker() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
   const animationRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // check for cookie
+    const cookie = document.cookie;
+    if (!cookie) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     async function fetchUserId() {
