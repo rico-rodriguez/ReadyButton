@@ -36,26 +36,12 @@ const theme = createTheme({
     },
 });
 function App() {
-    const navigate = useNavigate();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        // check for cookie
-        const cookie = document.cookie;
-        if (!cookie) {
-            navigate('/login');
-        } else {
-            setIsLoggedIn(true);
-        }
-    }, [navigate]);
     return (
 <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>} />
-                {isLoggedIn && (
                     <Route path="/:urlId" element={<ButtonClicker />} />
-                )}
                 <Route path="/login" element={<LoginPage />} />
             </Routes>
         </BrowserRouter>
