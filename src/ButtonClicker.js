@@ -31,15 +31,15 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     const cookie = document.cookie;
-    const navigate = useNavigate();
 
     if (cookie) {
       const cookieValue = cookie.split('=')[1];
       setUsername(cookieValue);
     } else {
-     navigate('/');
+      window.location.replace('/');
     }
   } , []);
+
 
   useEffect(() => {
     async function fetchUserId() {
