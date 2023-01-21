@@ -297,8 +297,9 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      {isLoggedIn != null || undefined && <UserControl isLoggedIn={this.state.isLoggedIn}/>}
-
+      {this.state.isLoggedIn !== null && this.state.isLoggedIn !== undefined
+          ? <UserControl isLoggedIn={this.state.isLoggedIn}/>
+          : <UserControl isLoggedIn={false}/>}
     </div>
   );
 }
