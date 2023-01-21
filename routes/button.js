@@ -3,12 +3,22 @@ const buttonRoutes = express.Router();
 const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
-const cookieParser = require('cookie-parser');
 let userId;
 let user;
 const Realm = require('realm');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const app = require("express/lib/router");
 
-// const buttonSchema = require('./schema/buttonSchema');
+app.use(cookieParser());
+app.use(session({
+    secret: 'secretkey',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 // 24 hours
+    }
+}));
 class ButtonSchema extends Realm.Object {
   static schema = {
     name: "Button",
@@ -21,62 +31,26 @@ class ButtonSchema extends Realm.Object {
     primaryKey: '_id',
   };
 }
-// buttonRoutes.route('/').post(async function () {
-//     console.log('POST /');
-//     const newButton = new Button({
-//         urlId: "rico",
-//         count: 0
-//     });
-//     const client = new MongoClient(connectionString, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     });
-//     await client.connect(err => {
-//         const collection = client.db("button").collection("buttons");
-//         collection.insertOne(newButton, function (err, res) {
-//             if (err) throw err;
-//             console.log("1 document inserted");
-//             client.close();
-//         });
-//     });
-// });
-// buttonRoutes.route('/').get(async function (req, res) {
-//     if (req.cookies.username) {
-//         userId = req.cookies.username;
-//         console.log("previous user connected with id: " + userId);
-//         res.json({isLoggedIn: true, username: userId});
-//     }
-//     else {
-//         res.json({isLoggedIn: false});
-//     }
-// });
 buttonRoutes.route('/login').post(async function (req, res) {
-    const app = new Realm.App({ id: 'readybtn-fvinc' });
-// Extract the username from the request body
+    // Extract the username from the request body
     const { username } = req.body;
+
+    // Log in the user and get the user object
+    const app = new Realm.App({ id: 'readybtn-fvinc' });
     const loginPayload = {username: req.body.username};
     const credentials = Realm.Credentials.function(loginPayload);
     const user = await app.logIn(credentials);
-    console.log(`Logged in with the user id: ${user.id}`);
 
-    let cookie = req.cookies.username
-    if (cookie === undefined) {
-        res.cookie('username', username, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
-        console.log('cookie created successfully');
-        console.log(cookie)
-        console.log(username);
-        res.json({isLoggedIn: true, username: username});
-    }
-    else {
-        console.log('cookie exists', cookie);
+    // Store the username in the session
+    req.session.username = username;
+        console.log('session exists', req.session.username);
         res.json({isLoggedIn: true, username: username});
         console.log(username);
-    }
 });
 
+
 buttonRoutes.route('/logout').post(async function (req, res) {
-    res.clearCookie('username');
-    res.clearCookie('connect.sid');
+    req.session.destroy();
     res.json({isLoggedIn: false});
 } );
 buttonRoutes.route('/api/check-session').get(async (req, res) => {
@@ -89,8 +63,7 @@ buttonRoutes.route('/api/check-session').get(async (req, res) => {
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-    console.log(req.cookies)
-    const username = req.cookies.username;
+    const username = req.session.username;
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
@@ -118,8 +91,12 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
-    const username = req.cookies.username;
-    console.log("Username from cookie:", req.cookies); // check if the cookie is being set correctly
+    let username;
+    if (req.session && req.session.username) {
+        username = req.session.username;
+    } else {
+        res.redirect("/");
+    }
 
     await client.connect(async err => {
         const collection = client.db("button").collection("buttons");
@@ -134,7 +111,6 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
             console.log('Button:', button);
             await collection.insertOne(button);
         }
-        res.header("Access-Control-Allow-Credentials", "true");
         res.json({ count: button.count, isLoggedIn: true, username: username });
         console.log('Button count:', button.count);
         console.log('Button count sent to the client')
@@ -150,7 +126,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
-            const username = req.cookies.username;
+            const username = req.session.username;
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
@@ -192,7 +168,7 @@ buttonRoutes.route('/api/button/reset/:urlId')
           useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-          const username = req.cookies.username;
+          const username = req.session.username;
 
           await client.connect(err => {
           const collection = client.db("button").collection("buttons");
