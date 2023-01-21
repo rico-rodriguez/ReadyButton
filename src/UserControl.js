@@ -2,7 +2,7 @@ import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from 
 import React from "react";
 
 
-export default function UserControl(isLoggedIn) {
+export default function UserControl({isLoggedIn}) {
 
 const [name, setName] = React.useState('');
 // const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -37,7 +37,9 @@ const handleChange = (event) => {
                 console.log("User logged in")
                 if(data.isLoggedIn){
                     setUserName(data.username)
-                } else {
+                    isLoggedIn(true)
+                }
+                 else {
                 }
             }).catch(error => console.log(error));
         }
