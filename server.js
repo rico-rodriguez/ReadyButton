@@ -70,7 +70,7 @@ const session = require('express-session');
 
 app.use(session({
     secret: 'mysecretkey', // use a secret key to sign the session ID cookie
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 // 24 hours
