@@ -299,10 +299,7 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-      {/*  Grab username from cookie and greet */}
-        <h3 style={{margin:"0px"}}>Welcome, {username}!</h3>
-      </div>
-      </div>
+    <Login />
+     </div>
   );
 }
