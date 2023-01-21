@@ -54,7 +54,7 @@ buttonRoutes.route('/logout').post(async function (req, res) {
     res.json({isLoggedIn: false});
 } );
 buttonRoutes.route('/api/check-session').get(async (req, res) => {
-    if (req.session.user) {
+    if (req.session.username) {
         res.json({ loggedIn: true, username: req.session.user.username });
     } else {
         res.json({ loggedIn: false });
