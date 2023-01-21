@@ -64,7 +64,7 @@ export default function ButtonClicker() {
       setEmojiVisible(false);
     }, 3000);
     // Check if user has already clicked the button
-    if (!clickedUsers.includes(urlId) && userId) {
+    if (!clickedUsers.includes("nothingjustaholdervalue")) {
       setClickedUsers([...clickedUsers, urlId]);
       try {
         const response = await fetch(
@@ -73,9 +73,8 @@ export default function ButtonClicker() {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
-              userId: userId,
               'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
+              'Access-Control-Allow-Credentials': 'true',
             },
             credentials: 'include',
           }
