@@ -20,6 +20,8 @@ function PostMessage() {
                 if (users.length > 0) {
                     setCurrentUser(users[0]);
                 }
+                console.log(users)
+                console.log(currentUser)
                 setIsLoading(false);
             })
             .catch(err => {
