@@ -55,7 +55,7 @@ export default function Login() {
             }
             // successfully logged in, do something with the returned data
             // such as setting a cookie or redirecting to a different page
-            setCookie('user', data.username, 1);
+            setCookie('username', data.username, 1);
             navigate('/')
         } catch (err) {
             setError(err.message);
