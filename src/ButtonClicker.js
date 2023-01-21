@@ -29,14 +29,14 @@ export default function ButtonClicker() {
   const [username, setUsername] = useState('');
   const animationRef = useRef(null);
 
-  const navigate = useNavigate();
   useEffect(() => {
     const cookie = document.cookie;
     if (cookie) {
       const cookieValue = cookie.split('=')[1];
       setUsername(cookieValue);
     } else {
-      navigate('/');
+      window.location.href = '/';
+      window.location.replace('/');
     }
   } , []);
 
