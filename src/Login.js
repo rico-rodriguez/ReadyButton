@@ -1,6 +1,5 @@
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 
 
 export default function Login() {
@@ -61,12 +60,12 @@ const handleChange = (event) => {
         }
     }
 
+
     function Logout() {
-    const navigate = useNavigate();
         setCookie('username', '', -1);
         setIsLoggedIn(false)
         window.location.href = '/';
-        window.location.replace('/');
+
     }
 
     return (
