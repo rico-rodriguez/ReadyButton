@@ -2,14 +2,16 @@ import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from 
 import React from "react";
 
 
-export default function UserControl() {
+export default function UserControl(isLoggedIn) {
+
 const [name, setName] = React.useState('');
-const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+// const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 const [userName, setUserName] = React.useState('');
 const handleChange = (event) => {
     setName(event.target.value)
 
 }
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         console.log(name)
@@ -34,10 +36,8 @@ const handleChange = (event) => {
                 console.log(data.username)
                 console.log("User logged in")
                 if(data.isLoggedIn){
-                    setIsLoggedIn(true)
                     setUserName(data.username)
                 } else {
-                    setIsLoggedIn(false)
                 }
             }).catch(error => console.log(error));
         }
@@ -49,7 +49,7 @@ const handleChange = (event) => {
 
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {isLoggedIn || this.props.isLoggedIn ? <p>Welcome, {userName}</p> :
+            {isLoggedIn ? <p>Welcome, {userName}</p> :
                 <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>

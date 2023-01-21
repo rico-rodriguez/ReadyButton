@@ -5,11 +5,8 @@ import {
   Alert,
   Button,
   CircularProgress,
-  createTheme,
   Grid,
-  IconButton,
   Snackbar,
-  ThemeProvider,
 } from '@mui/material';
 import UserControl from "./UserControl";
 const io = require('socket.io-client');
@@ -135,7 +132,7 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
-        setIsLoggedIn(true);
+        setIsLoggedIn(data.isLoggedIn);
       } catch (error) {
         console.error(error);
       } finally {
@@ -298,9 +295,9 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      {this.state.isLoggedIn !== null && this.state.isLoggedIn !== undefined
-          ? <UserControl isLoggedIn={this.state.isLoggedIn}/>
-          : <UserControl isLoggedIn={false}/>}
+      <UserControl
+      isLoggedIn = {isLoggedIn}
+      />
     </div>
   );
 }
