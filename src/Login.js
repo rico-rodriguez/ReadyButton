@@ -62,26 +62,26 @@ const handleChange = (event) => {
     }
 
 
-    function Logout() {
-        setCookie('username', '', -1);
-        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        setIsLoggedIn(false)
-        sessionStorage.clear();
-        document.cookie.split(";").forEach(function(c) {
-            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-            const cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i];
-                const eqPos = cookie.indexOf("=");
-                const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-            }
-            Cookies.remove('username');
-
-            window.location.href = '/';
-        window.location.replace('/');
-        });
+    async function Logout() {
+        try {
+            await fetch('https://readybutton.herokuapp.com/logout', {
+                method: 'POST',
+                credentials: 'include',
+            });
+            // Clear all cookies
+            document.cookie.split(";").forEach(function(c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+            });
+            // Clear session storage
+            sessionStorage.clear();
+            // Update local state
+            setIsLoggedIn(false);
+            // Redirect the user to the login page
+        } catch (err) {
+            console.error('Error logging out:', err);
+        }
     }
+
 
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
