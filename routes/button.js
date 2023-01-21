@@ -74,6 +74,12 @@ buttonRoutes.route('/login').post(async function (req, res) {
     }
 });
 
+buttonRoutes.route('/logout').post(async function (req, res) {
+    res.clearCookie('username');
+    res.clearCookie('connect.sid');
+    res.json({isLoggedIn: false});
+    res.redirect('/');
+} );
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
