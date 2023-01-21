@@ -5,6 +5,7 @@ import Home from './Home';
 import LoginPage from './LoginPage';
 import {createTheme, ThemeProvider} from "@mui/material";
 import {useEffect, useState} from "react";
+import Login from "./Login";
 
 // Request cookies to see if user is logged in
 const theme = createTheme({
@@ -47,8 +48,9 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>} />
-                <Route path="/login" element={<LoginPage />} />
+                {/*<Route path="/login" element={<LoginPage />} />*/}
                 {loggedIn && <Route path="/:urlId" element={<ButtonClicker />} /> }
+                {loggedIn && <Route path="/loginrealquickthisisforyou" element={<Login />} />}
             </Routes>
         </BrowserRouter>
     </ThemeProvider>
