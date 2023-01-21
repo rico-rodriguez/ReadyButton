@@ -45,17 +45,22 @@ export default function ButtonClicker() {
   useEffect(() => {
     async function fetchUserId() {
       // Make a request to your server to get the user's ID
+      const cookie = document.cookie;
+      let headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      };
+      if (cookie) {
+        headers.cookie = cookie;
+      }
       const response = await fetch(
-        'https://readybutton.herokuapp.com/api/user/id',
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*', // This is required for CORS support to work
-            'Access-Control-Allow-Credentials': 'true', // This is required for cookies, authorization headers with HTTPS
-
-          },
-          credentials: 'include',
-        }
+          'https://readybutton.herokuapp.com/api/user/id',
+          {
+            headers,
+            credentials: 'include',
+          }
       );
+
       if (response.ok) {
         const data = await response.json();
         setUsername(data.username);
