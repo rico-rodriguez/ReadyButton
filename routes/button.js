@@ -4,6 +4,7 @@ const uuid = require('uuid');
 const MongoClient = require('mongodb').MongoClient;
 const connectionString = process.env.ATLAS_URI;
 let userId;
+let username;
 let user;
 const Realm = require('realm');
 const app = express();
@@ -94,7 +95,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     });
     let username;
     if (!req.session || !req.session.username) {
-        return res.redirect("/");
+        res.status(401).json({isLoggedIn: false});
     } else {
         username = req.session.username;
     }
