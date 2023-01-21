@@ -64,9 +64,12 @@ const handleChange = (event) => {
     function Logout() {
         setCookie('username', '', -1);
         setIsLoggedIn(false)
+        sessionStorage.clear();
+        document.cookie.split(";").forEach(function(c) {
+            document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
         window.location.href = '/';
         window.location.replace('/');
-
+        });
     }
 
     return (
