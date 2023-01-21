@@ -10,6 +10,12 @@ const handleChange = (event) => {
     setName(event.target.value)
 
 }
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+        const expires = 'expires=' + d.toUTCString();
+        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    }
     useEffect(() => {
         const cookie = document.cookie;
         if (cookie) {
@@ -42,6 +48,8 @@ const handleChange = (event) => {
                 if(data.isLoggedIn){
                     setIsLoggedIn(true)
                     setUserName(data.username)
+                    setCookie('username', data.username, 1);
+
                 } else {
                     setIsLoggedIn(false)
                 }

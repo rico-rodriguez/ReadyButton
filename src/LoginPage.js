@@ -45,9 +45,12 @@ export default function Login() {
             const response = await fetch('https://readybutton.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
+                    Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ username }),
+                withCredentials: true,
+                credentials: 'include'
             });
             const data = await response.json();
             if (!response.ok) {
