@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter  } from 'react-router-dom';
 
 import ButtonClicker from './ButtonClicker';
 import Home from './Home';
+import LoginPage from './LoginPage';
 import {createTheme, ThemeProvider} from "@mui/material";
 
 // Request cookies to see if user is logged in
@@ -41,6 +42,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/:urlId" element={<ButtonClicker />} />
+                <Route path="/login" element={<LoginPage />} />
             </Routes>
         </BrowserRouter>
     </ThemeProvider>

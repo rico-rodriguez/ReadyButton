@@ -34,7 +34,7 @@ export default function ButtonClicker() {
     // check for cookie
     const cookie = document.cookie.split(';').find(c => c.trim().startsWith('user='));
     if (!cookie) {
-      navigate('/');
+      navigate('/login');
     }
   }, [navigate]);
 
