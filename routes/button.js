@@ -95,19 +95,22 @@ buttonRoutes.route('/api/user/id').get(async (req, res) => {
     res.json({isLoggedIn: true, username: username});
 });
 buttonRoutes.route('/api/users').get(async (req, res) => {
-    const client = new MongoClient(connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-    await client.connect(err => {
-        const collection = client.db("button").collection("buttons");
-        collection.find('usersArray').toArray(function (err, result) {
-            if (err) throw err;
-            res.json(result);
-            client.close();
-        } );
+    try {
+        const client = new MongoClient(connectionString, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        await client.connect();
+        const collection = client.db("button").collection("users");
+        const result = await collection.find({}).toArray();
+        res.json(result);
+        await client.close();
+    } catch (err) {
+        console.error(err);
+        res.status(500).send(err);
+    }
 });
-});
+
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
   const client = new MongoClient(connectionString, {
