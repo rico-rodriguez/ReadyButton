@@ -35,7 +35,7 @@ class ButtonSchema extends Realm.Object {
 }
 buttonRoutes.route('/login').post(async function (req, res) {
     // Extract the username from the request body
-    const { username } = req.body;
+    const { username } = req.body.username;
 
     // Log in the user and get the user object
     const app = new Realm.App({ id: 'readybtn-fvinc' });
@@ -45,6 +45,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
     // Store the username in the session
     req.session.username = username;
+    req.session.save();
         console.log('session exists', req.session.username);
         res.json({isLoggedIn: true, username: username});
         console.log(username);
@@ -56,7 +57,7 @@ buttonRoutes.route('/logout').post(async function (req, res) {
     res.json({isLoggedIn: false});
 } );
 buttonRoutes.route('/api/check-session').get(async (req, res) => {
-    if (req.session.user) {
+    if (req.session.user.username) {
         res.json({ loggedIn: true, username: req.session.user.username });
     } else {
         res.json({ loggedIn: false });
@@ -100,23 +101,20 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     } else {
         username = req.session.username;
     }
+    req.session.username = username;
 
     await client.connect(async err => {
-        const collection = client.db("button").collection("buttons");
-        let button = await collection.findOne({ urlId: req.params.urlId });
-        if (!button) {
-            console.log('Button not found, creating a new one');
-            button = {
-                urlId: req.params.urlId,
-                count: 0,
-                usersArray: [username]
-            };
-            console.log('Button:', button);
-            await collection.insertOne(button);
+        const collection = client.db("button").collection("users");
+        const result = await collection.findOne({urlId: req.params.urlId});
+        if(result) {
+            if(result.usersArray.indexOf(username) !== -1) {
+                res.json({count: result.count, alreadyClicked: true});
+            } else {
+                res.json({count: result.count, alreadyClicked: false});
+            }
+        } else {
+            res.json({count: 0, alreadyClicked: false});
         }
-        res.json({ count: button.count, isLoggedIn: true, username: username });
-        console.log('Button count:', button.count);
-        console.log('Button count sent to the client')
         await client.close();
     });
 });
