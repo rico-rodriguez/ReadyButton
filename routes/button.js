@@ -93,10 +93,10 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useUnifiedTopology: true,
     });
     let username;
-    if (req.session && req.session.username) {
-        username = req.session.username;
+    if (!req.session || !req.session.username) {
+        return res.redirect("/");
     } else {
-        res.redirect("/");
+        username = req.session.username;
     }
 
     await client.connect(async err => {
