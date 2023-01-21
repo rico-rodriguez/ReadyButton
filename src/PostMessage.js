@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
 
 function PostMessage() {
     const [message, setMessage] = useState('');
@@ -40,7 +41,7 @@ function PostMessage() {
                     <button type="submit">Post</button>
                 </form>
             ) : (
-                <p>You must be the first user in the list to post a message.</p>
+                <Button disabled>Send Message</Button>
             )}
         </div>
     );
