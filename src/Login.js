@@ -61,9 +61,14 @@ const handleChange = (event) => {
     }
 
 
+    function Logout() {
+        setCookie('username', '', -1);
+        setIsLoggedIn(false)
+    }
+
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {isLoggedIn ? <p>Welcome, {userName}</p> :
+            {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button onClick={Logout}>Log Out</Button> </div> :
                 <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>
