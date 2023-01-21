@@ -61,7 +61,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
     let cookie = req.cookies.username
     if (cookie === undefined) {
-        res.cookie('user', username, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
+        res.cookie('username', username, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
         console.log('cookie created successfully');
         console.log(cookie)
         console.log(username);
@@ -87,7 +87,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const username = req.cookies.usernamename;
+  const username = req.cookies.username;
 
   await client.connect(async err => {
     const collection = client.db("button").collection("buttons");
