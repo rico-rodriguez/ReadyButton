@@ -144,6 +144,7 @@ export default function ButtonClicker() {
                 'Access-Control-Allow-Credentials': 'true',
             },
             credentials: 'include',
+            withCredentials: true,  // <-- added this line
           }
         );
         if (!response.ok) {
