@@ -1,5 +1,5 @@
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 
 export default function Login() {
@@ -10,6 +10,15 @@ const handleChange = (event) => {
     setName(event.target.value)
 
 }
+    useEffect(() => {
+        const cookie = document.cookie;
+        if (cookie) {
+            const cookieValue = cookie.split('=')[1];
+            setIsLoggedIn(true);
+            setUserName(cookieValue);
+        }
+    }, []);
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         console.log(name)
@@ -30,9 +39,6 @@ const handleChange = (event) => {
                     throw new Error('Something went wrong on api server!');
                 }
             }).then(data => {
-                console.log(data)
-                console.log(data.username)
-                console.log("User logged in")
                 if(data.isLoggedIn){
                     setIsLoggedIn(true)
                     setUserName(data.username)
