@@ -12,6 +12,7 @@ import {
   ThemeProvider,
 } from '@mui/material';
 import Login from "./Login";
+import PostMessage from "./PostMessage";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: true,
@@ -309,6 +310,7 @@ export default function ButtonClicker() {
         </Snackbar>
       </Grid>
     <Login />
+      <PostMessage />
      </div>
   );
 }
