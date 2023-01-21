@@ -26,6 +26,7 @@ export default function ButtonClicker() {
   const [snackbarOpenReset, setSnackbarOpenReset] = useState(false);
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
+  const [username, setUsername] = useState('');
   const animationRef = useRef(null);
 
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ export default function ButtonClicker() {
       );
       if (response.ok) {
         const data = await response.json();
-        setUserId(data.userId);
+        setUsername(data.username);
       } else {
         console.log('Error fetching userId');
       }
@@ -305,8 +306,10 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <Login />
-
-    </div>
+      <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+      {/*  Grab username from cookie and greet */}
+        <h3 style={{margin:"0px"}}>Welcome, {username}!</h3>
+      </div>
+      </div>
   );
 }
