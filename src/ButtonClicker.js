@@ -49,6 +49,7 @@ export default function ButtonClicker() {
       let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
+        withCredentials: true,  // <-- added this line
       };
       if (cookie) {
         headers.cookie = cookie;
