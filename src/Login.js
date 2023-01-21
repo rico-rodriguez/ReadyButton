@@ -2,7 +2,7 @@ import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from 
 import React from "react";
 
 
-export default function UserControl() {
+export default function Login() {
 const [name, setName] = React.useState('');
 const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 const [userName, setUserName] = React.useState('');

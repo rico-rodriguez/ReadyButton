@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import GitHubLink from './GitHubLink';
-import UserControl from "./UserControl";
+import Login from "./Login";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

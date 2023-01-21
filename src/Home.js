@@ -1,6 +1,6 @@
 import {Box, Checkbox, Container, css, Typography} from '@mui/material';
 import * as PropTypes from "prop-types";
-import UserControl from "./UserControl";
+import Login from "./Login";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 const io = require('socket.io-client');
@@ -246,6 +246,7 @@ export default function Home() {
             </div>
         </Container>
       </div>
+        <Login />
     </>
   );
 }

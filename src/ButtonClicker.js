@@ -11,7 +11,7 @@ import {
   Snackbar,
   ThemeProvider,
 } from '@mui/material';
-import UserControl from "./UserControl";
+import Login from "./Login";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: true,
@@ -305,7 +305,7 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <UserControl />
+      <Login />
 
     </div>
   );
