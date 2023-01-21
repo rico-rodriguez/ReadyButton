@@ -47,6 +47,20 @@ io.on('connection', (socket) => {
     io.emit('reset', data);
   });
 });
+
+function checkAuth(req, res, next) {
+    // Check if user has a valid session
+    if (req.session && req.session.userId) {
+        // User is logged in, proceed to the next middleware or route handler
+        next();
+    } else {
+        // User is not logged in, redirect to login page
+        res.redirect('/');
+    }
+}
+app.get('/:id', checkAuth, (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+} );
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
 
