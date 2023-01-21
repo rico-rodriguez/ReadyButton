@@ -31,7 +31,7 @@ function PostMessage() {
         socket.on('new message', data => {
             console.log(data);
         });
-    }, []);
+    }, [currentUser]);
 
     function handleSubmit(e) {
         e.preventDefault();
