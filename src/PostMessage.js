@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
-
+const io = require('socket.io-client');
+const socket = io('https://readybutton.herokuapp.com', {
+    withCredentials: true,
+});
 function PostMessage() {
     const [message, setMessage] = useState('');
     const [users, setUsers] = useState([]);
@@ -15,27 +18,22 @@ function PostMessage() {
                 setCurrentUser(users[0]);
             })
             .catch(err => console.error(err));
+
+        // Listen for new messages from the server
+        socket.on('new message', data => {
+            console.log(data);
+        });
     }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
-        // Send a POST request to the server to create the message
-        fetch('/api/messages', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Credentials': 'true',
-                },
-                credentials: 'include',
-            body: JSON.stringify({ message, user: currentUser })
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setMessage('');
-            })
-            .catch(err => console.error(err));
+        // Send the message to the server via Socket.io
+        sendMessage({ message, user: currentUser });
+        setMessage('');
+    }
+
+    function sendMessage(messageData) {
+        socket.emit('new message', messageData);
     }
 
     return (
