@@ -30,7 +30,7 @@ function App() {
         if (cookies.user) {
             setShowSplash(false);
         } else {
-            navigate('/login');
+            navigate('/');
         }
     }, [cookies.user, navigate]);
 
