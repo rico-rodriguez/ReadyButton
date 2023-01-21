@@ -42,7 +42,7 @@ export default function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch('https://your-server-url/login', {
+            const response = await fetch('https://readybutton.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
