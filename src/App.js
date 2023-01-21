@@ -35,14 +35,20 @@ const theme = createTheme({
         },
     },
 });
+
 function App() {
+    const [loggedIn, setIsLoggedIn] = useState(false);
+    useEffect(() => {
+        const cookie = document.cookie;
+        setIsLoggedIn(!!cookie);
+    }, []);
     return (
 <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home/>} />
-                    <Route path="/:urlId" element={<ButtonClicker />} />
                 <Route path="/login" element={<LoginPage />} />
+                {loggedIn && <Route path="/:urlId" element={<ButtonClicker />} /> }
             </Routes>
         </BrowserRouter>
     </ThemeProvider>
