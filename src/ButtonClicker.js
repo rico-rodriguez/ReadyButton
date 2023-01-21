@@ -45,6 +45,7 @@ export default function ButtonClicker() {
       if (response.ok) {
         const data = await response.json();
         setUserId(data.userId);
+        setIsLoggedIn(data.isLoggedIn)
       } else {
         console.log('Error fetching userId');
       }
