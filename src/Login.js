@@ -65,6 +65,7 @@ const handleChange = (event) => {
         setCookie('username', '', -1);
         setIsLoggedIn(false)
         window.location.href = '/';
+        window.location.replace('/');
 
     }
 
