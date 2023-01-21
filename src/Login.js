@@ -65,7 +65,8 @@ const handleChange = (event) => {
     const navigate = useNavigate();
         setCookie('username', '', -1);
         setIsLoggedIn(false)
-        navigate('/', { replace: true });
+        window.location.href = '/';
+        window.location.replace('/');
     }
 
     return (

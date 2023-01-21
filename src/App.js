@@ -50,7 +50,6 @@ function App() {
                 <Route path="/" element={<Home/>} />
                 {/*<Route path="/login" element={<LoginPage />} />*/}
                 {loggedIn && <Route path="/:urlId" element={<ButtonClicker />} /> }
-                {loggedIn && <Route path="/loginrealquickthisisforyou" element={<Login />} />}
             </Routes>
         </BrowserRouter>
     </ThemeProvider>
