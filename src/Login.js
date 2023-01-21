@@ -64,10 +64,16 @@ const handleChange = (event) => {
 
     async function Logout() {
         try {
-            await fetch('https://readybutton.herokuapp.com/logout', {
-                method: 'POST',
-                credentials: 'include',
-            });
+            await fetch('https://readybutton.herokuapp.com/logout',           {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Credentials': 'true',
+                    },
+                    credentials: 'include',
+                }
+            );
             // Clear all cookies
             document.cookie.split(";").forEach(function(c) {
                 document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
