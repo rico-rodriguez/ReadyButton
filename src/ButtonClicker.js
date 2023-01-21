@@ -297,7 +297,7 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      {isLoggedIn != null || undefined && <UserControl isLoggedIn={this.state.isLoggedIn}/>}
+      {isLoggedIn.componentDidMount() != null || undefined && <UserControl isLoggedIn={this.state.isLoggedIn}/>}
 
     </div>
   );
