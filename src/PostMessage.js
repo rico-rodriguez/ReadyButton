@@ -41,7 +41,7 @@ function PostMessage() {
                     <button type="submit">Post</button>
                 </form>
             ) : (
-                <Button disabled>Send Message</Button>
+                <Button color="primary" contained disabled>Send Message</Button>
             )}
         </div>
     );
