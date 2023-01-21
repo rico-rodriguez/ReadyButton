@@ -6,10 +6,11 @@ const connectionString = process.env.ATLAS_URI;
 let userId;
 let user;
 const Realm = require('realm');
+const app = express();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const app = require("express/lib/router");
 
+app.use('/', buttonRoutes);
 app.use(cookieParser());
 app.use(session({
     secret: 'secretkey',
