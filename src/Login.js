@@ -53,7 +53,7 @@ const handleChange = (event) => {
                 <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>
-                <FormHelperText id="my-helper-text">You need a username to participate.</FormHelperText>
+                <FormHelperText style={{color: "red"}} id="my-helper-text">A username is required to participate.</FormHelperText>
                 <Button size="small" variant="outlined" onClick={handleSubmit} style={{color:"#010202", display:"block", width:"100%"}}>Submit</Button>
             </FormControl>}
         </div>
