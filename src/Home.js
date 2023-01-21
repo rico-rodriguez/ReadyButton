@@ -1,6 +1,8 @@
 import {Box, Checkbox, Container, css, Typography} from '@mui/material';
 import * as PropTypes from "prop-types";
 import UserControl from "./UserControl";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com/', {
   withCredentials: false,
@@ -37,6 +39,14 @@ CustomCheckbox.propTypes = {
   className: PropTypes.any
 };
 export default function Home() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    // check for cookie
+    const cookie = document.cookie;
+    if (!cookie) {
+      navigate('/');
+    }
+  }, [navigate]);
   return (
       <>
         <div

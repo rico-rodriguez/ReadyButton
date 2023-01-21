@@ -27,13 +27,13 @@ export default function ButtonClicker() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
   const animationRef = useRef(null);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   useEffect(() => {
     // check for cookie
     const cookie = document.cookie;
     if (!cookie) {
-      navigate('/login');
+      navigate('/');
     }
   }, [navigate]);
 
