@@ -7,7 +7,7 @@ import {createTheme, ThemeProvider} from "@mui/material";
 import {useEffect, useState} from "react";
 import Login from "./Login";
 
-// Request cookies to see if user is logged in
+// Request session to see if user is logged in
 const theme = createTheme({
     palette: {
         primary: {
@@ -23,7 +23,7 @@ const theme = createTheme({
         }
     },
     components: {
-        // Name of the component
+// Name of the component
         MuiCircularProgress: {
             defaultProps: {
                 thickness: 1.6,
@@ -40,20 +40,20 @@ const theme = createTheme({
 function App() {
     const [loggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
-        const cookie = document.cookie;
-        setIsLoggedIn(!!cookie);
+        const session = sessionStorage.getItem('session');
+        setIsLoggedIn(!!session);
     }, []);
     return (
-<ThemeProvider theme={theme}>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home/>} />
-                {/*<Route path="/login" element={<LoginPage />} />*/}
-                {loggedIn && <Route path="/:urlId"  element={<ButtonClicker/>}/> }
-            </Routes>
-        </BrowserRouter>
-    </ThemeProvider>
-    );
-}
+        <ThemeProvider theme={theme}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home/>} />
+                    {/*<Route path="/login" element={<LoginPage />} />*/}
+                    {loggedIn && <Route path="/:urlId" element={<ButtonClicker/>}/> }
+                        </Routes>
+                        </BrowserRouter>
+                        </ThemeProvider>
+                        );
+                    }
 
-export default App;
+                    export default App;

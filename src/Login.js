@@ -2,27 +2,18 @@ import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from 
 import React, {useEffect, useState} from "react";
 import Cookies from "js-cookie";
 
-
 export default function Login() {
-const [name, setName] = React.useState('');
-const [isLoggedIn, setIsLoggedIn] = React.useState(false);
-const [userName, setUserName] = React.useState('');
-const handleChange = (event) => {
-    setName(event.target.value)
-
-}
-    function setCookie(cname, cvalue, exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-        const expires = 'expires=' + d.toUTCString();
-        document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/';
+    const [name, setName] = React.useState('');
+    const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+    const [userName, setUserName] = React.useState('');
+    const handleChange = (event) => {
+        setName(event.target.value)
     }
     useEffect(() => {
-        const cookie = document.cookie;
-        if (cookie) {
-            const cookieValue = cookie.split('=')[1];
+        const session = sessionStorage.getItem('username');
+        if (session) {
             setIsLoggedIn(true);
-            setUserName(cookieValue);
+            setUserName(session);
         }
     }, []);
 
@@ -37,8 +28,6 @@ const handleChange = (event) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({username: name}),
-                withCredentials: true,
-                credentials: 'include'
             }).then(response => {
                 if (response.status === 200) {
                     return response.json()
@@ -49,8 +38,7 @@ const handleChange = (event) => {
                 if(data.isLoggedIn){
                     setIsLoggedIn(true)
                     setUserName(data.username)
-                    setCookie('username', data.username, 30);
-
+                    sessionStorage.setItem('username', data.username);
                 } else {
                     setIsLoggedIn(false)
                 }
@@ -60,11 +48,9 @@ const handleChange = (event) => {
             console.error('Error logging in:', err)
         }
     }
-
-
     async function Logout() {
         try {
-            await fetch('https://readybutton.herokuapp.com/logout',           {
+            await fetch('https://readybutton.herokuapp.com/logout', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,32 +60,27 @@ const handleChange = (event) => {
                     credentials: 'include',
                 }
             );
-            // Clear all cookies
-            document.cookie.split(";").forEach(function(c) {
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-            });
-            // Clear session storage
+// Clear session storage
             sessionStorage.clear();
-            // Update local state
+// Update local state
             setIsLoggedIn(false);
-            // Redirect the user to the login page
+// Redirect the user to the login page
         } catch (err) {
             console.error('Error logging out:', err);
         }
         window.location.assign('/');
         window.location.replace('/');
     }
+}
 
-
-    return (
-        <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button size="small" variant="outlined" onClick={Logout} style={{color:"#010202", display:"block", width:"100%"}}>Log Out</Button> </div> :
-                <FormControl>
+return (
+    <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+        {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button size="small" variant="outlined" onClick={Logout} style={{color:"#010202", display:"block", width:"100%"}}>Log Out</Button> </div> :
+            <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>
-                <FormHelperText style={{color: "red"}} id="my-helper-text">A username is required to participate.</FormHelperText>
-                <Button size="small" variant="outlined" onClick={handleSubmit} style={{color:"#010202", display:"block", width:"100%"}}>Submit</Button>
+                <FormHelperText id="my-helper-text" style={{color:"black"}}>Enter Your User Name</FormHelperText>
+                <Button onClick={handleSubmit} style={{color:"#010202", display:"block", width:"100%"}}>Log In</Button>
             </FormControl>}
-        </div>
-    );
-}
+    </div>
+);
