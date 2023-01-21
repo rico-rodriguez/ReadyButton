@@ -63,7 +63,7 @@ export default function Login() {
     };
 
     return (
-        <div>
+        <div style={{backgroundColor:"white", borderRadius:"5px", padding:"40px", margin:"auto"}}>
             <form onSubmit={handleSubmit}>
                 <TextField
                     label="Username"
