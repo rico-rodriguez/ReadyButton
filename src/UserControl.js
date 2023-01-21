@@ -2,16 +2,14 @@ import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from 
 import React from "react";
 
 
-export default function UserControl({isLoggedIn}) {
-
+export default function UserControl() {
 const [name, setName] = React.useState('');
-// const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 const [userName, setUserName] = React.useState('');
 const handleChange = (event) => {
     setName(event.target.value)
 
 }
-
     const handleSubmit = async (event) => {
         event.preventDefault()
         console.log(name)
@@ -36,10 +34,10 @@ const handleChange = (event) => {
                 console.log(data.username)
                 console.log("User logged in")
                 if(data.isLoggedIn){
+                    setIsLoggedIn(true)
                     setUserName(data.username)
-                    isLoggedIn(true)
-                }
-                 else {
+                } else {
+                    setIsLoggedIn(false)
                 }
             }).catch(error => console.log(error));
         }

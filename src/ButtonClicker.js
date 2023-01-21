@@ -5,8 +5,11 @@ import {
   Alert,
   Button,
   CircularProgress,
+  createTheme,
   Grid,
+  IconButton,
   Snackbar,
+  ThemeProvider,
 } from '@mui/material';
 import UserControl from "./UserControl";
 const io = require('socket.io-client');
@@ -24,7 +27,7 @@ export default function ButtonClicker() {
   const [dataLoaded, setDataLoaded] = useState(false);
   const [emojiVisible, setEmojiVisible] = useState(false);
   const animationRef = useRef(null);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+
   useEffect(() => {
     async function fetchUserId() {
       // Make a request to your server to get the user's ID
@@ -42,7 +45,6 @@ export default function ButtonClicker() {
       if (response.ok) {
         const data = await response.json();
         setUserId(data.userId);
-        setIsLoggedIn(data.isLoggedIn)
       } else {
         console.log('Error fetching userId');
       }
@@ -132,7 +134,6 @@ export default function ButtonClicker() {
         const data = await response.json();
         setButtonData(data);
         setDataLoaded(true);
-        setIsLoggedIn(data.isLoggedIn);
       } catch (error) {
         console.error(error);
       } finally {
@@ -295,9 +296,8 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <UserControl
-      isLoggedIn = {isLoggedIn}
-      />
+      <UserControl />
+
     </div>
   );
 }
