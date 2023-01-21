@@ -20,30 +20,24 @@ export default function Login() {
         event.preventDefault()
         console.log(name)
         try {
-            await fetch('https://readybutton.herokuapp.com/login', {
+            const response = await fetch('https://readybutton.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({username: name}),
-            }).then(response => {
-                if (response.status === 200) {
-                    return response.json()
-                } else {
-                    throw new Error('Something went wrong on api server!');
-                }
-            }).then(data => {
-                if (data.isLoggedIn) {
-                    setIsLoggedIn(true)
-                    setUserName(data.username)
-                    sessionStorage.setItem('username', data.username);
-                } else {
-                    setIsLoggedIn(false)
-                }
-            }).catch(error => console.log(error));
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setIsLoggedIn(data.isLoggedIn);
+                setUserName(data.username);
+                sessionStorage.setItem('username', data.username);
+            } else {
+                console.log('Error logging in');
+            }
         } catch (err) {
-            console.error('Error logging in:', err)
+            console.error('Error logging in:', err);
         }
     }
 
