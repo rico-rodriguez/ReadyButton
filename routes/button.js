@@ -114,33 +114,34 @@ buttonRoutes.route('/api/users').get(async (req, res) => {
 
 
 buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
-  const client = new MongoClient(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  const username = req.cookies.username;
+    const client = new MongoClient(connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    const username = req.cookies.username;
     console.log("Username from cookie:", req.cookies); // check if the cookie is being set correctly
 
-  await client.connect(async err => {
-    const collection = client.db("button").collection("buttons");
-    let button = await collection.findOne({ urlId: req.params.urlId });
-    if (!button) {
-      console.log('Button not found, creating a new one');
-      button = {
-        urlId: req.params.urlId,
-        count: 0,
-        usersArray: [username]
-      };
-      console.log('Button:', button);
-      await collection.insertOne(button);
-    }
-    res.json({ count: button.count, isLoggedIn: true, username: username });
-      res.header("Access-Control-Allow-Credentials", "true");
-      console.log('Button count:', button.count);
-    console.log('Button count sent to the client')
-    await client.close();
-  });
+    await client.connect(async err => {
+        const collection = client.db("button").collection("buttons");
+        let button = await collection.findOne({ urlId: req.params.urlId });
+        if (!button) {
+            console.log('Button not found, creating a new one');
+            button = {
+                urlId: req.params.urlId,
+                count: 0,
+                usersArray: [username]
+            };
+            console.log('Button:', button);
+            await collection.insertOne(button);
+        }
+        res.header("Access-Control-Allow-Credentials", "true");
+        res.json({ count: button.count, isLoggedIn: true, username: username });
+        console.log('Button count:', button.count);
+        console.log('Button count sent to the client')
+        await client.close();
+    });
 });
+
 
 buttonRoutes.route('/api/button/increment/:urlId')
     .patch(async (req, res) => {
