@@ -13,12 +13,15 @@ import {
 } from '@mui/material';
 import Login from "./Login";
 import PostMessage from "./PostMessage";
+import req from "express/lib/request";
+import res from "express/lib/response";
+
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: true,
 });
 
-export default function ButtonClicker() {
+export default function ButtonClicker(req, res) {
   const { urlId } = useParams();
   const [userId, setUserId] = useState(null);
   const [buttonData, setButtonData] = useState({});
@@ -31,13 +34,10 @@ export default function ButtonClicker() {
   const animationRef = useRef(null);
 
   useEffect(() => {
-    const cookie = document.cookie;
-
-    if (cookie) {
-      const cookieValue = cookie.split('=')[1];
-      setUsername(cookieValue);
-    } else {
+    if (!req.session || !req.session.username) {
       window.location.replace('/');
+    } else {
+      setUsername(req.session.username);
     }
   } , []);
 
@@ -45,15 +45,13 @@ export default function ButtonClicker() {
   useEffect(() => {
     async function fetchUserId() {
       // Make a request to your server to get the user's ID
-      const cookie = document.cookie;
       let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': 'true',
-        withCredentials: true,  // <-- added this line
       };
-      if (cookie) {
-        headers.cookie = cookie;
-      }
+      if (req.session && req.session.username) {
+        headers.username = req.session.username;
+        }
       const response = await fetch(
           'https://readybutton.herokuapp.com/api/user/id',
           {
