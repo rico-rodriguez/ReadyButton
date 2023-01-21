@@ -35,14 +35,14 @@ const theme = createTheme({
     },
 });
 function App() {
-    const navigate = useNavigate();
-    useEffect(() => {
-        // check for cookie
-        const cookie = document.cookie;
-        if (!cookie) {
-            navigate('/');
-        }
-    }, [navigate]);
+    // const navigate = useNavigate();
+    // useEffect(() => {
+    //     // check for cookie
+    //     const cookie = document.cookie;
+    //     if (!cookie) {
+    //         navigate('/');
+    //     }
+    // }, [navigate]);
     return (
 <ThemeProvider theme={theme}>
         <BrowserRouter>
