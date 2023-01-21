@@ -86,6 +86,8 @@ const handleChange = (event) => {
         } catch (err) {
             console.error('Error logging out:', err);
         }
+        window.location.assign('/');
+        window.location.replace('/');
     }
 
 
