@@ -57,14 +57,11 @@ export default function Login() {
             sessionStorage.clear();
 // Update local state
             setIsLoggedIn(false);
-// Redirect the user to the login page
+            setUserName('');
         } catch (err) {
             console.error('Error logging out:', err);
         }
-        window.location.assign('/');
-        window.location.replace('/');
     }
-
 
     return (
         <div style={{
