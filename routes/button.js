@@ -130,7 +130,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                             console.log(username + " is not in the array");
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
-                                $push: { usersArray: username }
+                                $addToSet: { usersArray: username }
                             }, function(err, result) {
                                 if (err) throw err;
                                 res.status(200).json({ message: "Button count updated" });
