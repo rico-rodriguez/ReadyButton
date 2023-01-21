@@ -88,7 +88,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     useUnifiedTopology: true,
   });
   const username = req.cookies.username;
-    console.log("Username from cookie:", username); // check if the cookie is being set correctly
+    console.log("Username from cookie:", req.cookies); // check if the cookie is being set correctly
 
   await client.connect(async err => {
     const collection = client.db("button").collection("buttons");
@@ -98,7 +98,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
       button = {
         urlId: req.params.urlId,
         count: 0,
-        usersArray: [username,]
+        usersArray: [username]
       };
       console.log('Button:', button);
       await collection.insertOne(button);
