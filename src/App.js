@@ -5,7 +5,6 @@ import Home from './Home';
 import LoginPage from './LoginPage';
 import {createTheme, ThemeProvider} from "@mui/material";
 import {useEffect, useState} from "react";
-import Login from "./Login";
 
 // Request session to see if user is logged in
 const theme = createTheme({
