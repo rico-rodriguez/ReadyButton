@@ -1,6 +1,6 @@
 import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
 import React, {useEffect, useState} from "react";
-import {Cookies} from "react-cookie";
+import Cookies from "js-cookie";
 
 
 export default function Login() {
@@ -76,7 +76,9 @@ const handleChange = (event) => {
                 const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
                 document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
             }
-        window.location.href = '/';
+            Cookies.remove('username');
+
+            window.location.href = '/';
         window.location.replace('/');
         });
     }
