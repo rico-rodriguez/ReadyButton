@@ -4,10 +4,12 @@ const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
     withCredentials: true,
 });
+
 function PostMessage() {
     const [message, setMessage] = useState('');
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         // Fetch the list of users from the server
@@ -15,9 +17,15 @@ function PostMessage() {
             .then(res => res.json())
             .then(users => {
                 setUsers(users);
-                setCurrentUser(users[0]);
+                if (users.length > 0) {
+                    setCurrentUser(users[0]);
+                }
+                setIsLoading(false);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err);
+                setIsLoading(false);
+            });
 
         // Listen for new messages from the server
         socket.on('new message', data => {
@@ -51,3 +59,4 @@ function PostMessage() {
 }
 
 export default PostMessage;
+
