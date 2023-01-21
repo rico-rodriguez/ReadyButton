@@ -35,7 +35,7 @@ class ButtonSchema extends Realm.Object {
 }
 buttonRoutes.route('/login').post(async function (req, res) {
     // Extract the username from the request body
-    const { username } = req.body.username;
+    const { username } = req.body;
 
     // Log in the user and get the user object
     const app = new Realm.App({ id: 'readybtn-fvinc' });
