@@ -21,8 +21,13 @@ function PostMessage() {
         e.preventDefault();
         // Send a POST request to the server to create the message
         fetch('/api/messages', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Credentials': 'true',
+                },
+                credentials: 'include',
             body: JSON.stringify({ message, user: currentUser })
         })
             .then(res => res.json())
@@ -34,14 +39,14 @@ function PostMessage() {
     }
 
     return (
-        <div style={{position:"fixed", top: "200px"}}>
+        <div style={{ position: 'fixed', top: '20px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
             {currentUser ? (
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />
                     <button type="submit">Post</button>
                 </form>
             ) : (
-                <Button color="primary" contained disabled>Send Message</Button>
+                <Button color="primary" contained disabled>Post Message</Button>
             )}
         </div>
     );
