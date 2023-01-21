@@ -96,6 +96,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     let username;
     if (!req.session || !req.session.username) {
         res.status(401).json({isLoggedIn: false});
+        return;
     } else {
         username = req.session.username;
     }
