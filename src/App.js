@@ -71,7 +71,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 {/*<Route path="/login" element={<LoginPage />} />*/}
-                {loggedIn && <Route path="/:urlId"  render={() => clientCheckAuth(<ButtonClicker />)} /> }
+                {loggedIn && <Route path="/:urlId"  element={<ButtonClicker/>}/> }
             </Routes>
         </BrowserRouter>
     </ThemeProvider>
