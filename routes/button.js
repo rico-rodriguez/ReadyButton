@@ -41,8 +41,8 @@ class ButtonSchema extends Realm.Object {
 //     });
 // });
 // buttonRoutes.route('/').get(async function (req, res) {
-//     if (req.cookies.user) {
-//         userId = req.cookies.user;
+//     if (req.cookies.username) {
+//         userId = req.cookies.username;
 //         console.log("previous user connected with id: " + userId);
 //         res.json({isLoggedIn: true, username: userId});
 //     }
@@ -59,7 +59,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
     const user = await app.logIn(credentials);
     console.log(`Logged in with the user id: ${user.id}`);
 
-    let cookie = req.cookies.user
+    let cookie = req.cookies.username
     if (cookie === undefined) {
         res.cookie('user', username, { maxAge: 900000, httpOnly: true, sameSite: 'none', secure: true });
         console.log('cookie created successfully');
@@ -77,7 +77,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-    const username = req.cookies.user;
+    const username = req.cookies.username;
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
@@ -87,7 +87,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const username = req.cookies.user;
+  const username = req.cookies.usernamename;
 
   await client.connect(async err => {
     const collection = client.db("button").collection("buttons");
