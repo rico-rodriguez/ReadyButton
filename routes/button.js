@@ -113,44 +113,40 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
 
 buttonRoutes.route('/api/button/increment/:urlId')
     .patch(async (req, res) => {
-      try {
-      } catch (err) {
-        console.error('Error setting loading spinner:', err);
-      }
-
-      try {
-        const client = new MongoClient(connectionString, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        });
-          const username = req.cookies.username;
-          await client.connect(err => {
-          const collection = client.db("button").collection("buttons");
-          collection.findOne({ urlId: req.params.urlId }, function (err, button) {
-            if (err) throw err;
-            if (!button) {
-              res.status(404).json({ message: "Button not found" });
-            } else {
-              if (!button.usersArray.includes(username)) {
-                console.log(username + " is not in the array");
-                collection.updateOne({ urlId: req.params.urlId }, {
-                  $inc: { count: 1 },
-                  $push: { usersArray: username }
-                }, function(err, result) {
-                  if (err) throw err;
-                  res.status(200).json({ message: "Button count updated" });
-                  client.close();
+        try {
+            const client = new MongoClient(connectionString, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            });
+            const username = req.cookies.username;
+            await client.connect(err => {
+                const collection = client.db("button").collection("buttons");
+                collection.findOne({ urlId: req.params.urlId }, function (err, button) {
+                    if (err) throw err;
+                    if (!button) {
+                        res.status(404).json({ message: "Button not found" });
+                    } else {
+                        if (!button.usersArray.includes(username)) {
+                            console.log(username + " is not in the array");
+                            collection.updateOne({ urlId: req.params.urlId }, {
+                                $inc: { count: 1 },
+                                $push: { usersArray: username }
+                            }, function(err, result) {
+                                if (err) throw err;
+                                res.status(200).json({ message: "Button count updated" });
+                                client.close();
+                            });
+                        } else {
+                            res.status(401).json({ message: "Already clicked!" });
+                        }
+                    }
                 });
-              } else {
-                res.status(401).json({ message: "Already clicked!" });
-              }
-            }
-          });
-        });
-      } catch (err) {
-        res.status(400).json({ message: err.message });
-      }
+            });
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
     });
+
 buttonRoutes.route('/api/button/reset/:urlId')
     .patch(async (req, res) => {
       try {
