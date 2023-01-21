@@ -30,6 +30,15 @@ export default function ButtonClicker() {
   const animationRef = useRef(null);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    const cookie = document.cookie;
+    if (cookie) {
+      const cookieValue = cookie.split('=')[1];
+      setUsername(cookieValue);
+    } else {
+      navigate('/login');
+    }
+  } , []);
 
   useEffect(() => {
     async function fetchUserId() {
