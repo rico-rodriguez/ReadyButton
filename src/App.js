@@ -1,5 +1,4 @@
-import { Routes, Route, BrowserRouter, useNavigate  } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Routes, Route, BrowserRouter  } from 'react-router-dom';
 
 import ButtonClicker from './ButtonClicker';
 import Home from './Home';

@@ -32,11 +32,12 @@ export default function ButtonClicker() {
   const navigate = useNavigate();
   useEffect(() => {
     // check for cookie
-    const cookie = document.cookie;
+    const cookie = document.cookie.split(';').find(c => c.trim().startsWith('user='));
     if (!cookie) {
       navigate('/');
     }
   }, [navigate]);
+
 
   useEffect(() => {
     async function fetchUserId() {

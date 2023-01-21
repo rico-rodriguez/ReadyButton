@@ -39,14 +39,6 @@ CustomCheckbox.propTypes = {
   className: PropTypes.any
 };
 export default function Home() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    // check for cookie
-    const cookie = document.cookie;
-    if (!cookie) {
-      navigate('/');
-    }
-  }, [navigate]);
   return (
       <>
         <div
