@@ -49,7 +49,7 @@ const handleChange = (event) => {
                 if(data.isLoggedIn){
                     setIsLoggedIn(true)
                     setUserName(data.username)
-                    setCookie('username', data.username, 1);
+                    setCookie('username', data.username, 30);
 
                 } else {
                     setIsLoggedIn(false)
