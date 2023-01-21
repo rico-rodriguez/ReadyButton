@@ -135,7 +135,8 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
       await collection.insertOne(button);
     }
     res.json({ count: button.count, isLoggedIn: true, username: username });
-    console.log('Button count:', button.count);
+      res.header("Access-Control-Allow-Credentials", "true");
+      console.log('Button count:', button.count);
     console.log('Button count sent to the client')
     await client.close();
   });
