@@ -1,6 +1,5 @@
-import {Button, FormControl, FormHelperText, Input, InputLabel, TextField} from "@mui/material";
+import {Button, FormControl, FormHelperText, Input, InputLabel} from "@mui/material";
 import React, {useEffect, useState} from "react";
-import Cookies from "js-cookie";
 
 export default function Login() {
     const [name, setName] = React.useState('');
@@ -21,33 +20,27 @@ export default function Login() {
         event.preventDefault()
         console.log(name)
         try {
-            await fetch('https://readybutton.herokuapp.com/login', {
+            const response = await fetch('https://readybutton.herokuapp.com/login', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({username: name}),
-            }).then(response => {
-                if (response.status === 200) {
-                    return response.json()
-                } else {
-                    throw new Error('Something went wrong on api server!');
-                }
-            }).then(data => {
-                if(data.isLoggedIn){
-                    setIsLoggedIn(true)
-                    setUserName(data.username)
-                    sessionStorage.setItem('username', data.username);
-                } else {
-                    setIsLoggedIn(false)
-                }
-            }).catch(error => console.log(error));
-        }
-        catch (err) {
-            console.error('Error logging in:', err)
+            });
+            if (response.ok) {
+                const data = await response.json();
+                setIsLoggedIn(data.isLoggedIn);
+                setUserName(data.username);
+                sessionStorage.setItem('username', data.username);
+            } else {
+                console.log('Error logging in');
+            }
+        } catch (err) {
+            console.error('Error logging in:', err);
         }
     }
+
     async function Logout() {
         try {
             await fetch('https://readybutton.herokuapp.com/logout', {
@@ -71,16 +64,30 @@ export default function Login() {
         window.location.assign('/');
         window.location.replace('/');
     }
-}
 
-return (
-    <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-        {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button size="small" variant="outlined" onClick={Logout} style={{color:"#010202", display:"block", width:"100%"}}>Log Out</Button> </div> :
-            <FormControl>
-                <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
-                <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>
-                <FormHelperText id="my-helper-text" style={{color:"black"}}>Enter Your User Name</FormHelperText>
-                <Button onClick={handleSubmit} style={{color:"#010202", display:"block", width:"100%"}}>Log In</Button>
-            </FormControl>}
-    </div>
-);
+
+    return (
+        <div style={{
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            backgroundColor: "white",
+            borderRadius: "5px",
+            padding: "10px"
+        }}>
+            {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button size="small" variant="outlined" onClick={Logout}
+                                                                  style={{
+                                                                      color: "#010202",
+                                                                      display: "block",
+                                                                      width: "100%"
+                                                                  }}>Log Out</Button></div> :
+                <FormControl>
+                    <InputLabel style={{color: "black"}} htmlFor="my-input">User Name</InputLabel>
+                    <Input id="my-input" aria-describedby="my-helper-text" value={name} onChange={handleChange}/>
+                    <FormHelperText id="my-helper-text" style={{color: "black"}}>Enter Your User Name</FormHelperText>
+                    <Button onClick={handleSubmit} style={{color: "#010202", display: "block", width: "100%"}}>Log
+                        In</Button>
+                </FormControl>}
+        </div>
+    );
+}
