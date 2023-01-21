@@ -68,7 +68,7 @@ const handleChange = (event) => {
 
     return (
         <div style={{ position: 'fixed', top: '20px', right: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button onClick={Logout}>Log Out</Button> </div> :
+            {isLoggedIn ? <div><p>Welcome, {userName}</p> <Button size="small" variant="outlined" onClick={Logout} style={{color:"#010202", display:"block", width:"100%"}}>Log Out</Button> </div> :
                 <FormControl>
                 <InputLabel style={{color:"black"}} htmlFor="my-input">User Name</InputLabel>
                 <Input id="my-input" aria-describedby="my-helper-text"  value={name} onChange={handleChange}/>

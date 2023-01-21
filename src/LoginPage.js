@@ -39,6 +39,12 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const cookie = document.cookie;
+        if (cookie) {
+            navigate('/', { replace: true });
+        }
+    } , []);
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
