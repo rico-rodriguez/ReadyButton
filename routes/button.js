@@ -77,6 +77,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
+    console.log(req.cookies)
     const username = req.cookies.username;
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
