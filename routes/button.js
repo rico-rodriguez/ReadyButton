@@ -144,6 +144,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 useUnifiedTopology: true,
             });
             const username = req.headers.authorization;
+            console.log('Username on increment is: : ' + req.headers.authorization);
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
@@ -151,6 +152,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
                     } else {
+                        console.log("Button array:" + button.usersArray);
                         if (!button.usersArray.includes(username)) {
                             console.log(username + " is not in the array");
                             collection.updateOne({ urlId: req.params.urlId }, {
