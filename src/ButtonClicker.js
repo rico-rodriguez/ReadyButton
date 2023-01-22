@@ -104,13 +104,17 @@ export default function ButtonClicker() {
     try {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json'
-          , 'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': 'true',},
-          credentials: 'include',
-        }
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': 'true',
+              Authorization: `Bearer ${localStorage.getItem('username')}`
+            },
+            credentials: 'include',
+            withCredentials: true,  // <-- added this line
+          }
       );
       const data = await response.json();
       setDataLoaded(false);
