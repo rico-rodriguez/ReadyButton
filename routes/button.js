@@ -86,7 +86,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     let username;
     console.log('userId connected to button:/urlId route : ' + req.headers.Authorization);
 
-    if (!req.headers.Authorization) {
+    if (!req.headers.authorization) {
         res.status(401).json({isLoggedIn: false});
         return;
     } else {
