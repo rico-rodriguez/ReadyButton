@@ -26,6 +26,9 @@ export default function ClickedUsers() {
     console.log(data.usersArray);
   }, []);
 
+  async function usersList() {
+    return await clickedUsers.usersArray.map((user) => <li>{user}</li>);
+  }
   return (
     <>
       {clickedUsers.length > 0 && (
@@ -42,10 +45,7 @@ export default function ClickedUsers() {
             width: "200px",
           }}
         >
-          <ul>
-            {clickedUsers &&
-              clickedUsers.usersArray.map((user) => <li key={user}>{user}</li>)}
-          </ul>
+          <ul>{usersList()}</ul>
         </div>
       )}
     </>
