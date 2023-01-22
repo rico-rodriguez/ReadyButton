@@ -13,15 +13,13 @@ import {
 } from '@mui/material';
 import Login from "./Login";
 import PostMessage from "./PostMessage";
-import req from "express/lib/request";
-import res from "express/lib/response";
 
 const io = require('socket.io-client');
 const socket = io('https://readybutton.herokuapp.com', {
   withCredentials: true,
 });
 
-export default function ButtonClicker(req, res) {
+export default function ButtonClicker() {
   const { urlId } = useParams();
   const [userId, setUserId] = useState(null);
   const [buttonData, setButtonData] = useState({});
