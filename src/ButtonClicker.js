@@ -34,7 +34,7 @@ export default function ButtonClicker() {
   useEffect(() => {
     const localUsername = localStorage.getItem('username')
     console.log(localUsername + ' localUsername')
-    if (localUsername > 0) {
+    if (localUsername !== null) {
       setUsername(localStorage.getItem('username'));
     } else {
       return window.location.href = '/';
