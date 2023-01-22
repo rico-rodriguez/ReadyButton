@@ -60,7 +60,7 @@ function PostMessage() {
                 </form>
 
         </div> }
-    <div style={{ position: 'relative', left: '50%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+    <div style={{ position: 'relative', top:'40px', left: '50%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
                 <div>Messages:
                 <div>{message}</div></div>
             </div>
