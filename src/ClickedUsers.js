@@ -24,24 +24,26 @@ export default function ClickedUsers() {
 
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          top: "20px",
-          right: "20px",
-          backgroundColor: "rgba(255,255,255,0.52)",
-          borderRadius: "5px",
-          padding: "10px",
-          overflow: "scroll",
-          height: "500px",
-          width: "200px",
-        }}
-      >
-        <ul>
-          {clickedUsers.length > 0 &&
-            clickedUsers.usersArray.map((user) => <li key={user}>{user}</li>)}
-        </ul>
-      </div>
+      {clickedUsers.length > 0 && (
+        <div
+          style={{
+            position: "fixed",
+            top: "20px",
+            right: "20px",
+            backgroundColor: "rgba(255,255,255,0.52)",
+            borderRadius: "5px",
+            padding: "10px",
+            overflow: "scroll",
+            height: "500px",
+            width: "200px",
+          }}
+        >
+          <ul>
+            {clickedUsers &&
+              clickedUsers.usersArray.map((user) => <li key={user}>{user}</li>)}
+          </ul>
+        </div>
+      )}
     </>
   );
 }
