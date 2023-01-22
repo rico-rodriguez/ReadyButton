@@ -35,6 +35,7 @@ function PostMessage() {
         if (!(currentButtonOwner === currentUser)) {
             setCanPostMessage(false);
         }
+        setCanPostMessage(true);
         // Listen for new messages from the server
         socket.on('new message', data => {
             console.log(data);
