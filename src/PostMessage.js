@@ -47,7 +47,7 @@ function PostMessage() {
         // Send the message to the server via Socket.io
         sendMessage(message);
         console.log(message, currentUser)
-        // setMessage('');
+        setMessage('');
     }
 
     function sendMessage(messageData) {
