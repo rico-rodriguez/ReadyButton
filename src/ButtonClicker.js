@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import Login from "./Login";
 import PostMessage from "./PostMessage";
+import ClickedUsers from "./ClickedUsers";
 
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com", {
@@ -309,6 +310,7 @@ export default function ButtonClicker() {
         <Button color="neutral" variant="contained" onClick={handleReset}>
           Reset
         </Button>
+        <ClickedUsers />
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           autoHideDuration={3000}

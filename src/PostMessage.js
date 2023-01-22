@@ -81,7 +81,7 @@ function PostMessage() {
       <div
         style={{
           display: "flex",
-          minWidth: "75%%",
+          minWidth: "400px",
           backgroundColor: "white",
           borderRadius: "5px",
           padding: "10px",
