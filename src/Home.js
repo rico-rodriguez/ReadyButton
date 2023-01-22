@@ -39,6 +39,8 @@ CustomCheckbox.propTypes = {
 export default function Home() {
   return (
       <>
+        <Login />
+
         <div
             style={{
               display: 'flex',
@@ -94,26 +96,6 @@ export default function Home() {
           <ul className="featureList">
             <li className="featureItem">
               <CustomCheckbox
-                  className="customCheckbox"
-                  checked={false}
-                  onChange={() => {}}
-              />
-              <Typography variant='subtitle2'>
-                Post your own question to the button header
-              </Typography>
-            </li>
-            <li className="featureItem">
-              <CustomCheckbox
-                  className="customCheckbox"
-                  checked={false}
-                  onChange={() => {}}
-              />
-              <Typography variant='subtitle2'>
-                Back user list to db to keep track of who has clicked and release names when reset
-              </Typography>
-            </li>
-            <li className="featureItem">
-              <CustomCheckbox
                 className="customCheckbox"
                 checked={false}
                 onChange={() => {}}
@@ -152,6 +134,26 @@ export default function Home() {
               <Typography variant='subtitle2'>
                 Add the ability to set usernames and share username of people
                 who have clicked
+              </Typography>
+            </li>
+            <li className="featureItem">
+              <CustomCheckbox
+                  className="customCheckbox"
+                  checked={true}
+                  onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Post your own question to the button header
+              </Typography>
+            </li>
+            <li className="featureItem">
+              <CustomCheckbox
+                  className="customCheckbox"
+                  checked={true}
+                  onChange={() => {}}
+              />
+              <Typography variant='subtitle2'>
+                Back user list to db to keep track of who has clicked and release names when reset
               </Typography>
             </li>
             <li className="featureItem">
@@ -236,7 +238,6 @@ export default function Home() {
             </div>
         </Container>
       </div>
-        <Login />
     </>
   );
 }
