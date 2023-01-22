@@ -29,7 +29,7 @@ function PostMessage() {
           }
         );
         const data = await response.json();
-        setCurrentButtonOwner(data);
+        setCurrentButtonOwner(data.usersArray[0]);
         console.log(data.usersArray[0])
       console.log(currentButtonOwner)
       console.log(currentUser)
