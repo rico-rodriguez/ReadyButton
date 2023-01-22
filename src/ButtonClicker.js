@@ -127,8 +127,8 @@ export default function ButtonClicker(req, res) {
   useEffect(() => {
     async function fetchData() {
       setDataLoaded(false);
-      const session = JSON.parse(localStorage.getItem('username'));
-        if (session) {
+      const username = JSON.parse(localStorage.getItem('username'));
+        if (username) {
       try {
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,

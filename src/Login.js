@@ -9,16 +9,18 @@ export default function Login() {
         setName(event.target.value)
     }
     useEffect(() => {
-        const session = sessionStorage.getItem('username');
-        if (session) {
+        const username = localStorage.getItem('username');
+        if (username) {
             setIsLoggedIn(true);
-            setUserName(session);
+            setUserName(username);
+        } else {
+            setIsLoggedIn(false);
         }
-    }, []);
+    }, [userName]);
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if (!sessionStorage.getItem('username')) {
+        if (!localStorage.getItem('username')) {
             try {
                 const response = await fetch('https://readybutton.herokuapp.com/login', {
                     method: 'POST',
@@ -32,13 +34,15 @@ export default function Login() {
                     const data = await response.json();
                     setIsLoggedIn(data.isLoggedIn);
                     setUserName(data.username);
-                    sessionStorage.setItem('username', data.username);
+                    localStorage.setItem('username', data.username);
                 } else {
                     console.log('Error logging in');
                 }
             } catch (err) {
                 console.error('Error logging in:', err);
             }
+        } else {
+            console.log('Already logged in');
         }
 
     }
@@ -55,14 +59,11 @@ export default function Login() {
                     credentials: 'include',
                 }
             );
-// Clear session storage
-            sessionStorage.clear();
-// Update local state
+            localStorage.clear();
             setIsLoggedIn(false);
         } catch (err) {
             console.error('Error logging out:', err);
         }
-// Redirect the user to the login page
         window.location.replace('/');
         return window.location.assign('/');
     }

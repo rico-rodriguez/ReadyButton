@@ -6,7 +6,6 @@ import LoginPage from './LoginPage';
 import {createTheme, ThemeProvider} from "@mui/material";
 import {useEffect, useState} from "react";
 
-// Request session to see if user is logged in
 const theme = createTheme({
     palette: {
         primary: {
@@ -39,8 +38,11 @@ const theme = createTheme({
 function App() {
     const [loggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
-        const local = localStorage.getItem('local');
-        setIsLoggedIn(!!local);
+        if (localStorage.getItem('username')) {
+            setIsLoggedIn(true);
+        } else {
+            setIsLoggedIn(false);
+        }
     }, []);
     return (
         <ThemeProvider theme={theme}>
