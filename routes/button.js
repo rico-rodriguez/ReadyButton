@@ -94,31 +94,33 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
             auth = auth.slice(7);
             username = auth;
         }
-    }
-    await client.connect();
-    try {
-        const collection = client.db("button").collection("buttons");
-        const result = await collection.findOne({urlId: req.params.urlId});
-        if (result) {
-            res.json(result);
-        } else {
-            const newButton = {
-                count: 0,
-                urlId: req.params.urlId,
-                usersArray: [username]
-            };
-            collection.insertOne(newButton, function (err, result) {
-                if (err) throw err;
-                console.log("Button created successfully");
-                res.json(newButton);
-            });
-        }
-    } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
-    } finally {
+        await client.connect();
+        const session = client.startSession();
+        await session.withTransaction(async () => {
+            const collection = client.db("button").collection("buttons");
+            try {
+                const result = await collection.findOne({urlId: req.params.urlId});
+                if (result) {
+                    res.json(result);
+                } else {
+                    const newButton = {
+                        count: 0,
+                        urlId: req.params.urlId,
+                        usersArray: [username]
+                    };
+                    collection.insertOne(newButton, function (err, result) {
+                        if (err) throw err;
+                        console.log("Button created successfully");
+                        res.json(newButton);
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                res.status(500).send(err);
+            }
+        });
         await client.close();
-    }
+    };
 });
 
 
