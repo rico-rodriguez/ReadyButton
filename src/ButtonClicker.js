@@ -122,7 +122,7 @@ export default function ButtonClicker() {
   }
 
   useEffect(() => {
-    console.log(JSON.parse(localStorage.getItem('username')))
+    console.log(localStorage.getItem('username'))
 
       const username = JSON.parse(localStorage.getItem('username'));
     async function fetchData() {
