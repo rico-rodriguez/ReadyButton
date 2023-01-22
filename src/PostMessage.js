@@ -16,7 +16,7 @@ function PostMessage() {
     setCurrentUser(localStorage.getItem('username'));
         // Fetch the list of users from the server
         const response = await fetch(
-          `https://readybutton.herokuapp.com/api/users`,
+          `https://readybutton.herokuapp.com/api/users?urlId=${window.location.pathname}`,
           {
               method: 'GET',
               headers: {
