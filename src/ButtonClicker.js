@@ -99,6 +99,7 @@ export default function ButtonClicker() {
         setButtonData({ count: data.count });
         socket.emit('increment', data);
       } catch (err) {
+        alert('You already clicked this button or you are the owner of this button!')
         console.error('Error updating click count:', err);
       }
   }
