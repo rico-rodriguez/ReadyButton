@@ -31,7 +31,7 @@ function PostMessage() {
         );
         const data = await response.json();
         setCurrentButtonOwner(data.usersArray[0].username);
-        if (!currentButtonOwner === currentUser) {
+        if (!(currentButtonOwner === currentUser)) {
             setCanPostMessage(false);
         }
         // Listen for new messages from the server
