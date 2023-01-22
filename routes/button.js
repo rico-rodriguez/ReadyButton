@@ -67,13 +67,14 @@ buttonRoutes.route('/api/users').get(async (req, res) => {
         });
         await client.connect();
         const collection = client.db("button").collection("buttons");
-        const result = await collection.find({"usersArray": {$exists: true}}).toArray();
-        console.log(result)
-        res.json(result);
-        await client.close();
+        collection.findOne({urlId: req.params.urlId},async (err, result) => {
+          const currentUser = await collection.find({ "usersArray": { $exists: true } }).toArray();
+          console.log(currentUser)
+          res.json(currentUser);
+          await client.close();
+        });
     } catch (err) {
-        console.error(err);
-        res.status(500).send(err);
+        console.error('Error getting current user for message posting:', err);
     }
 });
 
