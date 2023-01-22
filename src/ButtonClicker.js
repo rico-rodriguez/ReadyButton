@@ -56,6 +56,7 @@ export default function ButtonClicker() {
       const response = await fetch(
           'https://readybutton.herokuapp.com/api/user/id',
           {
+            method: 'GET',
             headers,
             credentials: 'include',
           }
@@ -126,6 +127,7 @@ export default function ButtonClicker() {
     async function fetchData() {
       setDataLoaded(false);
       const username = JSON.parse(localStorage.getItem('username'));
+      console.log(username)
         if (username) {
           let headers = {
             'Content-Type': 'application/json',
