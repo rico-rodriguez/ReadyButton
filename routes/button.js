@@ -66,7 +66,7 @@ buttonRoutes.route('/api/users').get(async (req, res) => {
             useUnifiedTopology: true,
         });
         await client.connect();
-        const collection = client.db("button").collection("users");
+        const collection = client.db("button").collection("buttons");
         const result = await collection.find({"usersArray": {$exists: true}}).toArray();
         console.log(result)
         res.json(result);
