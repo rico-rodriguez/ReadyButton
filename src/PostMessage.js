@@ -46,6 +46,7 @@ function PostMessage() {
         e.preventDefault();
         // Send the message to the server via Socket.io
         sendMessage({ message, user: currentUser });
+        console.log(message, currentUser)
         setMessage('');
     }
 
