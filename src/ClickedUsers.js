@@ -36,11 +36,12 @@ export default function ClickedUsers() {
           height: "500px",
         }}
       >
-        {clickedUsers.map((user) => (
-          <div key={user._id}>
-            <p>{user.username}</p>
-          </div>
-        ))}
+        {/*Create an unordered list of all users in the usersArray*/}
+        <ul>
+          {clickedUsers.map((user) => (
+            <li key={user}>{user}</li>
+          ))}
+        </ul>
       </div>
     </>
   );
