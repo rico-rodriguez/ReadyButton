@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
+  const [usersList, setUsersList] = useState([]);
 
   useEffect(async () => {
     const currentUser = localStorage.getItem("username");
@@ -22,13 +23,10 @@ export default function ClickedUsers() {
     );
     const data = await response.json();
     setClickedUsers(data);
-    console.log(data);
-    console.log(data.usersArray);
+    const usersList = data.usersArray.map((user) => <li key={user}>{user}</li>);
+    setUsersList(usersList);
   }, []);
 
-  async function usersList() {
-    return await clickedUsers.usersArray.map((user) => <li>{user}</li>);
-  }
   return (
     <>
       {clickedUsers.length > 0 && (
@@ -45,7 +43,7 @@ export default function ClickedUsers() {
             width: "200px",
           }}
         >
-          <ul>{usersList()}</ul>
+          <ul>{usersList}</ul>
         </div>
       )}
     </>
