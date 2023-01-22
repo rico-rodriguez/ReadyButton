@@ -54,7 +54,7 @@ buttonRoutes.route('/api/check-session').get(async (req, res) => {
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-    const username = localStorage.getItem('username');
+    const username = req.headers.get('Authorization');
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
