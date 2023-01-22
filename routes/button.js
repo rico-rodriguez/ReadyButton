@@ -97,23 +97,29 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     }
     await client.connect(async err => {
         const collection = client.db("button").collection("buttons");
-        const result = await collection.findOne({urlId: req.params.urlId});
-          if (result) {
-              res.json(result);
+        try {
+            const result = await collection.findOne({urlId: req.params.urlId});
+            if (result) {
+                res.json(result);
             } else {
-            const newButton = {
-                count: 0,
-                urlId: req.params.urlId,
-                usersArray: [username]
-            };
-            collection.insertOne(newButton, function (err, result) {
-                if (err) throw err;
-                console.log("Button created successfully");
-                res.json(newButton);
-            });
+                const newButton = {
+                    count: 0,
+                    urlId: req.params.urlId,
+                    usersArray: [username]
+                };
+                collection.insertOne(newButton, function (err, result) {
+                    if (err) throw err;
+                    console.log("Button created successfully");
+                    res.json(newButton);
+                });
             }
-        await client.close();
-          });
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error);
+        } finally {
+            await client.close();
+        }
+    });
     });
 
 
