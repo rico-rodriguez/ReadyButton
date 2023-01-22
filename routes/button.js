@@ -55,7 +55,7 @@ buttonRoutes.route('/api/check-session').get(async (req, res) => {
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
     // set username to the authorized header value
-    const username = req.headers.Authorization;
+    const username = req.headers.authorization;
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
