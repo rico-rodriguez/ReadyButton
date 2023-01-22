@@ -178,44 +178,36 @@ buttonRoutes.route('/api/button/increment/:urlId')
     });
 
 buttonRoutes.route('/api/button/reset/:urlId')
-    .patch(async (req, res) => {
-      try {
-
-      } catch (err) {
-        console.error('Error resetting click count: ', err);
-      }
-
-      try {
-        const client = new MongoClient(connectionString, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        });
-          const username = req.headers.authorization;
-
-          await client.connect(err => {
-          const collection = client.db("button").collection("buttons");
-          collection.findOne({ urlId: req.params.urlId }, function (err, button) {
-            if (err) throw err;
-            if (!button) {
-              res.status(404).json({ message: "Button not found" });
+  .patch(async (req, res) => {
+    try {
+      const client = new MongoClient(connectionString, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      const username = req.headers.authorization.split(' ')[1];
+      await client.connect(err => {
+        const collection = client.db("button").collection("buttons");
+        collection.findOne({ urlId: req.params.urlId }, (err, button) => {
+          if (err) throw err;
+          if (!button) {
+            res.status(404).json({ message: "Button not found" });
+          } else {
+            if (button.usersArray[0] === username) {
+              collection.updateOne({ urlId: req.params.urlId }, {
+                $set: { count: 0, usersArray: [username] }
+              }, function(err, result) {
+                if (err) throw err;
+                res.status(200).json({ message: "Button reset" });
+                client.close();
+              });
             } else {
-              if (button.usersArray[0] === username) {
-                collection.updateOne({ urlId: req.params.urlId },
-                    { $set: { count: 0, usersArray: [username]  } },
-                    function (err, result) {
-                      if (err) throw err;
-                      res.status(200).json({ message: "Button count updated" });
-                      client.close();
-                    });
-              } else {
-                res.status(401).json({ message: "Unauthorized" });
-              }
+              res.status(401).json({ message: "Only the owner can reset the button!" });
             }
-          });
+          }
         });
-      } catch (err) {
-        res.status(400).json({ message: err.message });
-      }
-
+      });
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
     });
 module.exports = buttonRoutes;
