@@ -52,6 +52,7 @@ function PostMessage() {
 
     function sendMessage(messageData) {
         socket.emit('new message', messageData);
+        console.log(messageData + "log after emit")
     }
 
     return (
