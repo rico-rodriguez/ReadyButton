@@ -93,7 +93,9 @@ export default function ButtonClicker() {
             }
         );
         const data = await response.json();
-        console.log(data);
+        if (!response.ok) {
+          throw new Error('Failed to increment click count. User is either button owner or clicked already!');
+        }
         setButtonData({ count: data.count });
         socket.emit('increment', data);
       } catch (err) {
