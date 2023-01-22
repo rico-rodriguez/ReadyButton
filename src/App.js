@@ -39,8 +39,8 @@ const theme = createTheme({
 function App() {
     const [loggedIn, setIsLoggedIn] = useState(false);
     useEffect(() => {
-        const session = sessionStorage.getItem('session');
-        setIsLoggedIn(!!session);
+        const local = localStorage.getItem('local');
+        setIsLoggedIn(!!local);
     }, []);
     return (
         <ThemeProvider theme={theme}>

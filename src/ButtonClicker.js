@@ -34,24 +34,27 @@ export default function ButtonClicker(req, res) {
   const animationRef = useRef(null);
 
   useEffect(() => {
-    if (!req.session || !req.session.username) {
-      window.location.replace('/');
+    if (JSON.parse(localStorage.getItem('username'))) {
+      setUsername(JSON.parse(localStorage.getItem('username')));
     } else {
-      setUsername(req.session.username);
+      return window.location.href = '/';
     }
-  } , []);
+    }, []);
 
 
   useEffect(() => {
     async function fetchUserId() {
-      // Make a request to your server to get the user's ID
-      let headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
-      };
-      if (req.session && req.session.username) {
-        headers.username = req.session.username;
-        }
+      let headers;
+      if (localStorage.getItem('username')) {
+        headers = {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+          Authorization: `Bearer ${localStorage.getItem('username')}`,
+        };
+      } else {
+        return window.location.href = '/';
+      }
       const response = await fetch(
           'https://readybutton.herokuapp.com/api/user/id',
           {
@@ -59,7 +62,6 @@ export default function ButtonClicker(req, res) {
             credentials: 'include',
           }
       );
-
       if (response.ok) {
         const data = await response.json();
         setUsername(data.username);
@@ -78,9 +80,6 @@ export default function ButtonClicker(req, res) {
     setTimeout(() => {
       setEmojiVisible(false);
     }, 3000);
-    // Check if user has already clicked the button
-    if (!clickedUsers.includes("nothingjustaholdervalue")) {
-      setClickedUsers([...clickedUsers, urlId]);
       try {
         const response = await fetch(
           `https://readybutton.herokuapp.com/api/button/increment/${urlId}`,
@@ -95,14 +94,11 @@ export default function ButtonClicker(req, res) {
           }
         );
         const data = await response.json();
-        // Update the state with the new count
         setButtonData({ count: data.count });
-        // Send socket event to server to emit event to all clients
         socket.emit('increment', data);
       } catch (err) {
         console.error('Error updating click count:', err);
       }
-    }
   }
 
   async function handleReset() {
@@ -131,31 +127,38 @@ export default function ButtonClicker(req, res) {
   useEffect(() => {
     async function fetchData() {
       setDataLoaded(false);
+      const session = JSON.parse(localStorage.getItem('username'));
+        if (session) {
       try {
-        const response = await fetch(
-          `https://readybutton.herokuapp.com/api/button/${urlId}`,
-          {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json',
-              userId: userId,
-              'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': 'true',
-            },
-            credentials: 'include',
-            withCredentials: true,  // <-- added this line
+          const response = await fetch(
+              `https://readybutton.herokuapp.com/api/button/${urlId}`,
+              {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Credentials': 'true',
+                },
+                credentials: 'include',
+                withCredentials: true,  // <-- added this line
+              }
+          );
+          if (!response.ok) {
+            throw new Error('Failed to fetch button data');
           }
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch button data');
+
+          const data = await response.json();
+          setButtonData(data);
+          setDataLoaded(true);
         }
-        const data = await response.json();
-        setButtonData(data);
-        setDataLoaded(true);
-      } catch (error) {
-        console.error(error);
-      } finally {
-      }
+      catch
+        (error)
+        {
+          console.error(error);
+        }
+      } else {
+        window.location.href = '/';
+        }
     }
     fetchData();
 

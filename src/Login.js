@@ -18,27 +18,29 @@ export default function Login() {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        console.log(name)
-        try {
-            const response = await fetch('https://readybutton.herokuapp.com/login', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({username: name}),
-            });
-            if (response.ok) {
-                const data = await response.json();
-                setIsLoggedIn(data.isLoggedIn);
-                setUserName(data.username);
-                sessionStorage.setItem('username', data.username);
-            } else {
-                console.log('Error logging in');
+        if (!sessionStorage.getItem('username')) {
+            try {
+                const response = await fetch('https://readybutton.herokuapp.com/login', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({username: name}),
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setIsLoggedIn(data.isLoggedIn);
+                    setUserName(data.username);
+                    sessionStorage.setItem('username', data.username);
+                } else {
+                    console.log('Error logging in');
+                }
+            } catch (err) {
+                console.error('Error logging in:', err);
             }
-        } catch (err) {
-            console.error('Error logging in:', err);
         }
+
     }
 
     async function Logout() {
@@ -57,12 +59,12 @@ export default function Login() {
             sessionStorage.clear();
 // Update local state
             setIsLoggedIn(false);
-// Redirect the user to the login page
         } catch (err) {
             console.error('Error logging out:', err);
         }
-        window.location.assign('/');
+// Redirect the user to the login page
         window.location.replace('/');
+        return window.location.assign('/');
     }
 
 
