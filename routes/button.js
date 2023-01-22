@@ -113,14 +113,14 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
                     res.json(newButton);
                 });
             }
-        } catch (error) {
-            console.log(error);
-            res.status(500).send(error);
+        } catch (err) {
+            console.log(err);
+            res.status(500).json({error: err.message});
         } finally {
             await client.close();
         }
     });
-    });
+});
 
 
 buttonRoutes.route('/api/button/increment/:urlId')
