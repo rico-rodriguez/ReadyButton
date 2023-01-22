@@ -260,7 +260,6 @@ export default function ButtonClicker() {
   };
   return (
     <div style={{overflow: "hidden", minHeight: '100vh'}}>
-      <PostMessage />
 
       <Grid
         container
@@ -270,6 +269,7 @@ export default function ButtonClicker() {
         justifyContent='center'
         style={{ minHeight: '100vh', overflow: "hidden" }}
       >
+      <PostMessage />
         <div>
           <Button
             id='my-div'
