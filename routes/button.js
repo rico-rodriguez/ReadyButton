@@ -38,7 +38,7 @@ buttonRoutes.route('/login').post(async function (req, res) {
 
 buttonRoutes.route('/logout').post(async function (req, res) {
     // Remove the username from local storage
-    localStorage.removeItem('username');
+
 
     res.json({isLoggedIn: false});
 } );
@@ -172,7 +172,7 @@ buttonRoutes.route('/api/button/reset/:urlId')
           useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-          const username = localStorage.getItem('username');
+          const username = req.headers.authorization;
 
           await client.connect(err => {
           const collection = client.db("button").collection("buttons");
