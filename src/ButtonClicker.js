@@ -310,7 +310,7 @@ export default function ButtonClicker() {
         <Button color="neutral" variant="contained" onClick={handleReset}>
           Reset
         </Button>
-        {/*<ClickedUsers />*/}
+        <ClickedUsers />
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           autoHideDuration={3000}
