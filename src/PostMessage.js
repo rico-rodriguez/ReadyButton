@@ -57,7 +57,7 @@ function PostMessage() {
 
     return (
       <>
-      {currentButtonOwner === currentUser && <div style={{ position: 'fixed', top: '20px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+      {currentButtonOwner === currentUser && <div style={{ position: 'fixed', top: '50px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
 
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />
@@ -65,7 +65,7 @@ function PostMessage() {
                 </form>
 
         </div> }
-    <div style={{ position: 'relative', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+    <div style={{ position: 'fixed', top: '20px', left: '20px',width: '100%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
                 <div>Messages:
                 <div>{message}</div></div>
             </div>
