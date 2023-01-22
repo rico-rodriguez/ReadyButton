@@ -32,7 +32,9 @@ export default function ButtonClicker() {
   const animationRef = useRef(null);
 
   useEffect(() => {
-    if (JSON.parse(localStorage.getItem('username'))) {
+    const localUsername = JSON.parse(localStorage.getItem('username'))
+    console.log(localUsername + ' localUsername')
+    if (localUsername > 0) {
       setUsername(JSON.parse(localStorage.getItem('username')));
     } else {
       return window.location.href = '/';
