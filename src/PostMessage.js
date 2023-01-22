@@ -61,7 +61,8 @@ function PostMessage() {
                     <button type="submit">Post</button>
                 </form>
             ) : (
-                <Button color="primary" contained disabled>Messages</Button>
+                <div>Messages:
+                <div>{message}</div></div>
             )}
         </div>
     );
