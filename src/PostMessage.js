@@ -9,7 +9,6 @@ function PostMessage() {
     const [message, setMessage] = useState('');
     const [currentButtonOwner, setCurrentButtonOwner] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
-    const [canPostMessage, setCanPostMessage] = useState(true);
 
     useEffect(async () => {
     setCurrentUser(localStorage.getItem('username'));
@@ -30,11 +29,10 @@ function PostMessage() {
           }
         );
         const data = await response.json();
-        setCurrentButtonOwner(data.usersArray[0].username);
         if (!(currentButtonOwner === currentUser)) {
-            setCanPostMessage(false);
+          return;
         }
-        setCanPostMessage(true);
+        setCurrentButtonOwner(data.usersArray[0].username);
         // Listen for new messages from the server
         socket.on('new message', data => {
             setMessage(data.message);
