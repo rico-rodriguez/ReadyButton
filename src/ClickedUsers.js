@@ -19,7 +19,7 @@ export default function ClickedUsers() {
       }
     );
     const data = await response.json();
-    setClickedUsers(data.usersArray);
+    setClickedUsers(data);
   }, []);
 
   return (
