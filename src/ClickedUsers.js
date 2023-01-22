@@ -4,32 +4,42 @@ export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const currentUser = localStorage.getItem("username");
     const urlId = window.location.pathname.split("/")[1];
-    const response = await fetch(
-      `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          Authorization: `Bearer ${currentUser}`,
-        },
-        credentials: "include",
-        withCredentials: true,
-      }
-    );
-    const data = await response.json();
-    setClickedUsers(data);
-    const usersList = data.usersArray.map((user) => <li key={user}>{user}</li>);
-    setUsersList(usersList);
+    async function getUsers() {
+      const response = await fetch(
+        `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            Authorization: `Bearer ${currentUser}`,
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+      const data = await response.json();
+      setClickedUsers(data);
+    }
+    getUsers();
   }, []);
+
+  useEffect(() => {
+    if (clickedUsers.usersArray) {
+      const usersList = clickedUsers.usersArray.map((user) => (
+        <li key={user}>{user}</li>
+      ));
+      setUsersList(usersList);
+    }
+  }, [clickedUsers]);
 
   return (
     <>
-      {clickedUsers.length > 0 && (
+      {clickedUsers.usersArray && (
         <div
           style={{
             position: "fixed",
