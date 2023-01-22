@@ -50,7 +50,7 @@ export default function ButtonClicker() {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': 'true',
-            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('username'))}`,
+            Authorization: `Bearer  ${JSON.parse(localStorage.getItem('username'))}`,
           },
           withCredentials: true,
           credentials: 'include',
@@ -133,7 +133,7 @@ export default function ButtonClicker() {
                   'Content-Type': 'application/json',
                   'Access-Control-Allow-Origin': '*',
                   'Access-Control-Allow-Credentials': 'true',
-                  'Authorization': `Bearer ${username}`
+                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('username'))}`
                 },
                 credentials: 'include',
                 withCredentials: true,  // <-- added this line
