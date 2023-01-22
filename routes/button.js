@@ -90,7 +90,7 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         res.status(401).json({isLoggedIn: false});
         return;
     } else {
-        let auth = req.headers.Authorization;
+        let auth = req.headers.authorization;
         if( auth !== undefined && auth.startsWith("Bearer ")){
             auth = auth.slice(7);
             username = auth;
