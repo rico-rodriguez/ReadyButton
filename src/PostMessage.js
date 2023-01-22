@@ -30,7 +30,7 @@ function PostMessage() {
           }
         );
         const data = await response.json();
-        setCurrentButtonOwner(data.usersArray[0]);
+        setCurrentButtonOwner(data.usersArray[0].username);
         if (!currentButtonOwner === currentUser) {
             setCanPostMessage(false);
         }
