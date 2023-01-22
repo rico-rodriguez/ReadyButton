@@ -84,6 +84,8 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useUnifiedTopology: true,
     });
     let username;
+    console.log('userId connected to button:/urlId route : ' + req.headers.Authorization);
+
     if (!req.headers.Authorization) {
         res.status(401).json({isLoggedIn: false});
         return;
