@@ -8,19 +8,9 @@ let username;
 let user;
 const Realm = require('realm');
 const app = express();
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
 
 app.use('/', buttonRoutes);
-app.use(cookieParser());
-app.use(session({
-    secret: 'secretkey',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // 24 hours
-    }
-}));
+
 class ButtonSchema extends Realm.Object {
   static schema = {
     name: "Button",
@@ -43,22 +33,23 @@ buttonRoutes.route('/login').post(async function (req, res) {
     const credentials = Realm.Credentials.function(loginPayload);
     const user = await app.logIn(credentials);
 
-    // Store the username in the session
-    req.session.username = username;
-    req.session.save();
-        console.log('session exists', req.session.username);
-        res.json({isLoggedIn: true, username: username});
-        console.log(username);
+    // Store the username in local storage
+    localStorage.setItem('username', username);
+
+    res.json({isLoggedIn: true, username: username});
 });
 
-
 buttonRoutes.route('/logout').post(async function (req, res) {
-    req.session.destroy();
+    // Remove the username from local storage
+    localStorage.removeItem('username');
+
     res.json({isLoggedIn: false});
 } );
+
+
 buttonRoutes.route('/api/check-session').get(async (req, res) => {
-    if (req.session.user.username) {
-        res.json({ loggedIn: true, username: req.session.user.username });
+    if (localStorage.getItem('username')) {
+        res.json({ loggedIn: true, username: localStorage.getItem('username') });
     } else {
         res.json({ loggedIn: false });
     }
@@ -66,7 +57,7 @@ buttonRoutes.route('/api/check-session').get(async (req, res) => {
 
 //initial page load
 buttonRoutes.route('/api/user/id').get(async (req, res) => {
-    const username = req.session.username;
+    const username = localStorage.getItem('username');
     console.log('userId connected to user route : ' + username);
     res.json({isLoggedIn: true, username: username});
 });
@@ -95,13 +86,12 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useUnifiedTopology: true,
     });
     let username;
-    if (!req.session || !req.session.username) {
+    if (!localStorage.getItem('username')) {
         res.status(401).json({isLoggedIn: false});
         return;
     } else {
-        username = req.session.username;
+        username = localStorage.getItem('username');
     }
-    req.session.username = username;
 
     await client.connect(async err => {
         const collection = client.db("button").collection("users");
@@ -127,7 +117,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
-            const username = req.session.username;
+            const username = localStorage.getItem('username');
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
@@ -169,7 +159,7 @@ buttonRoutes.route('/api/button/reset/:urlId')
           useNewUrlParser: true,
           useUnifiedTopology: true,
         });
-          const username = req.session.username;
+          const username = localStorage.getItem('username');
 
           await client.connect(err => {
           const collection = client.db("button").collection("buttons");

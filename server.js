@@ -1,8 +1,6 @@
 // var app = require('express')();
 const express = require('express');
-const cookieParser = require('cookie-parser');
-const app = express().use(cookieParser());
-app.use(cookieParser())
+const app = express();
 
 var http = require('http').createServer(app);
 const httpServer = http.listen(process.env.PORT || 5000, () => {
@@ -54,8 +52,8 @@ io.on('connection', (socket) => {
 });
 
 function checkAuth(req, res, next) {
-    // Check if user has a valid session
-    if (req.session && req.session.userId) {
+// Check if user has a valid session
+    if (localStorage.getItem('username')) {
         // User is logged in, proceed to the next middleware or route handler
         next();
     } else {
@@ -66,16 +64,6 @@ function checkAuth(req, res, next) {
 app.get('/:id', checkAuth, (req, res) => {
     res.sendFile(__dirname + '/index.html');
 } );
-const session = require('express-session');
-
-app.use(session({
-    secret: 'mysecretkey', // use a secret key to sign the session ID cookie
-    resave: true,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 // 24 hours
-    }
-}));
 const Realm = require('realm');
 const realm = new Realm.App({ id: 'readybtn-fvinc' });
 
