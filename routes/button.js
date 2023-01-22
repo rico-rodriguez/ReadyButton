@@ -69,8 +69,8 @@ buttonRoutes.route('/api/users').get(async (req, res) => {
         const collection = client.db("button").collection("buttons");
       collection.find({urlId: req.params.urlId}).toArray(async (err, result) => {
         const currentUser = await collection.findOne({urlId: req.params.urlId});
-        console.log(currentUser.usersArray[0])
-        res.json(currentUser.usersArray[0]);
+        console.log(currentUser)
+        res.json(currentUser);
         await client.close();
       });
     } catch (err) {
