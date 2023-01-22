@@ -11,6 +11,10 @@ function PostMessage() {
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(async () => {
+      // Listen for new messages from the server
+      socket.on('new message', data => {
+        setMessage(data.message);
+      });
     setCurrentUser(localStorage.getItem('username'));
         const urlId = window.location.pathname.substring(1);
         console.log(urlId)
@@ -36,10 +40,6 @@ function PostMessage() {
         if (!(currentButtonOwner === currentUser)) {
           return;
         }
-        // Listen for new messages from the server
-        socket.on('new message', data => {
-            setMessage(data.message);
-        });
     }, []);
 
     function handleSubmit(e) {
