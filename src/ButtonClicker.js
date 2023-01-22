@@ -58,6 +58,7 @@ export default function ButtonClicker() {
           {
             method: 'GET',
             headers,
+            withCredentials: true,
             credentials: 'include',
           }
       );
