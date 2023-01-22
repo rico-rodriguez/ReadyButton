@@ -29,8 +29,8 @@ function PostMessage() {
           }
         );
         const data = await response.json();
-        setCurrentButtonOwner(data.usersArray[0].username);
-        console.log(data.usersArray[0].username)
+        setCurrentButtonOwner(data[0].username);
+        console.log(data[0].username)
       console.log(currentButtonOwner)
       console.log(currentUser)
         if (!(currentButtonOwner === currentUser)) {
