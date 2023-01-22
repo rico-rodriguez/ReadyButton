@@ -120,12 +120,16 @@ export default function ButtonClicker() {
             withCredentials: true,
           }
       );
+      if (!response.ok) {
+        throw new Error('Only the button owner can reset the count!');
+      }
       const data = await response.json();
       setDataLoaded(false);
       setButtonData(data);
       setDataLoaded(true);
       socket.emit('reset', data);
     } catch (err) {
+      alert('Only the button owner can reset the count!')
       console.error('Error resetting click count:', err);
     }
   }
