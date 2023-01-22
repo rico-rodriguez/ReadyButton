@@ -35,13 +35,13 @@ export default function ClickedUsers() {
           overflow: "scroll",
           height: "500px",
           width: "200px",
-          //   style the scroll bar
         }}
       >
-        {/*Create an unordered list of all users in the usersArray*/}
+        {/*Create an unordered list of all users in the usersArray using a loop*/}
         <ul>
-          {clickedUsers.map(clickedUsers.usersArray)} => (
-          <li key={clickedUsers.usersArray}>{clickedUsers.usersArray}</li>
+          {" "}
+          {clickedUsers.map((user) => (
+            <li>{user}</li>
           ))}
         </ul>
       </div>
