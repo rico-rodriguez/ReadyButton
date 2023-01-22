@@ -37,11 +37,9 @@ export default function ClickedUsers() {
           width: "200px",
         }}
       >
-        {/*Create an unordered list of all users in the usersArray using a loop*/}
         <ul>
-          {" "}
-          {clickedUsers.map((usersArray) => (
-            <li>{usersArray}</li>
+          {clickedUsers.usersArray.map((user) => (
+            <li key={user}>{user}</li>
           ))}
         </ul>
       </div>
