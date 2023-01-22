@@ -29,10 +29,10 @@ function PostMessage() {
           }
         );
         const data = await response.json();
+        setCurrentButtonOwner(data.usersArray[0].username);
         if (!(currentButtonOwner === currentUser)) {
           return;
         }
-        setCurrentButtonOwner(data.usersArray[0].username);
         // Listen for new messages from the server
         socket.on('new message', data => {
             setMessage(data.message);
