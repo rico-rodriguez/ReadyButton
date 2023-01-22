@@ -85,7 +85,6 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
     });
     let username;
     console.log('userId connected to button:/urlId route : ' + req.headers.authorization);
-
     if (!req.headers.authorization) {
         res.status(401).json({isLoggedIn: false});
         return;
@@ -96,22 +95,26 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
             username = auth;
         }
     }
-
     await client.connect(async err => {
-        const collection = client.db("button").collection("users");
+        const collection = client.db("button").collection("buttons");
         const result = await collection.findOne({urlId: req.params.urlId});
-        if(result) {
-            if(result.usersArray.indexOf(username) !== -1) {
-                res.json({count: result.count, alreadyClicked: true});
+          if (result) {
+              res.json(result);
             } else {
-                res.json({count: result.count, alreadyClicked: false});
+            const newButton = {
+                count: 0,
+                urlId: req.params.urlId,
+                usersArray: [username]
+            };
+            collection.insertOne(newButton, function (err, result) {
+                if (err) throw err;
+                console.log("Button created successfully");
+                res.json(newButton);
+            });
             }
-        } else {
-            res.json({count: 0, alreadyClicked: false});
-        }
         await client.close();
+          });
     });
-});
 
 
 buttonRoutes.route('/api/button/increment/:urlId')
@@ -121,7 +124,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
-            const username = localStorage.getItem('username');
+            const username = req.headers.authorization;
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
