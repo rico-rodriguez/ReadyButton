@@ -139,12 +139,16 @@ buttonRoutes.route("/api/button/:urlId").get((req, res) => {
 buttonRoutes.route('/api/button/increment/:urlId')
     .patch(async (req, res) => {
         try {
+        } catch (err) {
+            console.error('Error setting loading spinner:', err);
+        }
+
+        try {
             const client = new MongoClient(connectionString, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
             const username = req.headers.authorization;
-            console.log('Username on increment is: : ' + req.headers.authorization);
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
@@ -152,12 +156,11 @@ buttonRoutes.route('/api/button/increment/:urlId')
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
                     } else {
-                        console.log("Button array:" + button);
-                        if (button.usersArray && !button.usersArray.includes(username)) {
+                        if (!button.usersArray.includes(username)) {
                             console.log(username + " is not in the array");
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
-                                $addToSet: { usersArray: username }
+                                $push: { usersArray: username }
                             }, function(err, result) {
                                 if (err) throw err;
                                 res.status(200).json({ message: "Button count updated" });
