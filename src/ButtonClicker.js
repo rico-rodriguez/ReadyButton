@@ -260,6 +260,8 @@ export default function ButtonClicker() {
   };
   return (
     <div>
+      <PostMessage />
+
       <Grid
         container
         spacing={0}
@@ -329,7 +331,6 @@ export default function ButtonClicker() {
         </Snackbar>
       </Grid>
     <Login />
-      <PostMessage />
      </div>
   );
 }
