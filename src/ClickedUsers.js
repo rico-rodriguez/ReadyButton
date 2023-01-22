@@ -43,6 +43,7 @@ export default function ClickedUsers() {
             width: "200px",
           }}
         >
+          {console.log(usersList)}
           <ul>{usersList}</ul>
         </div>
       )}
