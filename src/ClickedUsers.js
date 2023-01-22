@@ -5,9 +5,9 @@ export default function ClickedUsers() {
   const [usersList, setUsersList] = useState([]);
 
   useEffect(() => {
-    const currentUser = localStorage.getItem("username");
-    const urlId = window.location.pathname.split("/")[1];
-    async function getUsers() {
+    const interval = setInterval(async () => {
+      const currentUser = localStorage.getItem("username");
+      const urlId = window.location.pathname.split("/")[1];
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
         {
@@ -24,8 +24,12 @@ export default function ClickedUsers() {
       );
       const data = await response.json();
       setClickedUsers(data);
-    }
-    getUsers();
+      const usersList = data.usersArray.map((user) => (
+        <li key={user}>{user}</li>
+      ));
+      setUsersList(usersList);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
