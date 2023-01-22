@@ -48,6 +48,7 @@ io.on('connection', (socket) => {
     socket.on('new message', (message) => {
         // Broadcasting the message to all connected clients
         io.emit('new message', message);
+      console.log(message + " new message post from server");
     });
 });
 
