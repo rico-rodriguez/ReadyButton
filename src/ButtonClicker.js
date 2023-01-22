@@ -109,7 +109,7 @@ export default function ButtonClicker() {
       const response = await fetch(
         `https://readybutton.herokuapp.com/api/button/reset/${urlId}`,
           {
-            method: 'GET',
+            method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
               'Access-Control-Allow-Origin': '*',
