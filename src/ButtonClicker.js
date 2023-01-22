@@ -48,7 +48,7 @@ export default function ButtonClicker() {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': 'true',
-          Authorization: `Bearer ${localStorage.getItem('username')}`,
+          'Authorization': `Bearer ${localStorage.getItem('username')}`
         };
       } else {
         return window.location.href = '/';
@@ -131,7 +131,7 @@ export default function ButtonClicker() {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': 'true',
-            Authorization: `Bearer ${localStorage.getItem('username')}`,
+            'Authorization': `Bearer ${localStorage.getItem('username')}`
           };
       try {
           const response = await fetch(
