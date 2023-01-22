@@ -87,7 +87,7 @@ function PostMessage() {
           padding: "10px",
         }}
       >
-        <div>Message: {message}</div>
+        {message.length > 0 && <div>Message: {message}</div>}
       </div>
     </>
   );
