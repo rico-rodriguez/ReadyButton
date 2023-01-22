@@ -33,7 +33,7 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     const localUsername = localStorage.getItem('username')
-    console.log(localUsername + ' localUsername')
+    console.log(localUsername)
     if (localUsername !== null) {
       setUsername(localStorage.getItem('username'));
     } else {
