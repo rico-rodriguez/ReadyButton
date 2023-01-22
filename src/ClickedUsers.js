@@ -38,9 +38,8 @@ export default function ClickedUsers() {
         }}
       >
         <ul>
-          {clickedUsers.usersArray.map((user) => (
-            <li key={user}>{user}</li>
-          ))}
+          {clickedUsers.length > 0 &&
+            clickedUsers.usersArray.map((user) => <li key={user}>{user}</li>)}
         </ul>
       </div>
     </>
