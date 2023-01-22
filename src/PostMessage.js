@@ -54,14 +54,14 @@ function PostMessage() {
 
     return (
       <>
-        <div style={{ position: 'fixed', top: '20px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {currentButtonOwner === currentUser && (
+      {currentButtonOwner === currentUser && <div style={{ position: 'fixed', top: '20px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />
                     <button type="submit">Post</button>
                 </form>
-            )}
-        </div>
+
+        </div> }
     <div style={{ position: 'fixed', top: '20px', left: '50%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
                 <div>Messages:
                 <div>{message}</div></div>
