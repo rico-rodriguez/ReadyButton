@@ -65,7 +65,7 @@ function PostMessage() {
                 </form>
 
         </div> }
-    <div style={{ position: 'fixed', top: '20px', left: '20px',width: '100%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+    <div style={{ display: "flex",width: '75%%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
                 <div>Messages:
                 <div>{message}</div></div>
             </div>
