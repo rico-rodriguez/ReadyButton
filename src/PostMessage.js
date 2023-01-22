@@ -38,7 +38,7 @@ function PostMessage() {
         setCanPostMessage(true);
         // Listen for new messages from the server
         socket.on('new message', data => {
-            console.log(data);
+            setMessage(data.message);
         });
     }, []);
 
