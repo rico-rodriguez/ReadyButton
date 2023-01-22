@@ -269,6 +269,8 @@ export default function ButtonClicker() {
         justifyContent="center"
         style={{ minHeight: "100vh", overflow: "hidden" }}
       >
+        <ClickedUsers />
+
         <PostMessage />
         <div>
           <Button
@@ -331,7 +333,6 @@ export default function ButtonClicker() {
           </Alert>
         </Snackbar>
       </Grid>
-      <ClickedUsers />
       <Login />
     </div>
   );
