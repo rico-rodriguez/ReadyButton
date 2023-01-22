@@ -33,9 +33,6 @@ buttonRoutes.route('/login').post(async function (req, res) {
     const credentials = Realm.Credentials.function(loginPayload);
     const user = await app.logIn(credentials);
 
-    // Store the username in local storage
-    localStorage.setItem('username', username);
-
     res.json({isLoggedIn: true, username: username});
 });
 
