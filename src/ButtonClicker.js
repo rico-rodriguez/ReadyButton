@@ -31,20 +31,20 @@ export default function ButtonClicker() {
   const [username, setUsername] = useState('');
   const animationRef = useRef(null);
 
-  // useEffect(() => {
-  //   const localUsername = JSON.parse(localStorage.getItem('username'))
-  //   console.log(localUsername + ' localUsername')
-  //   if (localUsername > 0) {
-  //     setUsername(JSON.parse(localStorage.getItem('username')));
-  //   } else {
-  //     return window.location.href = '/';
-  //   }
-  //   }, []);
+  useEffect(() => {
+    const localUsername = localStorage.getItem('username')
+    console.log(localUsername + ' localUsername')
+    if (localUsername > 0) {
+      setUsername(localStorage.getItem('username'));
+    } else {
+      return window.location.href = '/';
+    }
+    }, []);
 
 
   useEffect(async () => {
     async function fetchUserId() {
-      console.log(JSON.parse(localStorage.getItem('username')))
+      console.log(localStorage.getItem('username'))
     const response = await fetch(
         'https://readybutton.herokuapp.com/api/user/id',
         {
@@ -53,7 +53,7 @@ export default function ButtonClicker() {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': 'true',
-            Authorization: `Bearer  ${JSON.parse(localStorage.getItem('username'))}`,
+            Authorization: `Bearer  ${localStorage.getItem('username')}`,
           },
           withCredentials: true,
           credentials: 'include',
@@ -124,7 +124,7 @@ export default function ButtonClicker() {
   useEffect(() => {
     console.log(localStorage.getItem('username'))
 
-      const username = JSON.parse(localStorage.getItem('username'));
+      const username = localStorage.getItem('username');
     async function fetchData() {
       setDataLoaded(false);
         if (username) {
@@ -137,7 +137,7 @@ export default function ButtonClicker() {
                   'Content-Type': 'application/json',
                   'Access-Control-Allow-Origin': '*',
                   'Access-Control-Allow-Credentials': 'true',
-                  Authorization: `Bearer ${JSON.parse(localStorage.getItem('username'))}`
+                  Authorization: `Bearer ${localStorage.getItem('username')}`
                 },
                 credentials: 'include',
                 withCredentials: true,  // <-- added this line
