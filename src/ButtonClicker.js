@@ -127,16 +127,18 @@ export default function ButtonClicker() {
       setDataLoaded(false);
       const username = JSON.parse(localStorage.getItem('username'));
         if (username) {
+          let headers = {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            Authorization: `Bearer ${localStorage.getItem('username')}`,
+          };
       try {
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,
               {
                 method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'Access-Control-Allow-Origin': '*',
-                  'Access-Control-Allow-Credentials': 'true',
-                },
+                headers,
                 credentials: 'include',
                 withCredentials: true,  // <-- added this line
               }
