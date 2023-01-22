@@ -62,7 +62,7 @@ function PostMessage() {
         <div
           style={{
             position: "fixed",
-            top: "70px",
+            top: "20px",
             left: "20px",
             backgroundColor: "white",
             borderRadius: "5px",
