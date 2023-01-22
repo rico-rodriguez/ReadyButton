@@ -57,7 +57,7 @@ function PostMessage() {
 
     return (
       <>
-      {currentButtonOwner === currentUser && <div style={{ position: 'fixed', top: '50px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
+      {currentButtonOwner === currentUser && <div style={{ position: 'fixed', top: '70px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
 
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />

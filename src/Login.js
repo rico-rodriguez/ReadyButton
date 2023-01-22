@@ -76,7 +76,7 @@ export default function Login() {
     return (
         <div style={{
             position: 'fixed',
-            top: '20px',
+            top: '70px',
             right: '20px',
             backgroundColor: "white",
             borderRadius: "5px",
