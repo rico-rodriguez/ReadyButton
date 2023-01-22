@@ -7,33 +7,38 @@ const socket = io('https://readybutton.herokuapp.com', {
 
 function PostMessage() {
     const [message, setMessage] = useState('');
-    const [users, setUsers] = useState([]);
+    const [currentButtonOwner, setCurrentButtonOwner] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [canPostMessage, setCanPostMessage] = useState(true);
 
-    useEffect(() => {
+    useEffect(async () => {
+    setCurrentUser(localStorage.getItem('username'));
         // Fetch the list of users from the server
-        fetch('/api/users')
-            .then(res => res.json())
-            .then(users => {
-                setUsers(users);
-                if (users.length > 0) {
-                    setCurrentUser(users[0]);
-                }
-                console.log(users)
-                console.log(currentUser)
-                setIsLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-                setIsLoading(false);
-            });
-
+        const response = await fetch(
+          `https://readybutton.herokuapp.com/api/users`,
+          {
+              method: 'GET',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Credentials': 'true',
+                  Authorization: `Bearer ${currentUser}`
+              },
+              credentials: 'include',
+              withCredentials: true,
+          }
+        );
+        const data = await response.json();
+        setCurrentButtonOwner(data.usersArray[0]);
+        if (!currentButtonOwner === currentUser) {
+            setCanPostMessage(false);
+        }
         // Listen for new messages from the server
         socket.on('new message', data => {
             console.log(data);
         });
-    }, [currentUser]);
+    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -48,7 +53,7 @@ function PostMessage() {
 
     return (
         <div style={{ position: 'fixed', top: '20px', left: '20px', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-            {currentUser ? (
+            {canPostMessage ? (
                 <form onSubmit={handleSubmit}>
                     <textarea value={message} onChange={e => setMessage(e.target.value)} />
                     <button type="submit">Post</button>
