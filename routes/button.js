@@ -151,7 +151,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
             const username = req.headers.authorization;
             await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
-                collection.findOne({ urlId: req.params.urlId }, function (err, button) {
+                collection.findOne({ urlId: req.params.urlId }, (err, button) => {
                     if (err) throw err;
                     if (!button) {
                         res.status(404).json({ message: "Button not found" });
