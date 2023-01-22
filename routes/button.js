@@ -153,7 +153,7 @@ buttonRoutes.route('/api/button/increment/:urlId')
                         res.status(404).json({ message: "Button not found" });
                     } else {
                         console.log("Button array:" + button.usersArray);
-                        if (!button.usersArray.includes(username)) {
+                        if (button.usersArray && !button.usersArray.includes(username)) {
                             console.log(username + " is not in the array");
                             collection.updateOne({ urlId: req.params.urlId }, {
                                 $inc: { count: 1 },
