@@ -128,8 +128,6 @@ export default function ButtonClicker() {
   }
 
   useEffect(() => {
-    console.log(localStorage.getItem('username'))
-
       const username = localStorage.getItem('username');
     async function fetchData() {
       setDataLoaded(false);
