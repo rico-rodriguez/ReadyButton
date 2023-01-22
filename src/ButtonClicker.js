@@ -259,7 +259,7 @@ export default function ButtonClicker() {
     }
   };
   return (
-    <div>
+    <div style={{overflow: "hidden", minHeight: '100vh'}}>
       <PostMessage />
 
       <Grid
