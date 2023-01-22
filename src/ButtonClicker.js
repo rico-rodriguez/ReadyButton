@@ -93,6 +93,7 @@ export default function ButtonClicker() {
             }
         );
         const data = await response.json();
+        console.log(data);
         setButtonData({ count: data.count });
         socket.emit('increment', data);
       } catch (err) {
