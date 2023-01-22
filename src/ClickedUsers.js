@@ -4,6 +4,7 @@ export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
 
   useEffect(async () => {
+    const currentUser = localStorage.getItem("username");
     const urlId = window.location.pathname.split("/")[1];
     const response = await fetch(
       `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
@@ -13,6 +14,7 @@ export default function ClickedUsers() {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": "true",
+          Authorization: `Bearer ${currentUser}`,
         },
         credentials: "include",
         withCredentials: true,
