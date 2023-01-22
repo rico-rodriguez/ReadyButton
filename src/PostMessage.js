@@ -12,8 +12,8 @@ function PostMessage() {
 
     useEffect(async () => {
       // Listen for new messages from the server
-      socket.on('new message', data => {
-        setMessage(data.message);
+      socket.on('new message', message => {
+        setMessage(message);
       });
     setCurrentUser(localStorage.getItem('username'));
         const urlId = window.location.pathname.substring(1);
