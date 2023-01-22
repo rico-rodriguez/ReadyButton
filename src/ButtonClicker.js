@@ -124,10 +124,10 @@ export default function ButtonClicker() {
   }
 
   useEffect(() => {
-    async function fetchData() {
-      setDataLoaded(false);
       const username = JSON.parse(localStorage.getItem('username'));
       console.log(username)
+    async function fetchData() {
+      setDataLoaded(false);
         if (username) {
           let headers = {
             'Content-Type': 'application/json',
