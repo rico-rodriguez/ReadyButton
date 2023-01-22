@@ -40,35 +40,29 @@ export default function ButtonClicker() {
     }, []);
 
 
-  useEffect(() => {
+  useEffect(async () => {
     async function fetchUserId() {
-      let headers;
-      if (localStorage.getItem('username')) {
-        headers = {
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': 'true',
-          'Authorization': `Bearer ${JSON.parse(localStorage.getItem('username'))}`,
-        };
-      } else {
-        return window.location.href = '/';
-      }
-      const response = await fetch(
-          'https://readybutton.herokuapp.com/api/user/id',
-          {
-            method: 'GET',
-            headers,
-            withCredentials: true,
-            credentials: 'include',
-          }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setUsername(data.username);
-      } else {
-        console.log('Error fetching userId');
-      }
+    const response = await fetch(
+        'https://readybutton.herokuapp.com/api/user/id',
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': 'true',
+            'Authorization': `Bearer ${JSON.parse(localStorage.getItem('username'))}`,
+          },
+          withCredentials: true,
+          credentials: 'include',
+        }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      setUsername(data.username);
+    } else {
+      console.log('Error fetching userId');
     }
+  }
     fetchUserId();
   }, []);
 
@@ -130,18 +124,17 @@ export default function ButtonClicker() {
     async function fetchData() {
       setDataLoaded(false);
         if (username) {
-          let headers = {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-            'Authorization': `Bearer ${username}`
-          };
       try {
           const response = await fetch(
               `https://readybutton.herokuapp.com/api/button/${urlId}`,
               {
                 method: 'GET',
-                headers,
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Access-Control-Allow-Origin': '*',
+                  'Access-Control-Allow-Credentials': 'true',
+                  'Authorization': `Bearer ${username}`
+                },
                 credentials: 'include',
                 withCredentials: true,  // <-- added this line
               }
