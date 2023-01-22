@@ -66,8 +66,7 @@ function PostMessage() {
 
         </div> }
     <div style={{ display: "flex",width: '75%%', backgroundColor:"white", borderRadius:"5px", padding:"10px" }}>
-                <div>Messages:
-                <div>{message}</div></div>
+                <div>Message: {message}</div>
             </div>
       </>
     );
