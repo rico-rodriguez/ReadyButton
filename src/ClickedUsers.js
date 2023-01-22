@@ -23,6 +23,7 @@ export default function ClickedUsers() {
     const data = await response.json();
     setClickedUsers(data);
     console.log(clickedUsers);
+    console.log(clickedUsers.usersArray);
   }, []);
 
   return (
