@@ -4,6 +4,7 @@ export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
 
   useEffect(async () => {
+    const urlId = window.location.pathname.split("/")[1];
     const response = await fetch(
       `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
       {
