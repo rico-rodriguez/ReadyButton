@@ -37,11 +37,11 @@ export default function ClickedUsers() {
         }}
       >
         {/*Create an unordered list of all users in the usersArray*/}
-        <ul>
-          {clickedUsers.map(clickedUsers.usersArray)} => (
-          <li key={clickedUsers.usersArray}>{clickedUsers.usersArray}</li>
-          ))}
-        </ul>
+        {/*<ul>*/}
+        {/*  {clickedUsers.map(clickedUsers.usersArray)} => (*/}
+        {/*  <li key={clickedUsers.usersArray}>{clickedUsers.usersArray}</li>*/}
+        {/*  ))}*/}
+        {/*</ul>*/}
       </div>
     </>
   );
