@@ -143,8 +143,11 @@ buttonRoutes.route('/api/button/increment/:urlId')
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
-            const username = req.headers.authorization;
-            await client.connect(err => {
+            let auth = req.headers.authorization;
+            if( auth !== undefined && auth.startsWith("Bearer ")){
+                auth = auth.split(" ");
+                username = auth[1];
+            }            await client.connect(err => {
                 const collection = client.db("button").collection("buttons");
                 collection.findOne({ urlId: req.params.urlId }, function (err, button) {
                     if (err) throw err;
