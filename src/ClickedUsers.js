@@ -29,19 +29,21 @@ export default function ClickedUsers() {
           position: "fixed",
           top: "20px",
           right: "20px",
-          backgroundColor: "white",
+          backgroundColor: "rgba(255,255,255,0.52)",
           borderRadius: "5px",
           padding: "10px",
           overflow: "scroll",
           height: "500px",
+          width: "200px",
+          //   style the scroll bar
         }}
       >
         {/*Create an unordered list of all users in the usersArray*/}
-        {/*<ul>*/}
-        {/*  {clickedUsers.map(clickedUsers.usersArray)} => (*/}
-        {/*  <li key={clickedUsers.usersArray}>{clickedUsers.usersArray}</li>*/}
-        {/*  ))}*/}
-        {/*</ul>*/}
+        <ul>
+          {clickedUsers.map(clickedUsers.usersArray)} => (
+          <li key={clickedUsers.usersArray}>{clickedUsers.usersArray}</li>
+          ))}
+        </ul>
       </div>
     </>
   );
