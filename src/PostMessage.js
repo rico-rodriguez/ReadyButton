@@ -14,7 +14,7 @@ function PostMessage() {
 
     useEffect(async () => {
     setCurrentUser(localStorage.getItem('username'));
-        const urlId = window.location.href.substring(1);
+        const urlId = window.location.pathname.substring(1);
         console.log(urlId)
         // Fetch the list of users from the server
         const response = await fetch(`https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
