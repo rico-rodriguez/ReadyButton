@@ -89,7 +89,7 @@ export default function ButtonClicker() {
                 Authorization: `Bearer ${localStorage.getItem('username')}`
               },
               credentials: 'include',
-              withCredentials: true,  // <-- added this line
+              withCredentials: true,
             }
         );
         const data = await response.json();
@@ -117,13 +117,12 @@ export default function ButtonClicker() {
               Authorization: `Bearer ${localStorage.getItem('username')}`
             },
             credentials: 'include',
-            withCredentials: true,  // <-- added this line
+            withCredentials: true,
           }
       );
       const data = await response.json();
       setDataLoaded(false);
       setButtonData(data);
-      setClickedUsers([]);
       setDataLoaded(true);
       socket.emit('reset', data);
     } catch (err) {
@@ -148,7 +147,7 @@ export default function ButtonClicker() {
                   Authorization: `Bearer ${localStorage.getItem('username')}`
                 },
                 credentials: 'include',
-                withCredentials: true,  // <-- added this line
+                withCredentials: true,
               }
           );
           if (!response.ok) {
