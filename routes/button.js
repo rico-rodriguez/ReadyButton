@@ -85,11 +85,11 @@ buttonRoutes.route("/api/button/:urlId").get(async (req, res) => {
         useUnifiedTopology: true,
     });
     let username;
-    if (!req.headers['Authorization']) {
+    if (!req.headers.Authorization) {
         res.status(401).json({isLoggedIn: false});
         return;
     } else {
-        username = localStorage.getItem('username');
+        username = req.headers.Authorization;
     }
 
     await client.connect(async err => {
