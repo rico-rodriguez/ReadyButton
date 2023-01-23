@@ -51,10 +51,10 @@ export default function ClickedUsers() {
             right: "20px",
             backgroundColor: "rgba(255,255,255,0.52)",
             borderRadius: "5px",
-            padding: "10px",
+            padding: "20px",
             overflow: "scroll",
             height: "500px",
-            width: "200px",
+            width: "fit-content",
           }}
         >
           <PerfectScrollbar>
