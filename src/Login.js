@@ -1,4 +1,4 @@
-import { Button, FormControl, FormHelperText, Input, InputLabel } from "@mui/material";
+import { Button, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
 
 export default function Login() {
@@ -117,9 +117,9 @@ export default function Login() {
           <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
           </InputLabel>
-          <FormHelperText id="my-helper-text" style={{ color: "red" }}>
-            Enter Your User Name
-          </FormHelperText>
+          {/*<FormHelperText id="my-helper-text" style={{ color: "red" }}>*/}
+          {/*  Enter Your User Name*/}
+          {/*</FormHelperText>*/}
           <Input
             id="my-input"
             aria-describedby="my-helper-text"
@@ -127,6 +127,7 @@ export default function Login() {
             onChange={handleChange}
           />
           <Button
+            contained
             onClick={handleSubmit}
             style={{ color: "#FFF" }}
           >
