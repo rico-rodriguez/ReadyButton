@@ -76,6 +76,8 @@ ul {
   list-style: none; /* removes the bullet points */
   overflow-y: hidden; /* adds a vertical scrollbar */
   overflow-x: hidden; /* hides the horizontal scrollbar */
+  margin: 0;
+  padding: 0;
   ::-webkit-scrollbar { /* webkit specific styling */
     width: 10px;
     background-color: #F5F5F5;
