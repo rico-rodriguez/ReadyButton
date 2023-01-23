@@ -1,9 +1,10 @@
-import { Box, Checkbox, Container, css, Typography } from "@mui/material";
+import { Box, Checkbox, Container, Typography } from "@mui/material";
 import * as PropTypes from "prop-types";
 import Login from "./Login";
+
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com/", {
-  withCredentials: false,
+  withCredentials: false
 });
 socket.on("connect", () => {
   socket.emit("connection", null);
@@ -17,7 +18,7 @@ function CustomCheckbox(props) {
       sx={{
         display: "flex",
         alignItems: "center",
-        "& > :not(style)": { m: 1 },
+        "& > :not(style)": { m: 1 }
       }}
     >
       <Checkbox checked={checked} onChange={onChange} {...other} />
@@ -27,10 +28,11 @@ function CustomCheckbox(props) {
     </Box>
   );
 }
+
 CustomCheckbox.propTypes = {
   onChange: PropTypes.func,
   checked: PropTypes.bool,
-  className: PropTypes.any,
+  className: PropTypes.any
 };
 export default function Home() {
   return (
@@ -41,7 +43,7 @@ export default function Home() {
         style={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "center"
         }}
       >
         <Container
@@ -63,7 +65,7 @@ export default function Home() {
             marginTop: "10px",
             marginBottom: "10px",
             height: "100%",
-            zIndex: -1,
+            zIndex: -1
           }}
         >
           <Typography
@@ -74,7 +76,7 @@ export default function Home() {
               color: "white",
               padding: "20px",
               textAlign: "center",
-              fontSize: "4rem",
+              fontSize: "4rem"
             }}
           >
             Welcome
@@ -86,7 +88,7 @@ export default function Home() {
               padding: "20px",
               fontFamily: "Source Code Pro, monospace",
               fontSize: "14px",
-              borderRadius: "5px",
+              borderRadius: "5px"
             }}
           >
             <Typography variant="subtitle1">
@@ -101,7 +103,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={false}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add a settings button that allows you to set a click limit,
@@ -112,7 +115,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={false}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add settings to turn off features
@@ -122,7 +126,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={false}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Restrict URL's that can be made, clean periodically
@@ -131,8 +136,9 @@ export default function Home() {
               <li className="featureItem">
                 <CustomCheckbox
                   className="customCheckbox"
-                  checked={false}
-                  onChange={() => {}}
+                  checked={true}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add the ability to set usernames and share username of people
@@ -143,7 +149,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Post your own question to the button header
@@ -153,7 +160,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Back user list to db to keep track of who has clicked and
@@ -164,7 +172,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={false}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Integrate with Teams via webhooks/client bot
@@ -174,7 +183,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add Emoji burst from cursor on click
@@ -184,7 +194,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Integrate websockets for incrementing button/resetting
@@ -194,7 +205,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add Loading spinner that sends signals out via websockets
@@ -204,7 +216,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Add Snackbar for button reset
@@ -214,7 +227,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">Enable Reset button</Typography>
               </li>
@@ -222,7 +236,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Migrate to web and modify localhost to web addresses.
@@ -232,7 +247,8 @@ export default function Home() {
                 <CustomCheckbox
                   className="customCheckbox"
                   checked={true}
-                  onChange={() => {}}
+                  onChange={() => {
+                  }}
                 />
                 <Typography variant="subtitle2">
                   Integrate websockets for snackbar notification
