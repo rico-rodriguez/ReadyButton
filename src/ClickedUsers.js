@@ -5,6 +5,7 @@ export default function ClickedUsers() {
   const [usersList, setUsersList] = useState([]);
 
   useEffect(async () => {
+    setInterval(async () => {
     const currentUser = localStorage.getItem("username");
     const urlId = window.location.pathname.split("/")[1];
     const response = await fetch(
@@ -27,6 +28,7 @@ export default function ClickedUsers() {
       <li key={user}>{user}</li>
     ));
     setUsersList(usersList);
+    }, 3000);
   }, []);
 
   useEffect(() => {
