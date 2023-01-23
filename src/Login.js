@@ -107,7 +107,7 @@ export default function Login() {
             onClick={Logout}
             style={{
               color: "white",
-              position: "relative",
+              position: "absolute",
               right: "10px",
             }}
           >
