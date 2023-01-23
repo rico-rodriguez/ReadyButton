@@ -24,7 +24,6 @@ function PostMessage() {
     });
     setCurrentUser(localStorage.getItem("username"));
     const urlId = window.location.pathname.substring(1);
-    console.log(urlId);
     // Fetch the list of users from the server
     const response = await fetch(
       `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
@@ -42,9 +41,6 @@ function PostMessage() {
     );
     const data = await response.json();
     setCurrentButtonOwner(data.usersArray[0]);
-    console.log(data.usersArray[0]);
-    console.log(currentButtonOwner);
-    console.log(currentUser);
     if (!(currentButtonOwner === currentUser)) {
       return;
     }
@@ -54,13 +50,11 @@ function PostMessage() {
     e.preventDefault();
     // Send the message to the server via Socket.io
     sendMessage(message);
-    console.log(message, currentUser);
     setMessage("");
   }
 
   function sendMessage(messageData) {
     socket.emit("new message", messageData);
-    console.log(messageData + "log after emit");
   }
 
   return (
