@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Skeleton } from "@mui/material";
 
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
+  const [isDataFetched, setIsDataFetched] = useState(false);
 
 
   useEffect(() => {
-    setTimeout(() => {
-      return (
-        <Skeleton variant="rectangular" width="210" height="500" />
-      );
-    }, 3000);
     setInterval(async () => {
       const currentUser = localStorage.getItem("username");
       const urlId = window.location.pathname.split("/")[1];
@@ -50,6 +45,7 @@ export default function ClickedUsers() {
 
   return (
     <>
+      {!isDataFetched && <Skeleton variant="rectangular" width="210" height="500" />}
       {clickedUsers.usersArray && (
         <div
           style={{
