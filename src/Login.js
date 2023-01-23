@@ -83,7 +83,7 @@ export default function Login() {
     <div
       style={{
         position: "fixed",
-        bottom: "10px",
+        bottom: "20px",
         width: "100%",
         height: "20px",
         backgroundColor: "rgba(255,255,255,0.62)",
