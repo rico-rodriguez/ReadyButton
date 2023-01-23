@@ -136,6 +136,17 @@ export default function Home() {
               <li className="featureItem">
                 <CustomCheckbox
                   className="customCheckbox"
+                  checked={false}
+                  onChange={() => {
+                  }}
+                />
+                <Typography variant="subtitle2">
+                  Integrate with Teams via webhooks/client bot
+                </Typography>
+              </li>
+              <li className="featureItem">
+                <CustomCheckbox
+                  className="customCheckbox"
                   checked={true}
                   onChange={() => {
                   }}
@@ -166,17 +177,6 @@ export default function Home() {
                 <Typography variant="subtitle2">
                   Back user list to db to keep track of who has clicked and
                   release names when reset
-                </Typography>
-              </li>
-              <li className="featureItem">
-                <CustomCheckbox
-                  className="customCheckbox"
-                  checked={false}
-                  onChange={() => {
-                  }}
-                />
-                <Typography variant="subtitle2">
-                  Integrate with Teams via webhooks/client bot
                 </Typography>
               </li>
               <li className="featureItem">
