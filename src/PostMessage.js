@@ -101,7 +101,8 @@ function PostMessage() {
                 backgroundColor: "rgba(164,164,164,0.16)",
                 color: "#fff",
                 width: "100px",
-                height: "50px"
+                height: "50px",
+                marginRight: "5px"
               }}
             >
               Post a message
