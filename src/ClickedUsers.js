@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PerfectScrollbar from "react-perfect-scrollbar";
+import PerfectScrollbar from "perfect-scrollbar";
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
