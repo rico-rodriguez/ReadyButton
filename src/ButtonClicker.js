@@ -254,80 +254,82 @@ export default function ButtonClicker() {
     }
   };
   return (
-    <div style={{ overflow: "hidden", minHeight: "100vh" }}>
-      <Grid
-        container
-        spacing={0}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        style={{ minHeight: "100vh", overflow: "hidden" }}
-      >
-        <ClickedUsers />
+    <>
+      <div style={{ overflow: "hidden", minHeight: "100vh" }}>
+        <Grid
+          container
+          spacing={0}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          style={{ minHeight: "100vh", overflow: "hidden" }}
+        >
+          <ClickedUsers />
 
-        <PostMessage />
-        <div>
-          <Button
-            id="my-div"
-            style={{
-              width: "3em",
-              height: "3em",
-              fontSize: "90px",
-              borderRadius: "9999px",
-              marginBottom: "20px",
-              marginTop: "20px",
-              filter: "drop-shadow(5px 5px 10px #000)"
-            }}
-            disabled={clickedUsers.includes(urlId)}
-            color="primary"
-            variant="contained"
-            onClick={handleClick}
-          >
-            {clickedUsers.includes(urlId) && (
-              <div className="completedClick"></div>
-            )}
+          <PostMessage />
+          <div>
+            <Button
+              id="my-div"
+              style={{
+                width: "3em",
+                height: "3em",
+                fontSize: "90px",
+                borderRadius: "9999px",
+                marginBottom: "20px",
+                marginTop: "20px",
+                filter: "drop-shadow(5px 5px 10px #000)"
+              }}
+              disabled={clickedUsers.includes(urlId)}
+              color="primary"
+              variant="contained"
+              onClick={handleClick}
+            >
+              {clickedUsers.includes(urlId) && (
+                <div className="completedClick"></div>
+              )}
 
-            {!dataLoaded ? (
-              <CircularProgress
-                color="success"
-                style={{
-                  position: "absolute",
-                  width: "3em",
-                  height: "3em",
-                  fontSize: "90px"
-                }}
-              />
-            ) : (
-              buttonData.count
-            )}
+              {!dataLoaded ? (
+                <CircularProgress
+                  color="success"
+                  style={{
+                    position: "absolute",
+                    width: "3em",
+                    height: "3em",
+                    fontSize: "90px"
+                  }}
+                />
+              ) : (
+                buttonData.count
+              )}
+            </Button>
+            {emojiVisible && <div></div>}
+          </div>
+          <Button color="neutral" variant="contained" onClick={handleReset}>
+            Reset
           </Button>
-          {emojiVisible && <div></div>}
-        </div>
-        <Button color="neutral" variant="contained" onClick={handleReset}>
-          Reset
-        </Button>
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          autoHideDuration={3000}
-          open={snackbarOpen}
-          onClose={() => setSnackbarOpen(false)}
-        >
-          <Alert severity="success" sx={{ width: "100%" }}>
-            Someone clicked the button!
-          </Alert>
-        </Snackbar>
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-          autoHideDuration={3000}
-          open={snackbarOpenReset}
-          onClose={() => setSnackbarOpenReset(false)}
-        >
-          <Alert severity="error" sx={{ width: "100%" }}>
-            Button count reset!
-          </Alert>
-        </Snackbar>
-        <Login />
-      </Grid>
-    </div>
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            autoHideDuration={3000}
+            open={snackbarOpen}
+            onClose={() => setSnackbarOpen(false)}
+          >
+            <Alert severity="success" sx={{ width: "100%" }}>
+              Someone clicked the button!
+            </Alert>
+          </Snackbar>
+          <Snackbar
+            anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+            autoHideDuration={3000}
+            open={snackbarOpenReset}
+            onClose={() => setSnackbarOpenReset(false)}
+          >
+            <Alert severity="error" sx={{ width: "100%" }}>
+              Button count reset!
+            </Alert>
+          </Snackbar>
+        </Grid>
+      </div>
+      <Login />
+    </>
   );
 }
