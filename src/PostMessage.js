@@ -124,6 +124,19 @@ function PostMessage() {
         )}
         {loading && <Skeleton />}
       </div>
+      {message.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            minWidth: "400px",
+            backgroundColor: "white",
+            borderRadius: "5px",
+            padding: "10px"
+          }}
+        >
+          <div>Message: {message}</div>
+        </div>
+      )}
     </>
   );
 }
