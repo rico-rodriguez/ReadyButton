@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Popover, Skeleton } from "@mui/material";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com", {
@@ -94,19 +95,21 @@ function PostMessage() {
               borderRadius: "5px"
             }}
           >
-            <Button
-              variant="outlined"
-              onClick={handleClick}
-              style={{
-                backgroundColor: "rgba(164,164,164,0.16)",
-                color: "#fff",
-                width: "100px",
-                height: "50px",
-                marginRight: "5px"
-              }}
-            >
-              Post a message
-            </Button>
+            <Tooltip title="You will have to post the message again for users who join late" arrow>
+              <Button
+                variant="outlined"
+                onClick={handleClick}
+                style={{
+                  backgroundColor: "rgba(164,164,164,0.16)",
+                  color: "#fff",
+                  width: "100px",
+                  height: "50px",
+                  marginRight: "5px"
+                }}
+              >
+                Post a message
+              </Button>
+            </Tooltip>
             <Popover
               sx={{
                 padding: "20px"
