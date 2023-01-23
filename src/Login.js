@@ -84,7 +84,8 @@ export default function Login() {
         borderRadius: "5px",
         padding: "10px",
         zIndex: "0",
-        color: "white"
+        color: "white",
+        left: "70%"
       }}
     >
       {isLoggedIn ? (
@@ -111,22 +112,20 @@ export default function Login() {
       ) : (
         <FormControl
           style={{
-            color: "white",
-            position: "absolute",
-            right: "10px"
+            color: "white"
           }}>
           <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
           </InputLabel>
+          <FormHelperText id="my-helper-text" style={{ color: "red" }}>
+            Enter Your User Name
+          </FormHelperText>
           <Input
             id="my-input"
             aria-describedby="my-helper-text"
             value={name}
             onChange={handleChange}
           />
-          <FormHelperText id="my-helper-text" style={{ color: "black" }}>
-            Enter Your User Name
-          </FormHelperText>
           <Button
             onClick={handleSubmit}
             style={{ color: "#FFF" }}
