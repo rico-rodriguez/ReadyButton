@@ -48,7 +48,7 @@ export default function ClickedUsers() {
         <div
           style={{
             position: "fixed",
-            top: "20px",
+            top: "50px",
             right: "20px",
             backgroundColor: "rgba(255,255,255,0.52)",
             borderRadius: "5px",
