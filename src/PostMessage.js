@@ -105,7 +105,9 @@ function PostMessage() {
               Post a message
             </Button>
             <Popover
-              sx={{ padding: "20px" }}
+              sx={{
+                padding: "20px", backgroundColor: "#787d88"
+              }}
               open={Boolean(anchorEl)}
               anchorEl={anchorEl}
               onClose={handleClose}
@@ -124,7 +126,7 @@ function PostMessage() {
               onChange={(e) => setMessage(e.target.value)}
               style={{
                 width: "400px", height: "30px", padding: "10px", borderRadius: "5px", border: "1px solid black",
-                fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "white",
+                fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "rgb(79, 84, 94)",
                 color: "black", margin: "10px"
               }}
             />
