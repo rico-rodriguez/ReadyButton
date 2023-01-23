@@ -106,7 +106,7 @@ function PostMessage() {
             </Button>
             <Popover
               sx={{
-                padding: "20px", backgroundColor: "#787d88"
+                padding: "20px"
               }}
               open={Boolean(anchorEl)}
               anchorEl={anchorEl}
@@ -120,7 +120,8 @@ function PostMessage() {
                 horizontal: "center"
               }}
             >
-              <form style={{ display: "flex", alignItems: "center" }} onSubmit={handleSubmit}>
+              <form style={{ display: "flex", alignItems: "center", backgroundColor: "#787d88" }}
+                    onSubmit={handleSubmit}>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
