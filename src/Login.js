@@ -82,6 +82,10 @@ export default function Login() {
   return (
     <div
       style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
         position: "fixed",
         bottom: "20px",
         width: "100%",
