@@ -73,7 +73,6 @@ function PostMessage() {
             left: "20px",
             backgroundColor: "white",
             borderRadius: "5px",
-            padding: "10px",
           }}
         >
           <Button
