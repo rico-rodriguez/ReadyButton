@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
-import PerfectScrollbar from "perfect-scrollbar";
+import React, { useEffect, useState } from "react";
+
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
 
   useEffect(async () => {
     setInterval(async () => {
-    const currentUser = localStorage.getItem("username");
-    const urlId = window.location.pathname.split("/")[1];
-    const response = await fetch(
-      `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          Authorization: `Bearer ${currentUser}`,
-        },
-        credentials: "include",
-        withCredentials: true,
-      }
-    );
-    const data = await response.json();
-    setClickedUsers(data);
-    const usersList = data.usersArray.map((user) => (
-      <li key={user}>{user}</li>
-    ));
-    setUsersList(usersList);
+      const currentUser = localStorage.getItem("username");
+      const urlId = window.location.pathname.split("/")[1];
+      const response = await fetch(
+        `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            Authorization: `Bearer ${currentUser}`
+          },
+          credentials: "include",
+          withCredentials: true
+        }
+      );
+      const data = await response.json();
+      setClickedUsers(data);
+      const usersList = data.usersArray.map((user) => (
+        <li key={user}>{user}</li>
+      ));
+      setUsersList(usersList);
     }, 3000);
   }, []);
 
@@ -35,7 +35,7 @@ export default function ClickedUsers() {
     if (clickedUsers.usersArray) {
       const usersList = clickedUsers.usersArray.slice(1).map((user) => (
 
-        <li key={user}>{user}</li>
+        <li className="featureItem" key={user}>{user}</li>
       ));
       setUsersList(usersList);
     }
@@ -59,12 +59,12 @@ export default function ClickedUsers() {
             fontSize: "20px",
             fontWeight: "bold",
             color: "black",
-            fontFamily: "Roboto",
+            fontFamily: "Roboto"
           }}
         >
           Admin: {clickedUsers.usersArray[0]}
           <hr />
-        <ul className="userList">{usersList}</ul>
+          <ul className="featureList">{usersList}</ul>
         </div>
       )}
     </>

@@ -83,7 +83,6 @@ export default function Login() {
         padding: "10px",
         zIndex: "0",
         color: "white",
-        left: "93%",
         display: "flex",
         justifyContent: "center"
       }}
