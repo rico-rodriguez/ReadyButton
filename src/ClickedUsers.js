@@ -53,7 +53,10 @@ export default function ClickedUsers() {
             overflow: "hidden",
             height: "500px",
             width: "fit-content",
-
+            fontSize: "20px",
+            fontWeight: "bold",
+            color: "black",
+            fontFamily: "Roboto",
           }}
         >
         <ul>{usersList}</ul>
