@@ -82,7 +82,8 @@ function PostMessage() {
             borderRadius: "5px"
           }}
         >
-          <Skeleton variant={"rectangular"} animation={"wave"} width={100} height={50} />
+          <Skeleton sx={{ bgcolor: "grey.900" }}
+                    variant={"rectangular"} animation={"wave"} width={100} height={50} />
         </div>)}
       <div style={{ display: loading ? "none" : "block" }}>
         {currentButtonOwner === currentUser && (
@@ -104,7 +105,7 @@ function PostMessage() {
                   color: "#fff",
                   width: "100px",
                   height: "50px",
-                  marginRight: "5px"
+                  margin: "5px"
                 }}
               >
                 Post a message
