@@ -7,7 +7,7 @@ const socket = io("https://readybutton.herokuapp.com", {
 });
 
 function PostMessage() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [currentButtonOwner, setCurrentButtonOwner] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
