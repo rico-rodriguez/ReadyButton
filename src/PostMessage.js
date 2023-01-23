@@ -81,7 +81,7 @@ function PostMessage() {
             borderRadius: "5px"
           }}
         >
-          <Skeleton variant={"rectangular"} width={100} height={50} />
+          <Skeleton variant={"rectangular"} animation={"wave"} width={100} height={50} />
         </div>)}
       <div style={{ display: loading ? "none" : "block" }}>
         {currentButtonOwner === currentUser && (
@@ -138,7 +138,6 @@ function PostMessage() {
           </div>
         )}
       </div>
-      {loading && <Skeleton />}
       {message.length > 0 && (
         <div
           style={{
