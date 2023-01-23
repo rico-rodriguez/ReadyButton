@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button, Popover } from "@mui/material";
+
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com", {
-  withCredentials: true,
+  withCredentials: true
 });
 
 function PostMessage() {
@@ -33,16 +34,16 @@ function PostMessage() {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Credentials": "true",
-          Authorization: `Bearer ${currentUser}`,
+          Authorization: `Bearer ${currentUser}`
         },
         credentials: "include",
-        withCredentials: true,
+        withCredentials: true
       }
     );
     const data = await response.json();
     setCurrentButtonOwner(data.usersArray[0]);
     if (!(currentButtonOwner === currentUser)) {
-      return;
+
     }
   }, []);
 
@@ -63,10 +64,10 @@ function PostMessage() {
         <div
           style={{
             position: "fixed",
-            top: "20px",
+            top: "12px",
             left: "20px",
             backgroundColor: "white",
-            borderRadius: "5px",
+            borderRadius: "5px"
           }}
         >
           <Button
@@ -76,26 +77,28 @@ function PostMessage() {
             Post a message
           </Button>
           <Popover
-            sx={{padding: "20px"}}
+            sx={{ padding: "20px" }}
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
               vertical: "bottom",
-              horizontal: "center",
+              horizontal: "center"
             }}
             transformOrigin={{
               vertical: "top",
-              horizontal: "center",
+              horizontal: "center"
             }}
           >
             <form onSubmit={handleSubmit}>
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            style={{width: "400px", height: "30px", padding: "10px", borderRadius: "5px", border: "1px solid black",
+            style={{
+              width: "400px", height: "30px", padding: "10px", borderRadius: "5px", border: "1px solid black",
               fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "white",
-              color: "black", margin: "10px"}}
+              color: "black", margin: "10px"
+            }}
           />
               <button type="submit">Post</button>
             </form>
@@ -121,7 +124,7 @@ function PostMessage() {
             minWidth: "400px",
             backgroundColor: "white",
             borderRadius: "5px",
-            padding: "10px",
+            padding: "10px"
           }}
         >
           <div>Message: {message}</div>
