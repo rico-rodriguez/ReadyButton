@@ -18,34 +18,39 @@ function PostMessage() {
     setAnchorEl(null);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     // Listen for new messages from the server
     socket.on("new message", (message) => {
       setMessage(message);
     });
     setCurrentUser(localStorage.getItem("username"));
-    const urlId = window.location.pathname.substring(1);
-    // Fetch the list of users from the server
-    const response = await fetch(
-      `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
-          Authorization: `Bearer ${currentUser}`
-        },
-        credentials: "include",
-        withCredentials: true
-      }
-    );
-    const data = await response.json();
-    setCurrentButtonOwner(data.usersArray[0]);
-    if (!(currentButtonOwner === currentUser)) {
-
-    }
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      const fetchUsers = async () => {
+        const urlId = window.location.pathname.substring(1);
+        // Fetch the list of users from the server
+        const response = await fetch(
+          `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Credentials": "true",
+              Authorization: `Bearer ${currentUser}`
+            },
+            credentials: "include",
+            withCredentials: true
+          }
+        );
+        const data = await response.json();
+        setCurrentButtonOwner(data.usersArray[0]);
+      };
+      fetchUsers();
+    }
+  }, [currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,6 +62,7 @@ function PostMessage() {
   function sendMessage(messageData) {
     socket.emit("new message", messageData);
   }
+
 
   return (
     <>
