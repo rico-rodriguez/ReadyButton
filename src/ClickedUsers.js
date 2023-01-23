@@ -61,8 +61,8 @@ export default function ClickedUsers() {
           }}
         >
         <ul>{usersList}</ul>
-        </div>
         {/*</PerfectScrollbar>*/}
+        </div>
       )}
     </>
   );
