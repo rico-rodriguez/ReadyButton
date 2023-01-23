@@ -9,6 +9,13 @@ function PostMessage() {
   const [message, setMessage] = useState("");
   const [currentButtonOwner, setCurrentButtonOwner] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(async () => {
     // Listen for new messages from the server
@@ -69,13 +76,45 @@ function PostMessage() {
             padding: "10px",
           }}
         >
-          <form onSubmit={handleSubmit}>
-            <textarea
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            />
-            <button type="submit">Post</button>
-          </form>
+          <Button
+            variant="outlined"
+            onClick={handleClick}
+          >
+            Post a message
+          </Button>
+          <Popover
+            open={Boolean(anchorEl)}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "center",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "center",
+            }}
+          >
+            <form onSubmit={handleSubmit}>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          />
+              <button type="submit">Post</button>
+            </form>
+            {message.length > 0 && (
+              <div>
+                <div>Message: {message}</div>
+              </div>
+            )}
+          </Popover>
+          {/*<form onSubmit={handleSubmit}>*/}
+          {/*  <textarea*/}
+          {/*    value={message}*/}
+          {/*    onChange={(e) => setMessage(e.target.value)}*/}
+          {/*  />*/}
+          {/*  <button type="submit">Post</button>*/}
+          {/*</form>*/}
         </div>
       )}
       {message.length > 0 && (
