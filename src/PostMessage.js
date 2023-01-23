@@ -128,7 +128,7 @@ function PostMessage() {
         <div
           style={{
             position: "absolute",
-            top: "20%",
+            top: "15%",
             display: "flex",
             minWidth: "400px",
             backgroundColor: "#92979fc7",
