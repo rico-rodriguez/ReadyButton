@@ -116,7 +116,7 @@ function PostMessage() {
               </form>
               {message.length > 0 && (
                 <div>
-                  <div>Message: {message}</div>
+                  <div>{message}</div>
                 </div>
               )}
             </Popover>
@@ -127,14 +127,16 @@ function PostMessage() {
       {message.length > 0 && (
         <div
           style={{
+            position: "absolute",
+            top: "20%",
             display: "flex",
             minWidth: "400px",
-            backgroundColor: "white",
+            backgroundColor: "#92979fc7",
             borderRadius: "5px",
             padding: "10px"
           }}
         >
-          <div>Message: {message}</div>
+          <div>{message}</div>
         </div>
       )}
     </>
