@@ -45,7 +45,7 @@ export default function ClickedUsers() {
 
   return (
     <>
-      {usersList.length === 0 && <Skeleton variant="rectangular" width="210" height="500" />}
+      {usersList.length < 1 && <Skeleton variant="rectangular" width="210" height="500" />}
       {clickedUsers.usersArray && (
         <div
           style={{
