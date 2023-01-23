@@ -255,7 +255,8 @@ export default function ButtonClicker() {
   };
   return (
     <>
-      <div style={{ overflow: "hidden", minHeight: "100vh" }}>
+      <Login />
+      <div>
         <Grid
           container
           spacing={0}
@@ -329,7 +330,6 @@ export default function ButtonClicker() {
           </Snackbar>
         </Grid>
       </div>
-      <Login />
     </>
   );
 }
