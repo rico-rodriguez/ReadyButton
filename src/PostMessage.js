@@ -53,7 +53,7 @@ function PostMessage() {
       };
       setTimeout(() => {
         fetchUsers();
-      }, 3000);
+      }, 1000);
     }
   }, [currentUser]);
 
