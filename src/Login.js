@@ -115,7 +115,12 @@ export default function Login() {
           </Button>
         </div>
       ) : (
-        <FormControl>
+        <FormControl
+          style={{
+            color: "white",
+            position: "absolute",
+            right: "10px",
+          }}>
           <InputLabel style={{ color: "black" }} htmlFor="my-input">
             User Name
           </InputLabel>
