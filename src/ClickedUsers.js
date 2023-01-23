@@ -33,7 +33,8 @@ export default function ClickedUsers() {
 
   useEffect(() => {
     if (clickedUsers.usersArray) {
-      const usersList = clickedUsers.usersArray.map((user) => (
+      const usersList = clickedUsers.usersArray.slice(1).map((user) => (
+
         <li key={user}>{user}</li>
       ));
       setUsersList(usersList);
