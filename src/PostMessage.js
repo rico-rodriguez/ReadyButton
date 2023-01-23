@@ -53,7 +53,7 @@ function PostMessage() {
       };
       setTimeout(() => {
         fetchUsers();
-      }, 5000);
+      }, 1000);
     }
   }, [currentUser]);
 
@@ -71,7 +71,7 @@ function PostMessage() {
 
   return (
     <>
-      {!currentButtonOwner === currentUser && (
+      {loading && (
         <div
           style={{
             position: "fixed",
