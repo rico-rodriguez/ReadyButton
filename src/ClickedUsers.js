@@ -61,8 +61,7 @@ export default function ClickedUsers() {
             fontFamily: "Roboto",
           }}
         >
-          Button Owner:
-
+          Admin: {clickedUsers.usersArray[0]}
         <ul>{usersList}</ul>
         </div>
       )}
