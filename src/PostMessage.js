@@ -120,7 +120,7 @@ function PostMessage() {
                 horizontal: "center"
               }}
             >
-              <form onSubmit={handleSubmit}>
+              <form style={{ display: "flex", alignItems: "center" }} onSubmit={handleSubmit}>
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
@@ -130,7 +130,8 @@ function PostMessage() {
                 color: "black", margin: "10px"
               }}
             />
-                <button type="submit">Post</button>
+                <button style={{ fontSize: "1.5rem", margin: "0", backgroundColor: "#343637" }} type="submit">Send
+                </button>
               </form>
             </Popover>
           </div>
