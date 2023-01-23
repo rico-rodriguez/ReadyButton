@@ -99,7 +99,9 @@ function PostMessage() {
               onClick={handleClick}
               style={{
                 backgroundColor: "rgba(164,164,164,0.16)",
-                color: "#fff"
+                color: "#fff",
+                width: "100px",
+                height: "50px"
               }}
             >
               Post a message
