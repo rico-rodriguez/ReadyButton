@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import PerfectScrollbar from "react-perfect-scrollbar";
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
@@ -57,7 +57,9 @@ export default function ClickedUsers() {
             width: "200px",
           }}
         >
-          <ul>{usersList}</ul>
+          <PerfectScrollbar>
+        <ul>{usersList}</ul>
+        </PerfectScrollbar>
         </div>
       )}
     </>
