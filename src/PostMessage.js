@@ -90,12 +90,12 @@ function PostMessage() {
               position: "fixed",
               top: "12px",
               left: "20px",
-              backgroundColor: "white",
+              backgroundColor: "rgba(164,164,164,0.16)",
               borderRadius: "5px"
             }}
           >
             <Button
-              variant="contained"
+              variant="outlined"
               onClick={handleClick}
               style={{
                 backgroundColor: "rgba(164,164,164,0.16)",
