@@ -103,7 +103,7 @@ export default function Login() {
          <p>Welcome, {userName}</p>
           <Button
             size="small"
-            variant="outlined"
+            variant="text"
             onClick={Logout}
             style={{
               color: "white",
