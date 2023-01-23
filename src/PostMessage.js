@@ -77,6 +77,7 @@ function PostMessage() {
             position: "fixed",
             top: "12px",
             left: "20px",
+            backgroundColor: "rgba(164,164,164,0.16)",
             borderRadius: "5px"
           }}
         >
