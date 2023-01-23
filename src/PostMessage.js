@@ -130,11 +130,6 @@ function PostMessage() {
             />
                 <button type="submit">Post</button>
               </form>
-              {message.length > 0 && (
-                <div>
-                  <div>{message}</div>
-                </div>
-              )}
             </Popover>
           </div>
         )}
