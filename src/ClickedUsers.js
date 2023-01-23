@@ -8,7 +8,7 @@ export default function ClickedUsers() {
 
 
   useEffect(() => {
-    setIsDataFetched(false);
+
     setInterval(async () => {
       const currentUser = localStorage.getItem("username");
       const urlId = window.location.pathname.split("/")[1];
@@ -32,14 +32,13 @@ export default function ClickedUsers() {
         <li key={user}>{user}</li>
       ));
       setUsersList(usersList);
-      setIsDataFetched(true);
     }, 1000);
   }, []);
   useEffect(() => {
     return (
       <Skeleton variant="rectangular" width="210" height="500" />
     );
-  }, [isDataFetched]);
+  }, []);
   useEffect(() => {
     if (clickedUsers.usersArray) {
       const usersList = clickedUsers.usersArray.slice(1).map((user) => (
@@ -52,30 +51,29 @@ export default function ClickedUsers() {
 
   return (
     <>
-      {isDataFetched &&
-        clickedUsers.usersArray && (
-          <div
-            style={{
-              position: "fixed",
-              top: "115px",
-              right: "20px",
-              backgroundColor: "rgba(255,255,255,0.52)",
-              borderRadius: "5px",
-              padding: "20px",
-              overflow: "hidden",
-              height: "500px",
-              width: "fit-content",
-              fontSize: "20px",
-              fontWeight: "bold",
-              color: "black",
-              fontFamily: "Roboto"
-            }}
-          >
-            Admin: {clickedUsers.usersArray[0]}
-            <hr />
-            <ul className="featureList">{usersList}</ul>
-          </div>
-        )}
+      {clickedUsers.usersArray && (
+        <div
+          style={{
+            position: "fixed",
+            top: "115px",
+            right: "20px",
+            backgroundColor: "rgba(255,255,255,0.52)",
+            borderRadius: "5px",
+            padding: "20px",
+            overflow: "hidden",
+            height: "500px",
+            width: "fit-content",
+            fontSize: "20px",
+            fontWeight: "bold",
+            color: "black",
+            fontFamily: "Roboto"
+          }}
+        >
+          Admin: {clickedUsers.usersArray[0]}
+          <hr />
+          <ul className="featureList">{usersList}</ul>
+        </div>
+      )}
     </>
   );
 }
