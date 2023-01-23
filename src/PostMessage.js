@@ -71,6 +71,18 @@ function PostMessage() {
 
   return (
     <>
+      {!currentButtonOwner === currentUser && (
+        <div
+          style={{
+            position: "fixed",
+            top: "12px",
+            left: "20px",
+            backgroundColor: "white",
+            borderRadius: "5px"
+          }}
+        >
+          <Skeleton variant={"rectangular"} width={30} height={20} />
+        </div>)}
       <div style={{ display: loading ? "none" : "block" }}>
         {currentButtonOwner === currentUser && (
           <div
