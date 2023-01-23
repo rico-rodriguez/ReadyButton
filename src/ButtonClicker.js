@@ -34,7 +34,6 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     const localUsername = localStorage.getItem("username");
-    console.log(localUsername);
     if (localUsername !== null) {
       setUsername(localStorage.getItem("username"));
     } else {
@@ -44,7 +43,6 @@ export default function ButtonClicker() {
 
   useEffect(async () => {
     async function fetchUserId() {
-      console.log(localStorage.getItem("username"));
       const response = await fetch(
         "https://readybutton.herokuapp.com/api/user/id",
         {
