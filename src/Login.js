@@ -90,7 +90,7 @@ export default function Login() {
         bottom: "0px",
         width: "100%",
         height: "20px",
-        backgroundColor: "rgba(255,255,255,0.62)",
+        backgroundColor: "rgba(110,110,110,0.79)",
         borderRadius: "5px",
         padding: "10px",
         zIndex: "0",
