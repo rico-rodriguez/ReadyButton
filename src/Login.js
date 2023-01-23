@@ -132,7 +132,8 @@ export default function Login() {
             style={{ color: "#FFF" }}
           />
           <Button
-            contained
+            outline
+            color="success"
             onClick={handleSubmit}
             style={{ color: "#FFF" }}
           >
