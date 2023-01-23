@@ -71,7 +71,6 @@ function PostMessage() {
 
   return (
     <>
-      return (
       <div style={{ display: loading ? "none" : "block" }}>
         {currentButtonOwner === currentUser && (
           <div
@@ -125,7 +124,6 @@ function PostMessage() {
         )}
         {loading && <Skeleton />}
       </div>
-      )
     </>
   );
 }
