@@ -106,7 +106,9 @@ export default function Login() {
             variant="outlined"
             onClick={Logout}
             style={{
-              color: "#010202",
+              color: "white",
+              position: "relative",
+              right: "10px",
             }}
           >
             Log Out
