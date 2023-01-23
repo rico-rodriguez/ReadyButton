@@ -122,8 +122,8 @@ function PostMessage() {
             </Popover>
           </div>
         )}
-        {loading && <Skeleton />}
       </div>
+      {loading && <Skeleton />}
       {message.length > 0 && (
         <div
           style={{
