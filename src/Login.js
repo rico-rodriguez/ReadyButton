@@ -19,6 +19,9 @@ export default function Login() {
   }, [userName]);
 
   const handleSubmit = async (event) => {
+    if (name === "") {
+      return;
+    }
     event.preventDefault();
     if (!localStorage.getItem("username")) {
       try {
