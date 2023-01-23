@@ -99,7 +99,7 @@ function PostMessage() {
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            style={{width: "400px", height: "100px", padding: "10px", borderRadius: "5px", border: "1px solid black",
+            style={{width: "400px", height: "30px", padding: "10px", borderRadius: "5px", border: "1px solid black",
               fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "white",
               color: "black", margin: "10px"}}
           />
