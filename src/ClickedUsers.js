@@ -32,6 +32,7 @@ export default function ClickedUsers() {
         <li key={user}>{user}</li>
       ));
       setUsersList(usersList);
+      setIsDataFetched(true);
     }, 1000);
   }, []);
   useEffect(() => {
