@@ -82,10 +82,6 @@ export default function Login() {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-
         position: "fixed",
         bottom: "0px",
         width: "100%",
@@ -97,7 +93,12 @@ export default function Login() {
       }}
     >
       {isLoggedIn ? (
-        <div>
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "row"
+        }}>
           <span><p>Welcome, {userName}</p>
           <Button
             size="small"
