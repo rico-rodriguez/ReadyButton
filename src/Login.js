@@ -100,19 +100,17 @@ export default function Login() {
           alignItems: "center",
           flexDirection: "row"
         }}>
-          <span><p>Welcome, {userName}</p>
+         <p>Welcome, {userName}</p>
           <Button
             size="small"
             variant="outlined"
             onClick={Logout}
             style={{
               color: "#010202",
-              display: "block",
-              width: "100%",
             }}
           >
             Log Out
-          </Button></span>
+          </Button>
         </div>
       ) : (
         <FormControl>
