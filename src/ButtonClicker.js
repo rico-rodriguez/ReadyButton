@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import mojs from "@mojs/core";
-import {
-  Alert,
-  Button,
-  CircularProgress,
-  createTheme,
-  Grid,
-  IconButton,
-  Snackbar,
-  ThemeProvider,
-} from "@mui/material";
+import { Alert, Button, CircularProgress, Grid, Snackbar } from "@mui/material";
 import Login from "./Login";
 import PostMessage from "./PostMessage";
 import ClickedUsers from "./ClickedUsers";
 
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com", {
-  withCredentials: true,
+  withCredentials: true
 });
 
 export default function ButtonClicker() {
@@ -51,10 +42,10 @@ export default function ButtonClicker() {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Credentials": "true",
-            Authorization: `Bearer  ${localStorage.getItem("username")}`,
+            Authorization: `Bearer  ${localStorage.getItem("username")}`
           },
           withCredentials: true,
-          credentials: "include",
+          credentials: "include"
         }
       );
       if (response.ok) {
@@ -64,6 +55,7 @@ export default function ButtonClicker() {
         console.log("Error fetching userId");
       }
     }
+
     fetchUserId();
   }, []);
 
@@ -84,10 +76,10 @@ export default function ButtonClicker() {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Credentials": "true",
-            Authorization: `Bearer ${localStorage.getItem("username")}`,
+            Authorization: `Bearer ${localStorage.getItem("username")}`
           },
           credentials: "include",
-          withCredentials: true,
+          withCredentials: true
         }
       );
       const data = await response.json();
@@ -116,10 +108,10 @@ export default function ButtonClicker() {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Credentials": "true",
-            Authorization: `Bearer ${localStorage.getItem("username")}`,
+            Authorization: `Bearer ${localStorage.getItem("username")}`
           },
           credentials: "include",
-          withCredentials: true,
+          withCredentials: true
         }
       );
       if (!response.ok) {
@@ -138,6 +130,7 @@ export default function ButtonClicker() {
 
   useEffect(() => {
     const username = localStorage.getItem("username");
+
     async function fetchData() {
       setDataLoaded(false);
       if (username) {
@@ -150,10 +143,10 @@ export default function ButtonClicker() {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Credentials": "true",
-                Authorization: `Bearer ${localStorage.getItem("username")}`,
+                Authorization: `Bearer ${localStorage.getItem("username")}`
               },
               credentials: "include",
-              withCredentials: true,
+              withCredentials: true
             }
           );
           if (!response.ok) {
@@ -170,6 +163,7 @@ export default function ButtonClicker() {
         window.location.href = "/";
       }
     }
+
     fetchData();
 
     socket.on("increment", (data) => {
@@ -185,11 +179,13 @@ export default function ButtonClicker() {
       fetchData();
     });
   }, [urlId]);
+
   class Heart extends mojs.CustomShape {
     getShape() {
-      return '<path d="M73.6170213,0 C64.4680851,0 56.5957447,5.53191489 51.7021277,13.8297872 C50.8510638,15.3191489 48.9361702,15.3191489 48.0851064,13.8297872 C43.4042553,5.53191489 35.3191489,0 26.1702128,0 C11.9148936,0 0,14.0425532 0,31.2765957 C0,48.0851064 14.893617,77.8723404 47.6595745,99.3617021 C49.1489362,100.212766 50.8510638,100.212766 52.1276596,99.3617021 C83.8297872,78.5106383 99.787234,48.2978723 99.787234,31.2765957 C100,14.0425532 88.0851064,0 73.6170213,0 L73.6170213,0 Z"></path>';
+      return "<path d=\"M73.6170213,0 C64.4680851,0 56.5957447,5.53191489 51.7021277,13.8297872 C50.8510638,15.3191489 48.9361702,15.3191489 48.0851064,13.8297872 C43.4042553,5.53191489 35.3191489,0 26.1702128,0 C11.9148936,0 0,14.0425532 0,31.2765957 C0,48.0851064 14.893617,77.8723404 47.6595745,99.3617021 C49.1489362,100.212766 50.8510638,100.212766 52.1276596,99.3617021 C83.8297872,78.5106383 99.787234,48.2978723 99.787234,31.2765957 C100,14.0425532 88.0851064,0 73.6170213,0 L73.6170213,0 Z\"></path>";
     }
   }
+
   mojs.addShape("heart", Heart);
   const animatedClick = () => {
     if (!animationRef.current) {
@@ -220,26 +216,26 @@ export default function ButtonClicker() {
             { "#91D3F7": "#A635D9" },
 
             { "#CF8EEF": "#CBEB98" },
-            { "#87E9C6": "#A635D9" },
+            { "#87E9C6": "#A635D9" }
           ],
           scale: { 1: 0, easing: "quad.in" },
           pathScale: [0.8, null],
           degreeShift: [13, null],
           duration: [500, 700],
           easing: "quint.out",
-          speed: 0.7,
-        },
+          speed: 0.7
+        }
       }).play();
       const CIRCLE_RADIUS = 150;
       animationRef.current = new mojs.Shape({
         parent: "#my-div",
         stroke: { "#344c6a": "#d5cccc" },
-        strokeWidth: { [45]: 0 },
+        strokeWidth: { 45: 0 },
         fill: "none",
         scale: { 0: 1 },
         duration: 400,
         radius: CIRCLE_RADIUS,
-        easing: "cubic.out",
+        easing: "cubic.out"
       }).play();
       // animationRef.current = new mojs.Shape({
       //   parent: '#my-div',
@@ -280,7 +276,7 @@ export default function ButtonClicker() {
               borderRadius: "9999px",
               marginBottom: "20px",
               marginTop: "20px",
-              filter: "drop-shadow(5px 5px 10px #000)",
+              filter: "drop-shadow(5px 5px 10px #000)"
             }}
             disabled={clickedUsers.includes(urlId)}
             color="primary"
@@ -298,7 +294,7 @@ export default function ButtonClicker() {
                   position: "absolute",
                   width: "3em",
                   height: "3em",
-                  fontSize: "90px",
+                  fontSize: "90px"
                 }}
               />
             ) : (
@@ -330,8 +326,8 @@ export default function ButtonClicker() {
             Button count reset!
           </Alert>
         </Snackbar>
+        <Login />
       </Grid>
-      <Login />
     </div>
   );
 }
