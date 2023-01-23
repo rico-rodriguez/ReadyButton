@@ -74,7 +74,7 @@ button {
 }
 ul {
   list-style: none; /* removes the bullet points */
-  overflow-y: scroll; /* adds a vertical scrollbar */
+  overflow-y: hidden; /* adds a vertical scrollbar */
   overflow-x: hidden; /* hides the horizontal scrollbar */
   ::-webkit-scrollbar { /* webkit specific styling */
     width: 10px;
