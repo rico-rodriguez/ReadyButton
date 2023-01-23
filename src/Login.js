@@ -127,6 +127,7 @@ export default function Login() {
             aria-describedby="my-helper-text"
             value={name}
             onChange={handleChange}
+            style={{ color: "#FFF" }}
           />
           <Button
             contained
