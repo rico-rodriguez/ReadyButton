@@ -77,7 +77,7 @@ export default function Login() {
     <div
       style={{
         position: "fixed",
-        bottom: "0px",
+        top: "0px",
         width: "100%",
         height: "fit-content",
         backgroundColor: "rgba(0,0,0,0.79)",
@@ -85,7 +85,7 @@ export default function Login() {
         padding: "10px",
         zIndex: "0",
         color: "white",
-        left: "70%"
+        left: "93%"
       }}
     >
       {isLoggedIn ? (
