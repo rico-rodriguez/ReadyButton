@@ -97,6 +97,10 @@ function PostMessage() {
             <Button
               variant="contained"
               onClick={handleClick}
+              style={{
+                backgroundColor: "rgba(164,164,164,0.16)",
+                color: "#fff"
+              }}
             >
               Post a message
             </Button>
