@@ -41,7 +41,6 @@ export default function ClickedUsers() {
   return (
     <>
       {clickedUsers.usersArray && (
-        // <PerfectScrollbar>
 
         <div
           style={{
@@ -58,7 +57,6 @@ export default function ClickedUsers() {
           }}
         >
         <ul>{usersList}</ul>
-        {/*</PerfectScrollbar>*/}
         </div>
       )}
     </>
