@@ -51,6 +51,26 @@ export default function ClickedUsers() {
 
   return (
     <>
+      {!clickedUsers.usersArray && (
+        <div
+          style={{
+            position: "fixed",
+            top: "115px",
+            right: "20px",
+            backgroundColor: "rgba(255,255,255,0.52)",
+            borderRadius: "5px",
+            padding: "20px",
+            overflow: "hidden",
+            height: "500px",
+            width: "fit-content",
+            fontSize: "20px",
+            fontWeight: "bold",
+            color: "black",
+            fontFamily: "Roboto"
+          }}
+        >
+          <Skeleton variant="rect" width={210} height={500} />
+        </div>)}
       {clickedUsers.usersArray && (
         <div
           style={{
@@ -69,9 +89,6 @@ export default function ClickedUsers() {
             fontFamily: "Roboto"
           }}
         >
-          <Skeleton variant="rect" width={210} height={118} />
-          <Skeleton variant="text" width={210} height={118} />
-          <Skeleton variant="circle" width={118} height={118} />
           Admin: {clickedUsers.usersArray[0]}
           <hr />
           <ul className="featureList">{usersList}</ul>
