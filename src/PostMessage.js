@@ -48,7 +48,9 @@ function PostMessage() {
         const data = await response.json();
         setCurrentButtonOwner(data.usersArray[0]);
       };
-      fetchUsers();
+      setTimeout(() => {
+        fetchUsers();
+      }, 5000);
     }
   }, [currentUser]);
 
