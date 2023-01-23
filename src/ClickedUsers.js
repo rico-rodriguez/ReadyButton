@@ -6,7 +6,12 @@ export default function ClickedUsers() {
   const [usersList, setUsersList] = useState([]);
 
 
-  useEffect(async () => {
+  useEffect(() => {
+    setTimeout(() => {
+      return (
+        <Skeleton variant="rectangular" width="210" height="500" />
+      );
+    }, 3000);
     setInterval(async () => {
       const currentUser = localStorage.getItem("username");
       const urlId = window.location.pathname.split("/")[1];
@@ -45,7 +50,6 @@ export default function ClickedUsers() {
 
   return (
     <>
-      {usersList.length < 1 && <Skeleton variant="rectangular" width="210" height="500" />}
       {clickedUsers.usersArray && (
         <div
           style={{
