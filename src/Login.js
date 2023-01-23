@@ -87,18 +87,18 @@ export default function Login() {
         alignItems: "center",
 
         position: "fixed",
-        bottom: "20px",
+        bottom: "0px",
         width: "100%",
         height: "20px",
         backgroundColor: "rgba(255,255,255,0.62)",
         borderRadius: "5px",
         padding: "10px",
-        zIndex: "1",
+        zIndex: "0",
       }}
     >
       {isLoggedIn ? (
         <div>
-          <p>Welcome, {userName}</p>{" "}
+          <span><p>Welcome, {userName}</p>
           <Button
             size="small"
             variant="outlined"
@@ -110,7 +110,7 @@ export default function Login() {
             }}
           >
             Log Out
-          </Button>
+          </Button></span>
         </div>
       ) : (
         <FormControl>
