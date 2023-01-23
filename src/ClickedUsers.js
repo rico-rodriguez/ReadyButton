@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { Skeleton } from "@mui/material";
 
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
+
 
   useEffect(async () => {
     setInterval(async () => {
@@ -43,8 +45,8 @@ export default function ClickedUsers() {
 
   return (
     <>
+      {usersList.length === 0 && <Skeleton variant="rectangular" width="210" height="500" />}
       {clickedUsers.usersArray && (
-
         <div
           style={{
             position: "fixed",
