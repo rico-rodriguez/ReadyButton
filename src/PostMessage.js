@@ -99,6 +99,9 @@ function PostMessage() {
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            style={{width: "400px", height: "200px", padding: "10px", borderRadius: "5px", border: "1px solid black",
+              fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "white",
+              color: "black", marginLeft: "5px"}}
           />
               <button type="submit">Post</button>
             </form>
