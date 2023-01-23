@@ -69,7 +69,7 @@ export default function ClickedUsers() {
             fontFamily: "Roboto"
           }}
         >
-          <Skeleton variant="rect" width={210} height={500} />
+          <Skeleton variant="rect" width={130} height={500} />
         </div>)}
       {clickedUsers.usersArray && (
         <div

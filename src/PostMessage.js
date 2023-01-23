@@ -81,7 +81,7 @@ function PostMessage() {
             borderRadius: "5px"
           }}
         >
-          <Skeleton variant={"rectangular"} width={150} height={50} />
+          <Skeleton variant={"rectangular"} width={100} height={50} />
         </div>)}
       <div style={{ display: loading ? "none" : "block" }}>
         {currentButtonOwner === currentUser && (
