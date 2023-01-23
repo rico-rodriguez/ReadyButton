@@ -121,7 +121,7 @@ export default function Login() {
             position: "absolute",
             right: "10px",
           }}>
-          <InputLabel style={{ color: "black" }} htmlFor="my-input">
+          <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
           </InputLabel>
           <Input
@@ -135,7 +135,7 @@ export default function Login() {
           </FormHelperText>
           <Button
             onClick={handleSubmit}
-            style={{ color: "#010202", display: "block", width: "100%" }}
+            style={{ color: "#FFF" }}
           >
             Log In
           </Button>
