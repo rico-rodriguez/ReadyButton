@@ -44,6 +44,8 @@ export default function ClickedUsers() {
   return (
     <>
       {clickedUsers.usersArray && (
+        <PerfectScrollbar>
+
         <div
           style={{
             position: "fixed",
@@ -57,10 +59,9 @@ export default function ClickedUsers() {
             width: "fit-content",
           }}
         >
-          <PerfectScrollbar>
         <ul>{usersList}</ul>
-        </PerfectScrollbar>
         </div>
+        </PerfectScrollbar>
       )}
     </>
   );
