@@ -63,6 +63,7 @@ export default function ClickedUsers() {
           }}
         >
           Admin: {clickedUsers.usersArray[0]}
+          <hr />
         <ul>{usersList}</ul>
         </div>
       )}
