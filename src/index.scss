@@ -72,7 +72,7 @@ button {
   color: white;
   border: none;
 }
-ul {
+ul > userList {
   list-style: none; /* removes the bullet points */
   overflow-y: scroll; /* adds a vertical scrollbar */
   overflow-x: hidden; /* hides the horizontal scrollbar */
