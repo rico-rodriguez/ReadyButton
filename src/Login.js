@@ -83,11 +83,13 @@ export default function Login() {
     <div
       style={{
         position: "fixed",
-        bottom: "20px",
-        right: "20px",
+        bottom: "0px",
+        width: "100%",
+        height: "20px",
         backgroundColor: "white",
         borderRadius: "5px",
         padding: "10px",
+        zIndex: "1",
       }}
     >
       {isLoggedIn ? (
