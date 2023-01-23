@@ -77,7 +77,7 @@ function PostMessage() {
           }}
         >
           <Button
-            variant="outlined"
+            variant="contained"
             onClick={handleClick}
           >
             Post a message
