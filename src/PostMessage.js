@@ -149,7 +149,8 @@ function PostMessage() {
             minWidth: "400px",
             backgroundColor: "#92979fc7",
             borderRadius: "5px",
-            padding: "10px"
+            padding: "10px",
+            justifyContent: "center"
           }}
         >
           <div>{message}</div>
