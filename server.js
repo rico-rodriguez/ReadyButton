@@ -50,6 +50,10 @@ io.on('connection', (socket) => {
         io.emit('new message', message);
       console.log(message + " new message post from server");
     });
+    socket.on('new user', (data) => {
+        // Send all clients the name of the new user
+        io.emit('new user', data);
+    });
 });
 
 function checkAuth(req, res, next) {
