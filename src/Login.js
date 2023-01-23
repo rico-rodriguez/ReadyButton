@@ -1,11 +1,5 @@
-import {
-  Button,
-  FormControl,
-  FormHelperText,
-  Input,
-  InputLabel,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Button, FormControl, FormHelperText, Input, InputLabel } from "@mui/material";
+import React, { useEffect } from "react";
 
 export default function Login() {
   const [name, setName] = React.useState("");
@@ -36,11 +30,11 @@ export default function Login() {
               Accept: "application/json",
               "Content-Type": "application/json",
               "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Credentials": "true",
+              "Access-Control-Allow-Credentials": "true"
             },
             credentials: "include",
             withCredentials: true,
-            body: JSON.stringify({ username: name }),
+            body: JSON.stringify({ username: name })
           }
         );
         if (response.ok) {
@@ -66,9 +60,9 @@ export default function Login() {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Credentials": "true",
+          "Access-Control-Allow-Credentials": "true"
         },
-        credentials: "include",
+        credentials: "include"
       });
       localStorage.clear();
       setIsLoggedIn(false);
@@ -90,7 +84,7 @@ export default function Login() {
         borderRadius: "5px",
         padding: "10px",
         zIndex: "0",
-        color: "white",
+        color: "white"
       }}
     >
       {isLoggedIn ? (
@@ -100,7 +94,7 @@ export default function Login() {
           alignItems: "center",
           flexDirection: "row"
         }}>
-         <p>Welcome, {userName}</p>
+          <p>Welcome, {userName}</p>
           <Button
             size="small"
             variant="text"
@@ -108,7 +102,7 @@ export default function Login() {
             style={{
               color: "white",
               position: "absolute",
-              right: "10px",
+              right: "10px"
             }}
           >
             Log Out
@@ -119,7 +113,7 @@ export default function Login() {
           style={{
             color: "white",
             position: "absolute",
-            right: "10px",
+            right: "10px"
           }}>
           <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
