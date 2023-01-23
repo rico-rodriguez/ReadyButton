@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Popover } from "@mui/material";
+import { Button, Popover, Skeleton } from "@mui/material";
 
 const io = require("socket.io-client");
 const socket = io("https://readybutton.herokuapp.com", {
@@ -7,6 +7,7 @@ const socket = io("https://readybutton.herokuapp.com", {
 });
 
 function PostMessage() {
+  const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [currentButtonOwner, setCurrentButtonOwner] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
@@ -27,6 +28,7 @@ function PostMessage() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     if (currentUser) {
       const fetchUsers = async () => {
         const urlId = window.location.pathname.substring(1);
@@ -47,6 +49,7 @@ function PostMessage() {
         );
         const data = await response.json();
         setCurrentButtonOwner(data.usersArray[0]);
+        setLoading(false);
       };
       setTimeout(() => {
         fetchUsers();
@@ -68,6 +71,7 @@ function PostMessage() {
 
   return (
     <>
+      {loading && <Skeleton />}
       {currentButtonOwner === currentUser && (
         <div
           style={{
