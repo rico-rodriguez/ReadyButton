@@ -69,6 +69,9 @@ export default function ClickedUsers() {
             fontFamily: "Roboto"
           }}
         >
+          <Skeleton variant="rect" width={210} height={118} />
+          <Skeleton variant="text" width={210} height={118} />
+          <Skeleton variant="circle" width={118} height={118} />
           Admin: {clickedUsers.usersArray[0]}
           <hr />
           <ul className="featureList">{usersList}</ul>
