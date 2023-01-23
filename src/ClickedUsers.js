@@ -50,7 +50,7 @@ export default function ClickedUsers() {
             backgroundColor: "rgba(255,255,255,0.52)",
             borderRadius: "5px",
             padding: "20px",
-            overflow: "hidden",
+            overflow: "scroll",
             height: "500px",
             width: "fit-content",
             fontSize: "20px",
