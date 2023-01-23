@@ -78,8 +78,8 @@ export default function Login() {
       style={{
         position: "sticky",
         top: "0px",
-        width: "99%",
-        height: "fit-content",
+        width: "98%",
+        height: "98%",
         backgroundColor: "rgba(0,0,0,0.79)",
         borderRadius: "5px",
         padding: "10px",
