@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PerfectScrollbar from "perfect-scrollbar";
+import * as socket from "react-use/lib/misc/util";
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
@@ -37,6 +38,11 @@ export default function ClickedUsers() {
       setUsersList(usersList);
     }
   }, [clickedUsers]);
+  useEffect(() => {
+    socket.on('users update', (data) => {
+      setClickedUsers(data.usersArray);
+    });
+  }, []);
 
   return (
     <>
