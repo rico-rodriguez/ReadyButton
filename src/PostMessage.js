@@ -77,9 +77,7 @@ function PostMessage() {
           style={{
             position: "fixed",
             top: "12px",
-            left: "20px",
-            backgroundColor: "rgba(164,164,164,0.16)",
-            borderRadius: "5px"
+            left: "20px"
           }}
         >
           <Skeleton sx={{ bgcolor: "grey.900" }}
@@ -127,7 +125,7 @@ function PostMessage() {
                 horizontal: "center"
               }}
             >
-              <form style={{ display: "flex", alignItems: "center", backgroundColor: "#787d88" }}
+              <form style={{ padding: "10px", display: "flex", alignItems: "center", backgroundColor: "#787d88" }}
                     onSubmit={handleSubmit}>
             <textarea
               value={message}
