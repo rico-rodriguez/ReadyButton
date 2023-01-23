@@ -276,7 +276,7 @@ export default function ButtonClicker() {
                 fontSize: "90px",
                 borderRadius: "9999px",
                 marginBottom: "20px",
-                marginTop: "20px",
+                marginTop: "70%",
                 filter: "drop-shadow(5px 5px 10px #000)"
               }}
               disabled={clickedUsers.includes(urlId)}
