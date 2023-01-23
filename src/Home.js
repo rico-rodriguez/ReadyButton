@@ -97,7 +97,7 @@ export default function Home() {
               link with classmates or friends to see when everyone is ready!
             </Typography>
           </Box>
-          <div className="featureListContainer">
+          <div className="featureListContainer" style={{ height: "200px", overflow: "auto" }}>
             <ul className="featureList">
               <li className="featureItem">
                 <CustomCheckbox
