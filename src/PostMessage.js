@@ -82,6 +82,7 @@ function PostMessage() {
             Post a message
           </Button>
           <Popover
+            sx={{padding: "20px"}}
             open={Boolean(anchorEl)}
             anchorEl={anchorEl}
             onClose={handleClose}
