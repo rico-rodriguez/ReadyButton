@@ -263,7 +263,6 @@ export default function ButtonClicker() {
           direction="column"
           alignItems="center"
           justifyContent="center"
-          style={{ minHeight: "100vh", overflow: "hidden" }}
         >
           <ClickedUsers />
 
