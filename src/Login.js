@@ -86,10 +86,11 @@ export default function Login() {
         bottom: "0px",
         width: "100%",
         height: "fit-content",
-        backgroundColor: "rgba(110,110,110,0.79)",
+        backgroundColor: "rgba(0,0,0,0.79)",
         borderRadius: "5px",
         padding: "10px",
         zIndex: "0",
+        color: "white",
       }}
     >
       {isLoggedIn ? (
