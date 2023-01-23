@@ -114,7 +114,9 @@ export default function Login() {
       ) : (
         <FormControl
           style={{
-            color: "white"
+            color: "white",
+            display: "flex",
+            flexDirection: "row"
           }}>
           <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
