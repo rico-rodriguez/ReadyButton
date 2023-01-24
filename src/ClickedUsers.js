@@ -8,7 +8,6 @@ export default function ClickedUsers() {
 
 
   useEffect(() => {
-
     setInterval(async () => {
       const currentUser = localStorage.getItem("username");
       const urlId = window.location.pathname.split("/")[1];
@@ -33,11 +32,6 @@ export default function ClickedUsers() {
       ));
       setUsersList(usersList);
     }, 1000);
-  }, []);
-  useEffect(() => {
-    return (
-      <Skeleton variant="rectangular" width="210" height="500" />
-    );
   }, []);
   useEffect(() => {
     if (clickedUsers.usersArray) {

@@ -179,6 +179,28 @@ export default function ButtonClicker() {
       fetchData();
     });
   }, [urlId]);
+  useEffect(() => {
+    setInterval(async () => {
+      const currentUser = localStorage.getItem("username");
+      const urlId = window.location.pathname.split("/")[1];
+      const response = await fetch(
+        `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Credentials": "true",
+            Authorization: `Bearer ${currentUser}`
+          },
+          credentials: "include",
+          withCredentials: true
+        }
+      );
+      const data = await response.json();
+      setClickedUsers(data.usersArray);
+    }, 1000);
+  }, [buttonData]);
 
   class Heart extends mojs.CustomShape {
     getShape() {
@@ -279,12 +301,12 @@ export default function ButtonClicker() {
                 marginTop: "60%",
                 filter: "drop-shadow(5px 5px 10px #000)"
               }}
-              disabled={clickedUsers.includes(urlId)}
+              disabled={clickedUsers.includes(username)}
               color="primary"
               variant="contained"
               onClick={handleClick}
             >
-              {clickedUsers.includes(urlId) && (
+              {clickedUsers.includes(username) && (
                 <div className="completedClick"></div>
               )}
 
