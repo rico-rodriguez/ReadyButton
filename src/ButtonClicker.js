@@ -86,6 +86,9 @@ export default function ButtonClicker() {
       const data = await response.json();
       if (!response.ok) {
         setAlertOpen(true);
+        setTimeout(() => {
+          setAlertOpen(false);
+        }, 3000);
         throw new Error("You cannot click twice!");
       }
       setButtonData({ count: data.count });
@@ -275,10 +278,10 @@ export default function ButtonClicker() {
   return (
     <>
       <Login />
+      <Alert severity="error">
+        You cannot click twice!
+      </Alert>
       <div>
-        <Alert severity="error" onClose={() => setAlertOpen(false)}>
-          You cannot click twice!
-        </Alert>
         <Grid
           container
           spacing={0}
