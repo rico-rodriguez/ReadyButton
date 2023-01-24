@@ -278,9 +278,11 @@ export default function ButtonClicker() {
   return (
     <>
       <Login />
-      <Alert severity="error">
-        You cannot click twice!
-      </Alert>
+      {alertOpen && (
+        <Alert severity="error">
+          You cannot click twice!
+        </Alert>
+      )}
       <div>
         <Grid
           container
