@@ -60,13 +60,8 @@ export default function ClickedUsers() {
             backgroundColor: "rgba(255,255,255,0.52)",
             borderRadius: "5px",
             padding: "20px",
-            overflow: "hidden",
-            height: "500px",
-            width: "130px",
-            fontSize: "20px",
-            fontWeight: "bold",
-            color: "black",
-            fontFamily: "Roboto"
+            height: "540px",
+            width: "170px"
           }}
         >
           <Skeleton variant="rect" width={170} height={540} />
