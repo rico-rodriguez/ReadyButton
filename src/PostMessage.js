@@ -77,14 +77,15 @@ function PostMessage() {
           style={{
             position: "fixed",
             top: "12px",
-            left: "20px"
+            left: "20px",
+            borderRadius: "5px"
           }}
         >
-          <Skeleton sx={{ bgcolor: "grey.900" }}
+          <Skeleton sx={{ backgroundColor: "#0083ff", zIndex: "999" }}
                     variant={"rectangular"} animation={"wave"} width={100} height={50} />
         </div>)}
-      <div style={{ display: loading ? "none" : "block" }}>
-        {currentButtonOwner === currentUser && (
+      {!loading &&
+        currentButtonOwner === currentUser && (
           <div
             style={{
               position: "fixed",
@@ -141,8 +142,7 @@ function PostMessage() {
               </form>
             </Popover>
           </div>
-        )}
-      </div>
+        )}}
       {message.length > 0 && (
         <div
           style={{
