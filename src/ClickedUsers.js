@@ -63,7 +63,7 @@ export default function ClickedUsers() {
             width: "170px"
           }}
         >
-          <Skeleton variant="rect" width={170} height={540} />
+          <Skeleton sx={{ backgroundColor: "#949494", zIndex: "999" }} variant="rect" width={170} height={540} />
         </div>)}
       {clickedUsers.usersArray && (
         <div
