@@ -59,7 +59,6 @@ export default function ClickedUsers() {
             right: "20px",
             backgroundColor: "rgba(255,255,255,0.52)",
             borderRadius: "5px",
-            padding: "20px",
             height: "540px",
             width: "170px"
           }}

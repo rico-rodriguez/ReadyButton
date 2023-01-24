@@ -142,7 +142,7 @@ function PostMessage() {
               </form>
             </Popover>
           </div>
-        )}}
+        )}
       {message.length > 0 && (
         <div
           style={{
