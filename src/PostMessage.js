@@ -81,8 +81,8 @@ function PostMessage() {
             borderRadius: "5px"
           }}
         >
-          <Skeleton sx={{ backgroundColor: "#0083ff", zIndex: "999" }}
-                    variant={"rectangular"} animation={"wave"} width={100} height={50} />
+          <Skeleton sx={{ backgroundColor: "#949494", zIndex: "999" }}
+                    variant={"rectangular"} animation={"pulse"} width={100} height={50} />
         </div>)}
       {!loading &&
         currentButtonOwner === currentUser && (
@@ -95,21 +95,19 @@ function PostMessage() {
               borderRadius: "5px"
             }}
           >
-            <Tooltip title="You will have to post the message again for users who join late" arrow>
-              <Button
-                variant="outlined"
-                onClick={handleClick}
-                style={{
-                  backgroundColor: "rgba(164,164,164,0.16)",
-                  color: "#fff",
-                  width: "100px",
-                  height: "50px",
-                  margin: "5px"
-                }}
-              >
-                Post a message
-              </Button>
-            </Tooltip>
+            <Button
+              variant="outlined"
+              onClick={handleClick}
+              style={{
+                backgroundColor: "rgba(164,164,164,0.16)",
+                color: "#fff",
+                width: "100px",
+                height: "50px",
+                margin: "5px"
+              }}
+            >
+              Post a message
+            </Button>
             <Popover
               sx={{
                 padding: "20px"
@@ -136,9 +134,11 @@ function PostMessage() {
                 fontSize: "16px", fontFamily: "sans-serif", outline: "none", backgroundColor: "rgb(79, 84, 94)",
                 color: "black", margin: "10px"
               }}
-            />
+            /> <Tooltip title="You will have to post the message again for users who join late" arrow>
+
                 <button style={{ fontSize: "1.5rem", margin: "0", backgroundColor: "#343637" }} type="submit">Send
                 </button>
+              </Tooltip>
               </form>
             </Popover>
           </div>
