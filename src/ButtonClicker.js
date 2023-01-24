@@ -22,6 +22,7 @@ export default function ButtonClicker() {
   const [emojiVisible, setEmojiVisible] = useState(false);
   const [username, setUsername] = useState("");
   const animationRef = useRef(null);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
     const localUsername = localStorage.getItem("username");
@@ -84,16 +85,12 @@ export default function ButtonClicker() {
       );
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(
-          "Failed to increment click count. User is either button owner or clicked already!"
-        );
+        setAlertOpen(true);
+        throw new Error("You cannot click twice!");
       }
       setButtonData({ count: data.count });
       socket.emit("increment", data);
     } catch (err) {
-      alert(
-        "You already clicked this button or you are the owner of this button!"
-      );
       console.error("Error updating click count:", err);
     }
   }
@@ -279,6 +276,9 @@ export default function ButtonClicker() {
     <>
       <Login />
       <div>
+        <Alert severity="error" onClose={() => setAlertOpen(false)}>
+          You cannot click twice!
+        </Alert>
         <Grid
           container
           spacing={0}
