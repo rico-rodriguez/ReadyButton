@@ -13,7 +13,6 @@ const socket = io("https://readybutton.herokuapp.com", {
 
 export default function ButtonClicker() {
   const { urlId } = useParams();
-  const [userId, setUserId] = useState(null);
   const [buttonData, setButtonData] = useState({});
   const [clickedUsers, setClickedUsers] = useState([]);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -179,27 +178,25 @@ export default function ButtonClicker() {
       fetchData();
     });
   }, [urlId]);
-  useEffect(() => {
-    setInterval(async () => {
-      const currentUser = localStorage.getItem("username");
-      const urlId = window.location.pathname.split("/")[1];
-      const response = await fetch(
-        `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Credentials": "true",
-            Authorization: `Bearer ${currentUser}`
-          },
-          credentials: "include",
-          withCredentials: true
-        }
-      );
-      const data = await response.json();
-      setClickedUsers(data.usersArray);
-    }, 1000);
+  useEffect(async () => {
+    const currentUser = localStorage.getItem("username");
+    const urlId = window.location.pathname.split("/")[1];
+    const response = await fetch(
+      `https://readybutton.herokuapp.com/api/users?urlId=${urlId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": "true",
+          Authorization: `Bearer ${currentUser}`
+        },
+        credentials: "include",
+        withCredentials: true
+      }
+    );
+    const data = await response.json();
+    setClickedUsers(data.usersArray);
   }, [buttonData]);
 
   class Heart extends mojs.CustomShape {
