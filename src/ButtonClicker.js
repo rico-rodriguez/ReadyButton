@@ -280,7 +280,7 @@ export default function ButtonClicker() {
       <Login />
       {alertOpen && (
         <Alert severity="error">
-          You cannot click twice!
+          You can't click if you are the Admin or if you already clicked!
         </Alert>
       )}
       <div>
