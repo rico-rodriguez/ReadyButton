@@ -1,6 +1,7 @@
 import { Button, CircularProgress, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
+import { Spinner } from "spin.js";
 
 export default function Login() {
   const [name, setName] = React.useState("");
@@ -67,6 +68,16 @@ export default function Login() {
     }
 
   };
+  let spinner;
+  useEffect(() => {
+    if (isLoading) {
+      spinner = new Spinner().spin(document.getElementById("spinner-container"));
+      document.getElementById("overlay").style.display = "block";
+    } else {
+      spinner.stop();
+      document.getElementById("overlay").style.display = "none";
+    }
+  }, [isLoading]);
 
   async function Logout() {
     try {
@@ -89,71 +100,89 @@ export default function Login() {
   }
 
   return (
-    <div
-      style={{
-        position: "sticky",
-        top: "0px",
-        backgroundColor: "rgba(0,0,0,0.27)",
-        borderRadius: "5px",
-        padding: "10px",
-        zIndex: "0",
-        color: "white",
-        display: "flex",
-        justifyContent: "center"
-      }}
-    >
-      <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-        {isLoading ? <CircularProgress size={250} thickness={5} color="secondary" />
-          : null}
-      </div>
-      {isLoggedIn ? (
-        <div style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "row"
+    <>
+      <div>
+        <div id="overlay" style={{
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          width: "100%",
+          height: "100%",
+          zIndex: "1000",
+          display: "none"
         }}>
-          <p>Welcome, {userName}</p>
-          <Button
-            size="small"
-            variant="text"
-            onClick={Logout}
-            style={{
-              color: "white",
-              position: "absolute",
-              right: "10px"
-            }}
-          >
-            Log Out
-          </Button>
         </div>
-      ) : (
-        <FormControl
+        <div id="spinner-container" style={{ position: "fixed", top: "50%", left: "50%" }}>
+          {isLoading ? <Spinner /> : null}
+        </div>
+        <div
           style={{
+            position: "sticky",
+            top: "0px",
+            backgroundColor: "rgba(0,0,0,0.27)",
+            borderRadius: "5px",
+            padding: "10px",
+            zIndex: "0",
             color: "white",
             display: "flex",
-            flexDirection: "row"
-          }}>
-          <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
-            User Name
-          </InputLabel>
-          <Input
-            id="my-input"
-            aria-describedby="my-helper-text"
-            value={name}
-            onChange={handleChange}
-            style={{ color: "#FFF" }}
-          />
-          <Button
-            outline
-            color="success"
-            onClick={handleSubmit}
-            style={{ color: "#FFF" }}
-          >
-            Log In
-          </Button>
-        </FormControl>
-      )}
-    </div>
+            justifyContent: "center"
+          }}
+        >
+          <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+            {isLoading ? <CircularProgress size={250} thickness={5} color="secondary" />
+              : null}
+          </div>
+          {isLoggedIn ? (
+            <div style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "row"
+            }}>
+              <p>Welcome, {userName}</p>
+              <Button
+                size="small"
+                variant="text"
+                onClick={Logout}
+                style={{
+                  color: "white",
+                  position: "absolute",
+                  right: "10px"
+                }}
+              >
+                Log Out
+              </Button>
+            </div>
+          ) : (
+            <FormControl
+              style={{
+                color: "white",
+                display: "flex",
+                flexDirection: "row"
+              }}>
+              <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
+                User Name
+              </InputLabel>
+              <Input
+                id="my-input"
+                aria-describedby="my-helper-text"
+                value={name}
+                onChange={handleChange}
+                style={{ color: "#FFF" }}
+              />
+              <Button
+                outline
+                color="success"
+                onClick={handleSubmit}
+                style={{ color: "#FFF" }}
+              >
+                Log In
+              </Button>
+            </FormControl>
+          )}
+        </div>
+      </div>
+    </>
   );
 }
