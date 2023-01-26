@@ -95,7 +95,7 @@ export default function Home() {
               To get started, add anything after the '/' of this url and you
               will be sent to your own instance of the ready button. Share the
               link with classmates or friends to see when everyone is ready!<br />
-              Try the public page at: '/rico'.
+              Log in and try the public page at: '/rico'.
             </Typography>
           </Box>
           <div className="featureListContainer">
