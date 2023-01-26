@@ -13,6 +13,7 @@ body {
 .featureListContainer {
   margin-top: 10px;
   display: flex;
+  overflow: scroll;
 }
 
 .featureList {
@@ -24,19 +25,19 @@ body {
   //overflow-y: scroll;
 }
 
-.featureList::-webkit-scrollbar {
+.featureListContainer::-webkit-scrollbar {
   width: 0.5rem;
 }
 
-.featureList::-webkit-scrollbar-track {
+.featureListContainer::-webkit-scrollbar-track {
   background: #385152;
 }
 
-.featureList::-webkit-scrollbar-thumb {
+.featureListContainer::-webkit-scrollbar-thumb {
   background: #2c4242;
 }
 
-.featureList::-webkit-scrollbar-thumb:hover {
+.featureListContainer::-webkit-scrollbar-thumb:hover {
   background: #555;
   font-family: 'Roboto', sans-serif;
 }
