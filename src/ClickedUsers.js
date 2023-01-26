@@ -4,8 +4,6 @@ import { Skeleton } from "@mui/material";
 export default function ClickedUsers() {
   const [clickedUsers, setClickedUsers] = useState([]);
   const [usersList, setUsersList] = useState([]);
-  const [isDataFetched, setIsDataFetched] = useState(false);
-
 
   useEffect(() => {
     setInterval(async () => {
@@ -28,7 +26,7 @@ export default function ClickedUsers() {
       const data = await response.json();
       setClickedUsers(data);
       const usersList = data.usersArray.map((user) => (
-        <li key={user}>{user}</li>
+        <li key={user}>{user.split(" ")[1]}</li>
       ));
       setUsersList(usersList);
     }, 1000);
