@@ -1,5 +1,6 @@
 import { Button, CircularProgress, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
+import uuid from "react-uuid";
 
 export default function Login() {
   const [name, setName] = React.useState("");
@@ -49,6 +50,7 @@ export default function Login() {
           setUserName(data.username);
           setIsLoading(false);
           localStorage.setItem("username", data.username);
+          localStorage.setItem("token", uuid());
         } else {
           console.log("Error logging in");
           setIsLoading(false);
@@ -86,7 +88,6 @@ export default function Login() {
     return window.location.assign("/");
   }
 
-  let loadingGif = "/spin.gif";
   return (
     <div
       style={{
