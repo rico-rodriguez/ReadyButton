@@ -5,6 +5,8 @@ export default function Login() {
   const [name, setName] = React.useState("");
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [userName, setUserName] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const handleChange = (event) => {
     setName(event.target.value);
   };
@@ -22,6 +24,7 @@ export default function Login() {
     if (name === "") {
       return;
     }
+    setIsLoading(true);
     event.preventDefault();
     if (!localStorage.getItem("username")) {
       try {
@@ -44,16 +47,23 @@ export default function Login() {
           const data = await response.json();
           setIsLoggedIn(data.isLoggedIn);
           setUserName(data.username);
+          setIsLoading(false);
           localStorage.setItem("username", data.username);
         } else {
           console.log("Error logging in");
+          setIsLoading(false);
+
         }
       } catch (err) {
         console.error("Error logging in:", err);
+        setIsLoading(false);
+
       }
     } else {
       console.log("Already logged in");
+      setIsLoading(false);
     }
+
   };
 
   async function Logout() {
@@ -76,6 +86,7 @@ export default function Login() {
     return window.location.assign("/");
   }
 
+  let loadingGif = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
   return (
     <div
       style={{
@@ -90,6 +101,12 @@ export default function Login() {
         justifyContent: "center"
       }}
     >
+      {isLoading ? (
+        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+          <img src={loadingGif} alt="loading" />
+        </div>
+      ) : null}
+
       {isLoggedIn ? (
         <div style={{
           display: "flex",
@@ -121,9 +138,6 @@ export default function Login() {
           <InputLabel style={{ color: "#fff" }} htmlFor="my-input">
             User Name
           </InputLabel>
-          {/*<FormHelperText id="my-helper-text" style={{ color: "red" }}>*/}
-          {/*  Enter Your User Name*/}
-          {/*</FormHelperText>*/}
           <Input
             id="my-input"
             aria-describedby="my-helper-text"
