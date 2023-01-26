@@ -67,16 +67,18 @@ export default function ClickedUsers() {
             position: "fixed",
             top: "115px",
             right: "20px",
-            backgroundColor: "rgba(255,255,255,0.52)",
+            backgroundColor: "rgba(0,0,0 / 9%)",
             borderRadius: "5px",
             padding: "20px",
             overflow: "hidden",
             height: "500px",
             width: "130px",
-            fontSize: "20px",
+            fontSize: "25px",
             fontWeight: "bold",
-            color: "white",
-            fontFamily: "Roboto"
+            color: "black",
+            fontFamily: "Roboto",
+            textAlign: "center"
+
           }}
         >
           Admin: {clickedUsers.usersArray[0]}
