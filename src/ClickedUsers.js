@@ -51,7 +51,7 @@ export default function ClickedUsers() {
             position: "fixed",
             top: "115px",
             right: "20px",
-            backgroundColor: "rgba(255,255,255,0.52)",
+            backgroundColor: "rgba(0,0,0,0.79)",
             borderRadius: "5px",
             height: "540px",
             width: "170px"
@@ -74,7 +74,7 @@ export default function ClickedUsers() {
             width: "130px",
             fontSize: "20px",
             fontWeight: "bold",
-            color: "black",
+            color: "white",
             fontFamily: "Roboto"
           }}
         >
