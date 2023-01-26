@@ -64,8 +64,7 @@ export default function Home() {
             margin: "auto",
             marginTop: "10px",
             marginBottom: "10px",
-            height: "100%",
-            zIndex: -1
+            height: "100%"
           }}
         >
           <Typography
