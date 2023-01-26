@@ -81,7 +81,7 @@ export default function Login() {
       style={{
         position: "sticky",
         top: "0px",
-        backgroundColor: "rgba(0,0,0,0.79)",
+        backgroundColor: "rgba(0,0,0,0.27)",
         borderRadius: "5px",
         padding: "10px",
         zIndex: "0",
