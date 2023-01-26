@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, Input, InputLabel } from "@mui/material";
+import { Button, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
 import { Spinner } from "spin.js";
@@ -129,10 +129,10 @@ export default function Login() {
             justifyContent: "center"
           }}
         >
-          <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-            {isLoading ? <CircularProgress size={250} thickness={5} color="secondary" />
-              : null}
-          </div>
+          {/*<div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>*/}
+          {/*  {isLoading ? <CircularProgress size={250} thickness={5} color="secondary" />*/}
+          {/*    : null}*/}
+          {/*</div>*/}
           {isLoggedIn ? (
             <div style={{
               display: "flex",
