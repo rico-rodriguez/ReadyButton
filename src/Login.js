@@ -86,7 +86,7 @@ export default function Login() {
     return window.location.assign("/");
   }
 
-  let loadingGif = "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif";
+  let loadingGif = "/spin.gif";
   return (
     <div
       style={{
