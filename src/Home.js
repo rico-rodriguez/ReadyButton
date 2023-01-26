@@ -56,7 +56,7 @@ export default function Home() {
             justifyItems: "space-between",
             alignItems: "space-between",
             padding: "20px",
-            background: "rgba(0, 0, 0, 0.5)",
+            background: "rgba(0,0,0,0.27)",
             boxShadow:
               "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
             borderRadius: "5px",
@@ -83,7 +83,7 @@ export default function Home() {
           </Typography>
           <Box
             style={{
-              backgroundColor: "rgba(96,96,96,0.15)",
+              backgroundColor: "rgba(0,0,0,0.15)",
               color: "#eeeeee",
               padding: "20px",
               fontFamily: "Source Code Pro, monospace",
