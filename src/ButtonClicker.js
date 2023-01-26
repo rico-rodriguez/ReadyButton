@@ -77,7 +77,7 @@ export default function ButtonClicker() {
             "Content-Type": "application/json",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Credentials": "true",
-            Authorization: `Bearer ${localStorage.getItem("username")}`
+            Authorization: `Bearer ${localStorage.getItem("username")} ${localStorage.getItem("token")}`
           },
           credentials: "include",
           withCredentials: true
