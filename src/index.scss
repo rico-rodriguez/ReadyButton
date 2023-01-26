@@ -22,10 +22,14 @@ body {
   min-height: 25rem;
   max-height: 25rem;
   overflow-y: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .featureList::-webkit-scrollbar {
-  width: 0.5rem;
+  //width: 0.5rem;
+  display: none;
+
 }
 
 .featureList::-webkit-scrollbar-track {
