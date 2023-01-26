@@ -68,16 +68,16 @@ export default function Login() {
     }
 
   };
-  let spinner;
+  const [spinner, setSpinner] = React.useState(null);
   useEffect(() => {
     if (isLoading) {
-      spinner = new Spinner().spin(document.getElementById("spinner-container"));
-      document.getElementById("overlay").style.display = "block";
+      const spinner = new Spinner().spin();
+      setSpinner(spinner);
+      document.getElementById("loading-spinner").appendChild(spinner.el);
     } else {
       spinner.stop();
-      document.getElementById("overlay").style.display = "none";
     }
-  }, [isLoading]);
+  }, [isLoading, spinner]);
 
   async function Logout() {
     try {
@@ -113,8 +113,9 @@ export default function Login() {
           display: "none"
         }}>
         </div>
-        <div id="spinner-container" style={{ position: "fixed", top: "50%", left: "50%" }}>
-          {isLoading ? <Spinner /> : null}
+        <div id="loading-spinner"
+             style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+          {isLoading && <div style={{ background: "rgba(0, 0, 0, 0.4)", width: "100%", height: "100%" }} />}
         </div>
         <div
           style={{
