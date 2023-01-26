@@ -1,4 +1,4 @@
-import { Button, FormControl, Input, InputLabel } from "@mui/material";
+import { Button, CircularProgress, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
 
 export default function Login() {
@@ -101,11 +101,9 @@ export default function Login() {
         justifyContent: "center"
       }}
     >
-      {isLoading ? (
-        <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-          <img src={loadingGif} alt="loading" />
-        </div>
-      ) : null}
+      {isLoading ? <CircularProgress size={50} color="secondary" />
+        : null}
+
 
       {isLoggedIn ? (
         <div style={{
