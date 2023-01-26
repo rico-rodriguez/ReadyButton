@@ -94,7 +94,8 @@ export default function Home() {
             <Typography variant="subtitle1">
               To get started, add anything after the '/' of this url and you
               will be sent to your own instance of the ready button. Share the
-              link with classmates or friends to see when everyone is ready!
+              link with classmates or friends to see when everyone is ready!<br />
+              Try the public page at <a href="https://readybutton.herokuapp.com/public">Here</a>.
             </Typography>
           </Box>
           <div className="featureListContainer">
