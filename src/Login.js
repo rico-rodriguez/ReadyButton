@@ -1,4 +1,4 @@
-import { Button, CircularProgress, FormControl, Input, InputLabel } from "@mui/material";
+import { Button, FormControl, Input, InputLabel, LinearProgress } from "@mui/material";
 import React, { useEffect } from "react";
 
 export default function Login() {
@@ -101,10 +101,6 @@ export default function Login() {
         justifyContent: "center"
       }}
     >
-      {isLoading ? <CircularProgress size={50} color="secondary" />
-        : null}
-
-
       {isLoggedIn ? (
         <div style={{
           display: "flex",
@@ -153,6 +149,8 @@ export default function Login() {
           </Button>
         </FormControl>
       )}
+      {isLoading ? <LinearProgress size={50} color="secondary" />
+        : null}
     </div>
   );
 }
