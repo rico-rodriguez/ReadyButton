@@ -26,7 +26,7 @@ export default function ClickedUsers() {
       const data = await response.json();
       setClickedUsers(data);
       const usersList = data.usersArray.map((user) => (
-        <li key={user}>{user.split(" ")[1]}</li>
+        <li key={user}>{user}</li>
       ));
       setUsersList(usersList);
     }, 1000);
@@ -35,7 +35,7 @@ export default function ClickedUsers() {
     if (clickedUsers.usersArray) {
       const usersList = clickedUsers.usersArray.slice(1).map((user) => (
 
-        <li className="featureItem" key={user}>{user}</li>
+        <li className="featureItem" key={user}>{user.split(" ")[1]}</li>
       ));
       setUsersList(usersList);
     }
