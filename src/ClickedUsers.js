@@ -24,7 +24,7 @@ export default function ClickedUsers() {
         }
       );
       const data = await response.json();
-      setClickedUsers(data.split(" ")[1]);
+      setClickedUsers(data);
       const usersList = data.usersArray.map((user) => (
         <li key={user}>{user}</li>
       ));
