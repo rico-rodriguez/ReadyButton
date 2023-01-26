@@ -101,6 +101,8 @@ export default function Login() {
         justifyContent: "center"
       }}
     >
+      {isLoading ? <LinearProgress size={50} color="secondary" />
+        : null}
       {isLoggedIn ? (
         <div style={{
           display: "flex",
@@ -149,8 +151,6 @@ export default function Login() {
           </Button>
         </FormControl>
       )}
-      {isLoading ? <LinearProgress size={50} color="secondary" />
-        : null}
     </div>
   );
 }
