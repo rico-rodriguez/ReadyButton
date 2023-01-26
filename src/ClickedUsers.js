@@ -51,10 +51,11 @@ export default function ClickedUsers() {
             position: "fixed",
             top: "115px",
             right: "20px",
-            backgroundColor: "rgba(0,0,0,0.79)",
+            backgroundColor: "rgba(0,0,0 / 9%)",
             borderRadius: "5px",
             height: "540px",
-            width: "170px"
+            width: "170px",
+            textAlign: "center"
           }}
         >
           <Skeleton sx={{ backgroundColor: "#494949", zIndex: "999" }} animation={"pulse"} variant="rect" width={170}
