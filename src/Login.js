@@ -1,7 +1,6 @@
 import { Button, FormControl, Input, InputLabel } from "@mui/material";
 import React, { useEffect } from "react";
 import uuid from "react-uuid";
-import { Spinner } from "spin.js";
 
 export default function Login() {
   const [name, setName] = React.useState("");
@@ -68,16 +67,6 @@ export default function Login() {
     }
 
   };
-  const [spinner, setSpinner] = React.useState(null);
-  useEffect(() => {
-    if (isLoading) {
-      const spinner = new Spinner().spin();
-      setSpinner(spinner);
-      document.getElementById("loading-spinner").appendChild(spinner.el);
-    } else {
-      spinner.stop();
-    }
-  }, [isLoading, spinner]);
 
   async function Logout() {
     try {
@@ -112,10 +101,6 @@ export default function Login() {
           zIndex: "1000",
           display: "none"
         }}>
-        </div>
-        <div id="loading-spinner"
-             style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
-          {isLoading && <div style={{ background: "rgba(0, 0, 0, 0.4)", width: "100%", height: "100%" }} />}
         </div>
         <div
           style={{
