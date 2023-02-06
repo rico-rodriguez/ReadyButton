@@ -24,6 +24,7 @@
     "react-flying-objects": "^1.0.7",
     "react-native-web": "^0.18.10",
     "react-router-dom": "^6.6.2",
+    "react-router-transition": "^2.1.0",
     "react-scripts": "5.0.1",
     "react-use": "^17.4.0",
     "react-uuid": "^2.0.0",
