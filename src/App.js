@@ -4,7 +4,6 @@ import ButtonClicker from "./ButtonClicker";
 import Home from "./Home";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { useEffect, useState } from "react";
-import { AnimatedRoute } from "react-router-transition";
 
 const theme = createTheme({
   palette: {
@@ -48,16 +47,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <AnimatedRoute
-            atEnter={{ opacity: 0 }}
-            atLeave={{ opacity: 0 }}
-            atActive={{ opacity: 1 }}
-            className="switch-wrapper"
-          >
-            <Route path="/" element={<Home />} />
-            {/*<Route path="/login" element={<LoginPage />} />*/}
-            {loggedIn && <Route path="/:urlId" element={<ButtonClicker />} />}
-          </AnimatedRoute>
+          <Route path="/" element={<Home />} />
+          {/*<Route path="/login" element={<LoginPage />} />*/}
+          {loggedIn && <Route path="/:urlId" element={<ButtonClicker />} />}
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
